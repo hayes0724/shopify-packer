@@ -1,10 +1,10 @@
 {
-  "name": "shopify-packer",
+  "name": "@hayes0724/shopify-packer",
   "version": "1.0.1",
   "bin": {
     "packer": "cli/index.js"
   },
-  "repository": "https://github.com/hayes0724/shopify-packer",
+  "repository": "https://github.com/hayes0724/shopify-packer.git",
   "bugs": "https://github.com/hayes0724/shopify-packer/issues",
   "author": "eric hayes <eric@hayesmarketing.io>",
   "license": "MIT",
