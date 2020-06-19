@@ -1,12 +1,21 @@
 {
   "name": "shopify-packer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "packer": "cli/index.js"
   },
-  "repository": "git@github.com:hayes0724/shopify-packer.git",
-  "author": "hayes <admin@hayesmarketingfirm.com>",
+  "repository": "https://github.com/hayes0724/shopify-packer",
+  "bugs": "https://github.com/hayes0724/shopify-packer/issues",
+  "author": "eric hayes <eric@hayesmarketing.io>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "keywords": [
+    "shopify",
+    "deployment",
+    "webpack"
+  ],
   "dependencies": {
     "@namics/stylelint-bem": "^6.3.0",
     "@shopify/babel-preset": "^23.0.0",
