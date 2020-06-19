@@ -1,0 +1,7 @@
+logs
+node_modules/
+/.idea/
+/.yarn-metadata.json
+/config.js
+/yarn-error.log
+/config.json
