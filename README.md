@@ -37,10 +37,10 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
 
 ## Install
 ```npm
-npm i shopify-packer -g
+npm i @hayes0724/shopify-packer -g
 ```
 ```npm
-yarn global add shopify-packer
+yarn global add @hayes0724/shopify-packer
 ```
 
 ## Quick Start
