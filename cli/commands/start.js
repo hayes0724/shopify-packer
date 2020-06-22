@@ -97,8 +97,6 @@ function onCompilerCompile() {
 function onCompilerDone(stats) {
     const statsJson = stats.toJson({}, true);
 
-    spinner.stop();
-
     if (process.env.NODE_ENV !== 'test') {
 
     }
@@ -120,6 +118,7 @@ function onCompilerDone(stats) {
     }
 
     if (!statsJson.errors.length && !statsJson.warnings.length) {
+        spinner.succeed();
         console.log(
             `${chalk.green(figures.tick)}  Compiled successfully in ${statsJson.time /
             1000}s!`,

@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -60,6 +60,7 @@
     "inquirer": "^7.1.0",
     "ip": "^1.1.5",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.7.0",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.5",
