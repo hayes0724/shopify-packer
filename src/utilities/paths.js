@@ -14,6 +14,10 @@ const config = {
     commonExcludes: [/node_modules/, /assets\/static/],
     cache: path.join(root, '.cache'),
     settings: path.resolve(root, 'config.json'),
+    merge: {
+        dev: path.resolve(root, 'dev.config.js'),
+        prod: path.resolve(root, 'prod.config.js'),
+    },
     themelint: {
         bin: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
         config: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),

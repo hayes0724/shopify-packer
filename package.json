@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -17,6 +17,7 @@
     "webpack"
   ],
   "dependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.10.1",
     "@namics/stylelint-bem": "^6.3.0",
     "@shopify/babel-preset": "^23.0.0",
     "@shopify/theme-lint": "^3.0.0",

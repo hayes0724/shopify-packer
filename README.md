@@ -13,6 +13,7 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
     4. [Styles with Liquid](#Styles-with-Liquid)
     5. [Template and layout bundles](#Template-and-layout-bundles)
     6. [Asset minification](#Asset-minification)
+    7. [Modify webpack config](#Modify-webpack-config)
 7. [Themes](#Themes)
     1. [List](#List)
     2. [Create](#Create)
@@ -44,6 +45,23 @@ yarn global add @hayes0724/shopify-packer
 ```
 
 ## Quick Start
+
+### New project
+1. Create new project with all required files
+```
+packer init <dirname>
+```
+2. Add app password and store url to config.json
+
+3. Create new empty theme on shopify
+```
+packer theme:create
+```
+4. Deploy files and start working
+```
+packer start
+```
+
 
 ## Commands
 
@@ -196,7 +214,9 @@ It must follow the following structure:
 ├── .stylelintrc [4]
 ├── package.json [5]
 ├── config.json [6]
-├── yarn.lock [7]
+├── dev.config.js [7]
+├── prod.config.js [8]
+├── yarn.lock [9]
 └── src
    ├── assets [8]
    ├── config [9]
@@ -396,6 +416,37 @@ to run in production. These optimizations include:
 - Optimized JS via UglifyJS and bundle splitting
 - Optimized CSS using cssNano
 - Minified HTML
+
+### Modify webpack config
+This project uses webpack merge to combine webpack config files.
+
+`dev.config.js` - Add development webpack settings
+
+`prod.config.js` - Add production webpack settings
+
+Example: add tailwind to postcss plugin
+```javascript
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/,
+                loader: 'postcss-loader',
+                options: {
+                    ident: 'postcss',
+                    sourceMap: false,
+                    plugins: (loader) => [
+                        require('tailwindcss'),
+                        require('postcss-preset-env')(),
+                        require('cssnano')()
+                    ]
+                },
+            }
+        ],
+    },
+}
+```
+This will modify the current scss rule in packer and add tailwind as a plugin.
 
 ## Themes
 Packer comes with several utilities to make managing and setting up 

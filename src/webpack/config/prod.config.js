@@ -14,8 +14,9 @@ const getChunkName = require('../../utilities/get-chunk-name');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const mergeProd = require(paths.merge.prod);
 
-module.exports = merge([
+const output = merge([
     core,
     scss,
     css,
@@ -84,5 +85,7 @@ module.exports = merge([
             },
         }
     },
-
+    mergeProd
 ])
+
+module.exports = output;

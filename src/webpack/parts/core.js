@@ -27,6 +27,7 @@ const core = {
             path.resolve(__dirname, '../../../node_modules'),
             path.resolve(__dirname, '../../'),
             path.resolve(paths.theme.root, 'node_modules'),
+            paths.theme.root
         ],
     },
     module: {

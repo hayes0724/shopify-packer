@@ -9,6 +9,7 @@ const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-ch
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const mergeDev = require(paths.merge.dev);
 
 Object.keys(core.entry).forEach((name) => {
     core.entry[name] = [
