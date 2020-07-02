@@ -1,3 +1,5 @@
+const fs = require('fs')
+const chalk = require('chalk');
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -14,7 +16,12 @@ const getChunkName = require('../../utilities/get-chunk-name');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
-const mergeProd = require(paths.merge.prod);
+let mergeProd;
+
+if (fs.existsSync(paths.merge.prod)) {
+    mergeProd = require(paths.merge.prod);
+    console.log(chalk.green(`Custom webpack configuration found ${paths.merge.prod}`))
+}
 
 const output = merge([
     core,

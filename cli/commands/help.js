@@ -1,15 +1,18 @@
 const table = require('table').table;
 const figlet = require('figlet');
 const chalk = require('chalk');
+const version = require('../../package').version;
 
 module.exports = (args) => {
+    const headers = [chalk.whiteBright('Command'), chalk.whiteBright('Description'), chalk.whiteBright('Flags')];
+    const commands = [];
+
     console.log(chalk.cyanBright(figlet.textSync('PACKER', {
         font: 'varsity',
         horizontalLayout: 'default',
         verticalLayout: 'default'
     })));
-    const headers = [chalk.whiteBright('Command'), chalk.whiteBright('Description'), chalk.whiteBright('Flags')];
-    const commands = [];
+    console.log(chalk.green(`Shopify Packer - v${version}`));
     commands.push([
         chalk.greenBright.bold('init <dir>'),
         'Creates a blank start theme in specified directory.',
@@ -86,6 +89,11 @@ module.exports = (args) => {
         chalk.greenBright.bold('theme:download'),
         'Download theme files from shopify',
         '--settings\n'
+    ]);
+    commands.push([
+        chalk.greenBright.bold('--version | -v'),
+        'Show packer version',
+        ''
     ]);
     console.log(table([headers, ...commands]))
 }

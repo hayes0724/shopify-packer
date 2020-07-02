@@ -1,23 +1,23 @@
 # Shopify Packer
 Shopify development tool using themekit and webpack. Also a drop in replacement for Slate.
 
-1. [Features](#Features)
-2. [Install](#Install)
-3. [Quick Start](#Quick-Start)
-4. [Commands](#Commands)
-5. [Configuration](#Configuration)
-6. [Concepts](#Concepts)
-    1. [Theme structure](#Theme-Structure)
-    2. [Local development](#Local-Development)
-    3. [SSL](#SSL)
-    4. [Styles with Liquid](#Styles-with-Liquid)
-    5. [Template and layout bundles](#Template-and-layout-bundles)
-    6. [Asset minification](#Asset-minification)
-    7. [Modify webpack config](#Modify-webpack-config)
-7. [Themes](#Themes)
-    1. [List](#List)
-    2. [Create](#Create)
-    3. [Remove](#Remove)
+1. [Features](#features)
+2. [Install](#install)
+3. [Quick Start](#quick-start)
+4. [Commands](#commands)
+5. [Configuration](#vonfiguration)
+6. [Concepts](#voncepts)
+    1. [Theme structure](#theme-structure)
+    2. [Local development](#local-development)
+    3. [SSL](#ssl)
+    4. [Styles with Liquid](#styles-with-liquid)
+    5. [Template and layout bundles](#template-and-layout-bundles)
+    6. [Asset minification](#asset-minification)
+    7. [Modify webpack config](#modify-webpack-config)
+7. [Themes](#themes)
+    1. [List](#list)
+    2. [Create](#create)
+    3. [Remove](#remove)
 
 ## Features
 - Webpack 4
@@ -37,10 +37,10 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
 - Download files/sync changes
 
 ## Install
-```npm
+```bash
 npm i @hayes0724/shopify-packer -g
 ```
-```npm
+```bash
 yarn global add @hayes0724/shopify-packer
 ```
 
@@ -87,36 +87,38 @@ packer init <dir>
 ### start
 Compiles your local theme files into a dist directory, uploads these files to your remote Shopify store and finally
 boots up a local Express server that will serve most of your CSS and JavaScript.
-```npm
+```bash
 packer start [--env=my-custom-env-name] [--skipPrompts] [--skipFirstDeploy]
 ```
-| Flag | Description |
+
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
-| ``--skipPrompts`` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
-| ``--skipFirstDeploy`` | Skips the file upload sequence and simply boots up the local Express server |
+| `--env` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| `--skipPrompts` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
+| `--skipFirstDeploy` | Skips the file upload sequence and simply boots up the local Express server |
+
 ### watch
 Same as start command except it skips the first deployment
-```npm
+```bash
 packer watch [--env=my-custom-env-name] [--skipPrompts]
 ```
 ### deploy
 Uploads the dist folder to the Shopify store.
-```npm
+```bash
 packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace]
 ```
-| Flag | Description |
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
 | ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
 | ``--skipPrompts`` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
 | ``--nodelete`` | By default deploy will replace all files in theme, use this flag to update without removing existing files |
 ### build
-```npm
+```bash
 packer build
 ```
 Builds a production-ready version of the theme by compiling the files into the dist folder.
 ### lint
-```npm
+```bash
 packer lint [--scripts] [--styles] [--locales]
 ```
 | Flag | Description |
@@ -127,7 +129,7 @@ packer lint [--scripts] [--styles] [--locales]
 ### format
 Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files. By default, it uses 
 ESLint Fix to format JS files, Stylelint Fix to format CSS files and Prettier to format JSON files.
-```npm
+```bash
 packer format [--scripts] [--styles] [--json]
 ```
 | Flag | Description |
@@ -137,12 +139,12 @@ packer format [--scripts] [--styles] [--json]
 | ``--locales`` | Runs formatting only on locales files |
 ### zip
 Compiles the contents of the dist directory and creates a ZIP file in the root of the project.
-```npm
+```bash
 packer zip
 ```
 ### theme:list
 Lists all themes (shows name, themeID, etc...) on the site, requires app password and store url be set first. By default looks at the store for development env in config.json
-```npm
+```bash
 packer theme:list
 ```
 | Flag | Description |
@@ -150,16 +152,16 @@ packer theme:list
 | ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
 ### theme:create
 Creates a new empty theme on Shopify and updates config.json for the selected env with the proper themeID
-```npm
+```bash
 packer theme:create
 ```
-| Flag | Description |
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
 | ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
 | ``--name=my-theme-name `` | Sets the theme name on Shopify, it's required |
 ### theme:remove
 Removes the theme set in the selected env from Shopify
-```npm
+```bash
 packer theme:remove
 ```
 | Flag | Description |
@@ -168,7 +170,7 @@ packer theme:remove
 
 ### help
 Display all commands and flags
-```npm
+```bash
 packer help
 ```
 

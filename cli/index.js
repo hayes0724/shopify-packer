@@ -2,6 +2,8 @@
 'use strict';
 const minimist = require('minimist');
 const args = minimist(process.argv.slice(2));
+const chalk = require('chalk');
+const version = require('../package').version;
 
 switch (process.argv[2]) {
     case 'init':
@@ -44,9 +46,11 @@ switch (process.argv[2]) {
         args.remove = true;
         require('./commands/theme')(args);
         break;
-    case 'theme:download':
-        args.download = true;
-        require('./commands/theme')(args);
+    case '--version':
+        console.log(chalk.green(`Shopify Packer - v${version}`));
+        break;
+    case '-v':
+        console.log(chalk.green(`Shopify Packer - v${version}`));
         break;
     default:
         require('./commands/help')(args);

@@ -1,3 +1,5 @@
+const fs = require('fs');
+const chalk = require('chalk');
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -9,7 +11,12 @@ const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-ch
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
-const mergeDev = require(paths.merge.dev);
+let mergeDev;
+
+if (fs.existsSync(paths.merge.prod)) {
+    mergeDev = require(paths.merge.dev);
+    console.log(chalk.green(`Custom webpack configuration found ${paths.merge.dev}`))
+}
 
 Object.keys(core.entry).forEach((name) => {
     core.entry[name] = [
@@ -66,5 +73,6 @@ module.exports = merge([
 
             new HtmlWebpackIncludeLiquidStylesPlugin(),
         ],
-    }
+    },
+    mergeDev
 ])
