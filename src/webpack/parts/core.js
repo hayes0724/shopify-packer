@@ -79,11 +79,6 @@ const core = {
 
         }),
 
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        }),
-
         extractLiquidStyles,
 
         new CopyWebpackPlugin([
