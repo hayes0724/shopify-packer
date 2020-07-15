@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.10.1",
+    "@etclabscore/dl-github-releases": "^1.1.2",
     "@namics/stylelint-bem": "^6.3.0",
     "@shopify/babel-preset": "^23.0.0",
     "@shopify/theme-lint": "^3.0.0",
@@ -45,6 +46,7 @@
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
     "download": "^8.0.0",
+    "download-github-release": "^0.3.2",
     "edit-json-file": "^1.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-shopify": "^28.0.0",

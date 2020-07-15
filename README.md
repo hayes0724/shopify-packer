@@ -18,6 +18,7 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
     1. [List](#list)
     2. [Create](#create)
     3. [Remove](#remove)
+    4. [Download](#download)
 
 ## Features
 - Webpack 4
@@ -27,14 +28,16 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
 - PostCSS
 - SCSS
 - Liquid code in stylesheets
+- Webpack config is easy to modify (use `dev.config.js` and `prod.config.js`)
 - App server loads scripts and stylesheets locally
 - Hot Module Reloading for rapid development
 - Multiple entrypoints for templates and layouts
 - List themes on store
 - Delete themes from CLI
-- Create new empty theme from CLI, adds theme id to config.json
+- Create new empty theme in Shopify from CLI, adds theme id to config.json
 - Download existing themes
 - Download files/sync changes
+- Init base packer theme from cli or use a custom github repo
 
 ## Install
 ```bash
@@ -77,12 +80,15 @@ List of all API commands for Packer:
 - [theme:list](#theme:list)
 - [theme:create](#theme:create)
 - [theme:remove](#theme:remove)
+- [theme:download](#theme:download)
 - [help](#help)
 
 ### init
-Creates a blank start theme in specified directory
+Creates a blank start theme in specified directory. By default, it will use `hayes0724/packer-blank-theme` 
+unless you specify the repo flag with the name of the themes github repo. It will pull the latest release and fail 
+if the custom theme repo has no releases.
 ```
-packer init <dir>
+packer init <dir> [--repo=hayes0724/packer-blank-theme]
 ``` 
 ### start
 Compiles your local theme files into a dist directory, uploads these files to your remote Shopify store and finally
@@ -168,6 +174,16 @@ packer theme:remove
 | --- | --- |
 | ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
 
+### theme:download
+Downloads the theme set in the selected env from Shopify
+```bash
+packer theme:download
+```
+| Flag | Description |
+| --- | --- |
+| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+
+
 ### help
 Display all commands and flags
 ```bash
@@ -203,6 +219,11 @@ override with the ``--env`` flag
 packer start --env=production
 ```
 This will use the settings set under themes production
+
+### Network settings
+These are not required and by default are blank. If you would like to change the ip address that the local development server
+runs on manually or by setting the interface (by name) you can change that here. It will otherwise run using the first 
+interface ip address in your system.
 
 ## Concepts
 
@@ -480,10 +501,9 @@ packer theme:create --env=development
 ``` 
 By default it will use the development environment if no flag is provided.
 
-### Remove
-Deletes the theme associated with the environment from Shopify. 
-It will automatically remove the theme id to your ``config.json``
+### Download
+Downloads the theme from Shopify to your src folder
 ```
-packer theme:remove --env=development
+packer theme:download --env=development
 ``` 
-By default it will use the development environment if no flag is provided.
+By default, it will use the development environment if no flag is provided.

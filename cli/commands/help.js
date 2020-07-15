@@ -8,7 +8,7 @@ module.exports = (args) => {
     const commands = [];
 
     console.log(chalk.cyanBright(figlet.textSync('PACKER', {
-        font: 'varsity',
+        font: 'Varsity',
         horizontalLayout: 'default',
         verticalLayout: 'default'
     })));
@@ -16,7 +16,7 @@ module.exports = (args) => {
     commands.push([
         chalk.greenBright.bold('init <dir>'),
         'Creates a blank start theme in specified directory.',
-        ''
+        '--repo'
     ]);
     commands.push([
         chalk.greenBright.bold('start'),

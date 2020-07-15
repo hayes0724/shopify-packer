@@ -46,6 +46,10 @@ switch (process.argv[2]) {
         args.remove = true;
         require('./commands/theme')(args);
         break;
+    case 'theme:download':
+        args.download = true;
+        require('./commands/theme')(args);
+        break;
     case '--version':
         console.log(chalk.green(`Shopify Packer - v${version}`));
         break;
