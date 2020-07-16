@@ -58,13 +58,6 @@ module.exports = async function(files) {
       )}, add the\n` +
       `   following to your ${chalk.bold('.env')} file: \n`,
   );
-  console.log(
-    `${chalk.cyan('      SLATE_IGNORE_FILES=/config/settings_data.json')}\n`,
-  );
-  console.log(
-    `   Or to disable this prompt, add the following to your slate.config.js file:\n`,
-  );
-  console.log(`      ${chalk.cyan(`'cli.promptSettings': false`)}\n`);
 
   const answer = await inquirer.prompt([question]);
 
