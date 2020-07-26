@@ -1,7 +1,6 @@
 const {list, create, remove} = require('./api');
 const themeKit = require('@shopify/themekit');
 const Environment = require('../utilities/enviroment');
-const env = new Environment;
 const table = require('table').table;
 const chalk = require('chalk');
 const paths = require('../utilities/paths').config;

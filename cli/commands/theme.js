@@ -1,7 +1,9 @@
 const {getThemes, create, remove, download} = require('../../src/theme');
 const chalk = require('chalk')
+const Environment = require('../../src/utilities/enviroment');
 
 module.exports = async (args) => {
+    const env = new Environment(args.env);
     if (args.list) {
         await getThemes(args);
     }
