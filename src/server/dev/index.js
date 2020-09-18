@@ -27,6 +27,14 @@ module.exports = class DevServer {
                     next();
                 },
             },
+            snippetOptions: {
+                rule: {
+                    match: /<\/body>/i,
+                    fn: function (snippet, match) {
+                        return snippet + match;
+                    }
+                }
+            },
             https: {key: getSSLKeyPath(), cert: getSSLCertPath()},
             logLevel: 'silent',
             socket: {
