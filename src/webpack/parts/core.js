@@ -33,24 +33,6 @@ const core = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: paths.commonExcludes,
-                loader: path.resolve(__dirname, '../hmr-alamo-loader.js'),
-            },
-            {
-                test: /fonts\/.*\.(eot|svg|ttf|woff|woff2|otf)$/,
-                exclude: /node_modules/,
-                loader: 'file-loader',
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                exclude: paths.commonExcludes,
-                use: [
-                    {loader: 'file-loader', options: {name: '[name].[ext]'}},
-                    {loader: 'img-loader'},
-                ],
-            },
-            {
                 test: /\.(liquid|json)$/,
                 exclude: [
                     /(css|scss|sass)\.liquid$/,

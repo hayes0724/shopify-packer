@@ -11,6 +11,7 @@ const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-ch
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const dev = require('../parts/dev');
 let mergeDev;
 
 if (fs.existsSync(paths.merge.prod)) {
@@ -26,6 +27,7 @@ Object.keys(core.entry).forEach((name) => {
 
 module.exports = merge([
     core,
+    dev,
     scss,
     css,
     {

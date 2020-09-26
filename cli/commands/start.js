@@ -36,8 +36,8 @@ module.exports = () => {
         .then((ports) => {
             ports = ports[0];
 
-            themeId = config.themes.development.id;
-            url = config.themes.development.store;
+            themeId = Environment.getThemeIdValue();
+            url = Environment.getStoreValue();
 
             assetServer = new AssetServer({
                 env:  process.env.NODE_ENV,

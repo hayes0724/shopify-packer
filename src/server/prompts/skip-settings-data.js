@@ -53,10 +53,7 @@ module.exports = async function(files) {
       'settings_data.json',
     )} file.\n` +
       `   This can reset any theme setting customizations you have done in the\n` +
-      `   Theme Editor. To always ignore uploading ${chalk.bold(
-        'settings_data.json',
-      )}, add the\n` +
-      `   following to your ${chalk.bold('.env')} file: \n`,
+      `   Theme Editor.`
   );
 
   const answer = await inquirer.prompt([question]);
