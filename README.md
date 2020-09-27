@@ -27,6 +27,7 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
 - Babel
 - PostCSS
 - SCSS
+- [Analyze Bundles](#Bundle Analyzer)
 - Liquid code in stylesheets
 - Webpack config is easy to modify (use `dev.config.js` and `prod.config.js`)
 - App server loads scripts and stylesheets locally
@@ -120,8 +121,12 @@ packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace]
 | ``--nodelete`` | By default deploy will replace all files in theme, use this flag to update without removing existing files |
 ### build
 ```bash
-packer build
+packer build [--analyze]
 ```
+| Flag | Description |
+| --- | --- |
+| ``--analyze`` | Analyzes bundles |
+
 Builds a production-ready version of the theme by compiling the files into the dist folder.
 ### lint
 ```bash
@@ -436,9 +441,15 @@ where the layout option value is the name of the layout.
 Packer's build script compiles the theme so that it is fully optimized 
 to run in production. These optimizations include:
 
-- Optimized JS via UglifyJS and bundle splitting
+- Minified JS and bundle splitting
 - Optimized CSS using cssNano
 - Minified HTML
+
+### Bundle Analyzer
+Packer's build script can use Webpack Bundle Analyzer to see what's 
+inside each bundle for further optimization
+
+![Bundle Analyzer](./docs/webpack-bundle-analyzer.png)
 
 ### Modify webpack config
 This project uses webpack merge to combine webpack config files.
@@ -499,7 +510,7 @@ development on. It will automatically add the theme id to your ``config.json``
 ```
 packer theme:create --env=development
 ``` 
-By default it will use the development environment if no flag is provided.
+By default, it will use the development environment if no flag is provided.
 
 ### Download
 Downloads the theme from Shopify to your src folder

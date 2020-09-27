@@ -36,7 +36,7 @@ module.exports = (args) => {
     commands.push([
         chalk.greenBright.bold('build'),
         'Builds a production-ready version of the theme by compiling the files into the dist folder.',
-        ''
+        '--analyze'
     ]);
     commands.push([
         chalk.greenBright.bold('lint'),
