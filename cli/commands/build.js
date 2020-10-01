@@ -1,12 +1,17 @@
 const webpack = require('webpack');
-const webpackConfig = require('../../src/webpack/config/prod.config');
-const webpackConfigAnalyze = require('../../src/webpack/config/analyze.config');
 const chalk = require('chalk');
 const ora = require('ora');
 const spinner = ora(chalk.magenta('Compiling...'));
 
 module.exports = (args) => {
-    const config = args.analyze ? webpackConfigAnalyze : webpackConfig
+    let config;
+    if (args.analyze) {
+        config = require('../../src/webpack/config/analyze.config');
+        console.log(chalk.green(`Loading Bundle Analyzer`))
+    }
+    else {
+        config = require('../../src/webpack/config/prod.config');
+    }
 
     spinner.start();
 

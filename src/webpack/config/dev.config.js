@@ -2,7 +2,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('../../utilities/paths').config;
 const development = process.env.NODE_ENV !== 'production';
@@ -14,7 +14,7 @@ const scss = require('../parts/scss');
 const dev = require('../parts/dev');
 let mergeDev;
 
-if (fs.existsSync(paths.merge.prod)) {
+if (fs.existsSync(paths.merge.dev)) {
     mergeDev = require(paths.merge.dev);
     console.log(chalk.green(`Custom webpack configuration found ${paths.merge.dev}`))
 }

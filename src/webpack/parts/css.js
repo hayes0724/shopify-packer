@@ -15,7 +15,7 @@ const cssRule = {
 const styleLoader = {
     loader: 'style-loader',
     options: {
-        hmr: isDev,
+
     },
 };
 
@@ -31,12 +31,7 @@ const cssLoader = {
 const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-        ident: 'postcss',
-        sourceMap: !isDev,
-        plugins: (loader) => [
-            require('postcss-preset-env')(),
-            require('cssnano')()
-        ]
+        sourceMap: isDev,
     },
 };
 

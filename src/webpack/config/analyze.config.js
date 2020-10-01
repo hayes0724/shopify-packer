@@ -1,12 +1,9 @@
-const chalk = require('chalk');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const production = require('./prod.config');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-console.log(chalk.green(`Loading Bundle Analyzer`))
-
-const output = merge([
+const webpackConfigAnalyze = merge([
     production,
     {
         plugins: [
@@ -15,4 +12,4 @@ const output = merge([
     },
 ])
 
-module.exports = output;
+module.exports = webpackConfigAnalyze;

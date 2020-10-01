@@ -18,6 +18,7 @@ const config = {
         dev: path.resolve(root, 'dev.config.js'),
         prod: path.resolve(root, 'prod.config.js'),
     },
+    postcss: path.resolve(root, 'postcss.config.js'),
     themelint: {
         bin: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
         config: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),

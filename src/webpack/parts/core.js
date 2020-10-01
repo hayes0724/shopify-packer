@@ -14,7 +14,8 @@ const core = {
 
     output: {
         filename: '[name].js',
-        path: paths.theme.dist.assets
+        path: paths.theme.dist.assets,
+        chunkFilename: '[name].bundle.js',
     },
 
     entry: Object.assign(
@@ -63,37 +64,39 @@ const core = {
 
         extractLiquidStyles,
 
-        new CopyWebpackPlugin([
-            {
-                from: paths.theme.src.assets,
-                to: paths.theme.dist.assets,
-                flatten: true,
-            },
-            {
-                from: paths.theme.src.layout,
-                to: paths.theme.dist.layout,
-            },
-            {
-                from: paths.theme.src.config,
-                to: paths.theme.dist.config,
-            },
-            {
-                from: paths.theme.src.locales,
-                to: paths.theme.dist.locales,
-            },
-            {
-                from: paths.theme.src.snippets,
-                to: paths.theme.dist.snippets,
-            },
-            {
-                from: paths.theme.src.templates,
-                to: paths.theme.dist.templates,
-            },
-            {
-                from: paths.theme.src.sections,
-                to: paths.theme.dist.sections,
-            },
-        ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: paths.theme.src.assets,
+                    to: paths.theme.dist.assets,
+                    flatten: true,
+                },
+                {
+                    from: paths.theme.src.layout,
+                    to: paths.theme.dist.layout,
+                },
+                {
+                    from: paths.theme.src.config,
+                    to: paths.theme.dist.config,
+                },
+                {
+                    from: paths.theme.src.locales,
+                    to: paths.theme.dist.locales,
+                },
+                {
+                    from: paths.theme.src.snippets,
+                    to: paths.theme.dist.snippets,
+                },
+                {
+                    from: paths.theme.src.templates,
+                    to: paths.theme.dist.templates,
+                },
+                {
+                    from: paths.theme.src.sections,
+                    to: paths.theme.dist.sections,
+                },
+            ],
+        }),
     ],
 }
 

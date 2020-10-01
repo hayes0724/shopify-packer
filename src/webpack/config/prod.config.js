@@ -2,16 +2,15 @@ const fs = require('fs')
 const chalk = require('chalk');
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const paths = require('../../utilities/paths').config;
 const development = false;
 process.env.NODE_ENV = 'production';
-
 const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-chunks');
 const getChunkName = require('../../utilities/get-chunk-name');
+
 // Parts
 const core = require('../parts/core');
 const css = require('../parts/css');
@@ -39,12 +38,7 @@ const output = merge([
                 'process.env': {NODE_ENV: '"production"'},
             }),
 
-            new UglifyJSPlugin({
-                sourceMap: true,
-            }),
-
             // generate dist/layout/*.liquid for all layout files with correct paths to assets
-
             new HtmlWebpackPlugin({
                 excludeChunks: ['static'],
                 filename: paths.theme.dist.snippets + '/script-tags.liquid',
@@ -86,13 +80,15 @@ const output = merge([
             //new SlateTagPlugin(packageJson.version),
         ],
         optimization: {
+            nodeEnv: 'production',
+            minimize: true,
             splitChunks: {
-                chunks: 'initial',
+                chunks: 'all',
                 name: getChunkName,
-            },
-        }
+            }
+        },
     },
-    mergeProd
+    mergeProd,
 ])
 
 module.exports = output;

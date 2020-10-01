@@ -40,7 +40,13 @@ module.exports = class Environment {
     }
 
     _setEnvironment() {
-        console.log(chalk.green(`Loading environment: ${this.env}`));
+        console.log(chalk.green(`Loading environment/theme: ${this.env}`));
+        if (this.env !== 'development' && this.env) {
+            if (!this.config.themes[this.env].id) {
+                console.log(chalk.red(`${this.env} is not a valid theme name in config.json`))
+                process.exit(1)
+            }
+        }
         process.env.ENVIRONMENT = (process.env.ENVIRONMENT ? process.env.NODE_ENV : this.env);
         process.env.NODE_ENV = (process.env.NODE_ENV ? process.env.NODE_ENV : this.env);
         process.env.THEME_ID = (process.env.THEME_ID ? process.env.THEME_ID : this.settings.id);

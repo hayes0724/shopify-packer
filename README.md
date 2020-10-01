@@ -27,7 +27,7 @@ Shopify development tool using themekit and webpack. Also a drop in replacement 
 - Babel
 - PostCSS
 - SCSS
-- [Analyze Bundles](#Bundle Analyzer)
+- Analyze Bundles
 - Liquid code in stylesheets
 - Webpack config is easy to modify (use `dev.config.js` and `prod.config.js`)
 - App server loads scripts and stylesheets locally
