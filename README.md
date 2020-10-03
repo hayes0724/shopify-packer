@@ -1,6 +1,8 @@
 # Shopify Packer 
 [![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
+![build](https://github.com/hayes0724/shopify-packer/workflows/Node.js%20CI/badge.svg?branch=master)
+![node-current (scoped)](https://img.shields.io/node/v/@hayes0724/shopify-packer)
 [![GitHub license](https://img.shields.io/github/license/hayes0724/shopify-packer.svg)](https://github.com/hayes0724/shopify-packer/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/hayes0724/shopify-packer.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)

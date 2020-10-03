@@ -6,10 +6,11 @@
   },
   "repository": "https://github.com/hayes0724/shopify-packer.git",
   "bugs": "https://github.com/hayes0724/shopify-packer/issues",
+  "homepage": "https://github.com/hayes0724/shopify-packer/",
   "author": "eric hayes <eric@hayesmarketing.io>",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "engines": {
+    "node": ">=10.13.0"
   },
   "keywords": [
     "shopify",
@@ -22,6 +23,9 @@
   "browserslist": [
     "defaults"
   ],
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@babel/core": "latest",
     "@babel/plugin-transform-async-to-generator": "^7.10.1",
