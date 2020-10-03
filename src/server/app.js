@@ -6,26 +6,26 @@ const express = require('express');
 const isHotUpdateFile = require('./is-hot-update-file');
 
 class App {
-    constructor(compiler) {
-        const app = express();
+  constructor(compiler) {
+    const app = express();
 
-        app.webpackDevMiddleware = webpackDevMiddleware(compiler, {
-            logLevel: 'silent',
-            reload: true,
-            writeToDisk: (filePath) => {
-                return !isHotUpdateFile(filePath);
-            },
-        });
-        app.webpackHotMiddleware = webpackHotMiddleware(compiler, {
-            log: false,
-        });
+    app.webpackDevMiddleware = webpackDevMiddleware(compiler, {
+      logLevel: 'silent',
+      reload: true,
+      writeToDisk: (filePath) => {
+        return !isHotUpdateFile(filePath);
+      },
+    });
+    app.webpackHotMiddleware = webpackHotMiddleware(compiler, {
+      log: false,
+    });
 
-        app.use(corsMiddleware());
-        app.use(app.webpackDevMiddleware);
-        app.use(app.webpackHotMiddleware);
+    app.use(corsMiddleware());
+    app.use(app.webpackDevMiddleware);
+    app.use(app.webpackHotMiddleware);
 
-        return app;
-    }
+    return app;
+  }
 }
 
 module.exports = App;

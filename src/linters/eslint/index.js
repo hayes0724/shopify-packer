@@ -1,6 +1,8 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
+
 const paths = require('../../utilities/paths').config;
+
 const chalk = require('chalk');
 
 function eslint({fix} = {}) {
@@ -16,7 +18,7 @@ function eslint({fix} = {}) {
     // prettier-ignore
     `${JSON.stringify(executable)} . ${extensions} ${ignorePath} ${eslintConfig}` +
     ` ${fixFlag} --max-warnings 0 `,
-    {stdio: 'inherit'},
+    {stdio: 'inherit'}
   );
 }
 
@@ -35,6 +37,6 @@ module.exports.runEslintFix = function runEslintFix() {
   try {
     eslint({fix: true});
   } catch (error) {
-      console.log(chalk.red('ESLint errors found.'));
+    console.log(chalk.red('ESLint errors found.'));
   }
 };

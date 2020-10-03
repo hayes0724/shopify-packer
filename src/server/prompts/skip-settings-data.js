@@ -4,6 +4,7 @@ const figures = require('figures');
 const {flatten} = require('array-flatten');
 const minimatch = require('minimatch');
 const {argv} = require('yargs');
+
 const Environment = require('../../utilities/enviroment');
 
 const question = {
@@ -15,7 +16,7 @@ const question = {
 
 function _includesSettingsData(files) {
   const settingsData = files.filter((file) =>
-    file.endsWith('settings_data.json'),
+    file.endsWith('settings_data.json')
   );
   return settingsData.length > 0;
 }
@@ -31,11 +32,11 @@ function _filterIgnoredFiles(files) {
       }
 
       return files.filter(minimatch.filter(glob));
-    }),
+    })
   );
 }
 
-module.exports = async function(files) {
+module.exports = async function (files) {
   const ignoredFiles = _filterIgnoredFiles(files);
 
   if (
@@ -48,9 +49,9 @@ module.exports = async function(files) {
 
   console.log(
     `\n${chalk.yellow(
-      figures.warning,
+      figures.warning
     )}  It looks like you are about to upload the ${chalk.bold(
-      'settings_data.json',
+      'settings_data.json'
     )} file.\n` +
       `   This can reset any theme setting customizations you have done in the\n` +
       `   Theme Editor.`

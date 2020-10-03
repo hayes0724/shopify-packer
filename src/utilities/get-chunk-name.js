@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-module.exports = function(module, chunks, cacheGroup) {
+module.exports = function (module, chunks, cacheGroup) {
   let containsLayout = false;
   const names = chunks
     .map((chunk) => {
@@ -10,7 +10,7 @@ module.exports = function(module, chunks, cacheGroup) {
       return chunk.name;
     })
     .filter(
-      (name) => !containsLayout || (containsLayout && name.includes('layout.')),
+      (name) => !containsLayout || (containsLayout && name.includes('layout.'))
     );
 
   if (!names.every(Boolean)) return;
@@ -34,9 +34,5 @@ module.exports = function(module, chunks, cacheGroup) {
 };
 
 function hashFilename(name) {
-  return crypto
-    .createHash('md4')
-    .update(name)
-    .digest('hex')
-    .slice(0, 8);
+  return crypto.createHash('md4').update(name).digest('hex').slice(0, 8);
 }

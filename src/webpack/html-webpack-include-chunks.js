@@ -7,7 +7,7 @@ class HtmlWebpackIncludeLiquidStylesPlugin {
   apply(compiler) {
     compiler.hooks.compilation.tap(
       'htmlWebpackIncludeChunksPlugin',
-      this.onCompilation.bind(this),
+      this.onCompilation.bind(this)
     );
   }
 
@@ -16,12 +16,12 @@ class HtmlWebpackIncludeLiquidStylesPlugin {
 
     compilation.hooks.htmlWebpackPluginAlterChunks.tap(
       'htmlWebpackIncludeChunksPlugin',
-      this.onAlterChunks.bind(this),
+      this.onAlterChunks.bind(this)
     );
 
     compilation.hooks.htmlWebpackPluginBeforeHtmlGeneration.tap(
       'htmlWebpackIncludeChunksPlugin',
-      this.onBeforeHtmlGeneration.bind(this),
+      this.onBeforeHtmlGeneration.bind(this)
     );
   }
 

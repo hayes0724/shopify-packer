@@ -1,4 +1,5 @@
 const execSync = require('child_process').execSync;
+
 const paths = require('../../utilities/paths').config;
 
 function themelint() {
