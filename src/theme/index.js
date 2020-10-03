@@ -1,23 +1,45 @@
-const {list, create, remove} = require('./api');
-
 const themeKit = require('@shopify/themekit');
-
-const Environment = require('../utilities/enviroment');
-
 const table = require('table').table;
 const chalk = require('chalk');
-
-const paths = require('../utilities/paths').config;
-
 const ora = require('ora');
 
+const Environment = require('../utilities/enviroment');
 const clearConsole = require('../utilities/clear-console');
+const paths = require('../utilities/paths').config;
 
+const {list, create, remove} = require('./api');
 const Manager = require('./config-manager');
 
 const manager = new Manager();
 
-module.exports.getThemes = async (args) => {
+const _excludeByIndex = (array, values) => {
+  return array.filter((item, index) => {
+    return !values.includes(index);
+  });
+};
+
+const _parseThemes = (themes) => {
+  const exclude = [5, 6, 7, 8];
+  const headers = [];
+  const data = [];
+  themes.forEach((theme) => {
+    const row = [];
+    for (const [key, value] of Object.entries(theme)) {
+      if (theme.role === 'main') {
+        row.push(chalk.cyanBright.bold(value));
+      } else {
+        row.push(chalk.green(value));
+      }
+    }
+    data.push(_excludeByIndex(row, exclude));
+  });
+  for (const [key, value] of Object.entries(themes[0])) {
+    headers.push(chalk.bold.whiteBright(key.toUpperCase().replace('_', ' ')));
+  }
+  return [_excludeByIndex(headers, exclude), ...data];
+};
+
+module.exports.getThemes = async () => {
   const themes = await list();
   const parsed = _parseThemes(themes);
   console.log(table(parsed));
@@ -63,8 +85,8 @@ module.exports.remove = async (args) => {
   }
 };
 
-module.exports.download = async (args) => {
-  return await themeKit.command(
+module.exports.download = async () => {
+  await themeKit.command(
     'download',
     {
       password: Environment.getPasswordValue(),
@@ -78,32 +100,3 @@ module.exports.download = async (args) => {
     }
   );
 };
-
-const _parseThemes = (themes) => {
-  const exclude = [5, 6, 7, 8];
-  const headers = [];
-  const data = [];
-  themes.forEach((theme) => {
-    const row = [];
-    for (const [key, value] of Object.entries(theme)) {
-      if (theme.role === 'main') {
-        row.push(chalk.cyanBright.bold(value));
-      } else {
-        row.push(chalk.green(value));
-      }
-    }
-    data.push(_excludeByIndex(row, exclude));
-  });
-  for (const [key, value] of Object.entries(themes[0])) {
-    headers.push(chalk.bold.whiteBright(key.toUpperCase().replace('_', ' ')));
-  }
-  return [_excludeByIndex(headers, exclude), ...data];
-};
-
-const _excludeByIndex = (array, values) => {
-  return array.filter((item, index) => {
-    return !values.includes(index);
-  });
-};
-
-const _updateConfig = () => {};

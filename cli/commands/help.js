@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 const version = require('../../package').version;
 
-module.exports = (args) => {
+module.exports = () => {
   const headers = [
     chalk.whiteBright('Command'),
     chalk.whiteBright('Description'),
@@ -32,12 +32,16 @@ module.exports = (args) => {
     'Compiles your local theme files into a dist directory, uploads these \n' +
       'files to your remote Shopify store and finally boots up a local Express\n' +
       'server that will serve most of your CSS and JavaScript.',
-    '--env=my-custom-env-name\n' + '--skipPrompts\n' + '--skipFirstDeploy',
+    `--env=my-custom-env-name
+--skipPrompts
+--skipFirstDeploy`,
   ]);
   commands.push([
     chalk.greenBright.bold('watch'),
     'Runs start command with skip first deploy flag.',
-    '--env=my-custom-env-name\n' + '--skipPrompts\n',
+    `--env=my-custom-env-name
+--skipPrompts
+`,
   ]);
   commands.push([
     chalk.greenBright.bold('build'),
@@ -48,19 +52,25 @@ module.exports = (args) => {
     chalk.greenBright.bold('lint'),
     'Lints the theme code according to the rules declared in the .eslintrc and .stylelintrc files.\n' +
       'By default, it uses ESLint to lint JS files, Stylelint to lint CSS files',
-    '--scripts\n' + '--styles\n' + '--locales',
+    `--scripts
+--styles
+--locales`,
   ]);
   commands.push([
     chalk.greenBright.bold('format'),
     'Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files.\n' +
       'By default, it uses ESLint Fix to format JS files, Stylelint Fix to format CSS files\n' +
       'and Prettier to format JSON files.',
-    '--scripts\n' + '--styles\n' + '--locales',
+    `--scripts
+--styles
+--locales`,
   ]);
   commands.push([
     chalk.greenBright.bold('deploy'),
     'Uploads the dist folder to the Shopify store.',
-    '--env=my-custom-env-name\n' + '--skipPrompts\n' + '--nodelete',
+    `--env=my-custom-env-name
+--skipPrompts
+--nodelete`,
   ]);
   commands.push([
     chalk.greenBright.bold('zip'),
@@ -75,7 +85,9 @@ module.exports = (args) => {
   commands.push([
     chalk.greenBright.bold('theme:create'),
     'Create a new theme using credentials in config.json, it will add the store id to your config',
-    '--env=my-custom-env-name\n' + '--name=my-theme-name\n' + '--deploy',
+    `--env=my-custom-env-name
+--name=my-theme-name
+--deploy`,
   ]);
   commands.push([
     chalk.greenBright.bold('theme:remove'),
