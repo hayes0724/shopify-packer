@@ -108,11 +108,27 @@
     "babel-jest": "^26.3.0",
     "babel-preset-shopify": "^21.0.0",
     "jest": "^26.4.2",
+    "lerna-changelog": "^1.0.1",
     "prettier-stylelint": "^0.4.2"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5",
     "bracketSpacing": false
+  },
+  "changelog": {
+    "repo": "@hayes0724/shopify-packer",
+    "labels": {
+      "feat": ":rocket: Feature",
+      "fix": ":bug: Bug Fix",
+      "docs": ":memo: Documentation",
+      "test": ":memo: Tests",
+      "build": ":memo: Build",
+      "refactor": ":memo: Refactor",
+      "style": ":memo: Style",
+      "internal": ":house: Internal",
+      "config": ":wrench Config"
+    },
+    "cacheDir": ".changelog"
   }
 }
