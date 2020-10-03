@@ -1,24 +1,52 @@
-# Shopify Packer
-Shopify development tool using themekit and webpack. Also a drop in replacement for Slate.
+# Shopify Packer 
+[![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
+![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
+[![GitHub license](https://img.shields.io/github/license/hayes0724/shopify-packer.svg)](https://github.com/hayes0724/shopify-packer/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/hayes0724/shopify-packer.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)
 
-1. [Features](#features)
-2. [Install](#install)
-3. [Quick Start](#quick-start)
-4. [Commands](#commands)
-5. [Configuration](#vonfiguration)
-6. [Concepts](#voncepts)
-    1. [Theme structure](#theme-structure)
-    2. [Local development](#local-development)
-    3. [SSL](#ssl)
-    4. [Styles with Liquid](#styles-with-liquid)
-    5. [Template and layout bundles](#template-and-layout-bundles)
-    6. [Asset minification](#asset-minification)
-    7. [Modify webpack config](#modify-webpack-config)
-7. [Themes](#themes)
-    1. [List](#list)
-    2. [Create](#create)
-    3. [Remove](#remove)
-    4. [Download](#download)
+Shopify development tool using themekit and webpack. Also a compatible replacement for Slate and existing websites.
+
+  * [Features](#features)
+  * [Install](#install)
+  * [Quick Start](#quick-start)
+    + [New project](#new-project)
+  * [Commands](#commands)
+    + [init](#init)
+    + [start](#start)
+    + [watch](#watch)
+    + [deploy](#deploy)
+    + [build](#build)
+    + [lint](#lint)
+    + [format](#format)
+    + [zip](#zip)
+    + [theme:list](#theme-list)
+    + [theme:create](#theme-create)
+    + [theme:remove](#theme-remove)
+    + [theme:download](#theme-download)
+    + [help](#help)
+  * [Configuration](#configuration)
+    + [Network settings](#network-settings)
+  * [Concepts](#concepts)
+    + [Theme structure](#theme-structure)
+      - [Script and Style tags](#script-and-style-tags)
+    + [Local development](#local-development)
+    + [SSL](#ssl)
+      - [Accept default cert](#accept-default-cert)
+      - [Create self signed cert](#create-self-signed-cert)
+    + [Styles with Liquid](#styles-with-liquid)
+    + [Template and layout bundles](#template-and-layout-bundles)
+      - [Shared JS dependencies chunking](#shared-js-dependencies-chunking)
+      - [Template and layout styles](#template-and-layout-styles)
+      - [Including generated bundles in your theme](#including-generated-bundles-in-your-theme)
+    + [Asset minification](#asset-minification)
+    + [Bundle Analyzer](#bundle-analyzer)
+    + [Modify webpack config](#modify-webpack-config)
+    + [PostCSS Config](#postcss-config)
+  * [Themes](#themes)
+    + [List](#list)
+    + [Create](#create)
+    + [Download](#download)
 
 ## Features
 - Webpack 4
@@ -458,29 +486,33 @@ This project uses webpack merge to combine webpack config files.
 
 `prod.config.js` - Add production webpack settings
 
-Example: add tailwind to postcss plugin
+```javascript
+const mergeProd = {
+  module: {
+    rules: [
+
+    ],
+  }
+}
+
+module.exports = mergeProd
+```
+
+### PostCSS Config
+Packer will read the `postcss.config.js` in your root directory. 
+
+Example: Add tailwindcss and cssnano
 ```javascript
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.s[ac]ss$/,
-                loader: 'postcss-loader',
-                options: {
-                    ident: 'postcss',
-                    sourceMap: false,
-                    plugins: (loader) => [
-                        require('tailwindcss'),
-                        require('postcss-preset-env')(),
-                        require('cssnano')()
-                    ]
-                },
-            }
-        ],
-    },
+  plugins: [
+    require('tailwindcss'),
+    require('postcss-preset-env'),
+    require('cssnano')({
+      preset: 'advanced',
+    })
+  ]
 }
 ```
-This will modify the current scss rule in packer and add tailwind as a plugin.
 
 ## Themes
 Packer comes with several utilities to make managing and setting up 
