@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "plugin:shopify/esnext",
+        "plugin:shopify/node",
+        "plugin:shopify/prettier"
+    ],
+    "env": {
+        "jest": true
+    },
+    "rules": {
+        "no-console": "off",
+        "no-process-env": 0
+    }
+}

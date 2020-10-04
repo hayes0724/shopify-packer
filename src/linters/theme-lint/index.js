@@ -1,9 +1,11 @@
 const execSync = require('child_process').execSync;
-const paths = require('../../utilities/paths').config;
+
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 function themelint() {
-  const executable = paths.themelint.bin;
-  const dir = paths.theme.src.root;
+  const executable = config.get('themelint.bin');
+  const dir = config.get('theme.src.root');
 
   execSync(`${JSON.stringify(executable)} ${dir}`, {
     stdio: 'inherit',

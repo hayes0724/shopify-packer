@@ -1,22 +1,25 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
-const paths = require('../../utilities/paths').config;
+
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
+
 const chalk = require('chalk');
 
 function eslint({fix} = {}) {
-  const executable = paths.eslint.bin;
+  const executable = config.get('eslint.bin');
   const extensions = ['--ext .js'];
   const fixFlag = fix ? '--fix' : '';
-  const eslintConfig = `--config ${paths.eslint.config}`;
-  const ignorePath = fs.existsSync(paths.eslint.ignore)
-    ? `--ignore-path ${paths.eslint.ignore}`
+  const eslintConfig = `--config ${config.get('eslint.config')}`;
+  const ignorePath = fs.existsSync(config.get('eslint.ignore'))
+    ? `--ignore-path ${config.get('eslint.ignore')}`
     : '';
 
   execSync(
     // prettier-ignore
     `${JSON.stringify(executable)} . ${extensions} ${ignorePath} ${eslintConfig}` +
     ` ${fixFlag} --max-warnings 0 `,
-    {stdio: 'inherit'},
+    {stdio: 'inherit'}
   );
 }
 
@@ -35,6 +38,6 @@ module.exports.runEslintFix = function runEslintFix() {
   try {
     eslint({fix: true});
   } catch (error) {
-      console.log(chalk.red('ESLint errors found.'));
+    console.log(chalk.red('ESLint errors found.'));
   }
 };

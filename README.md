@@ -1,12 +1,15 @@
 # Shopify Packer 
 [![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
+![build](https://github.com/hayes0724/shopify-packer/workflows/Node.js%20CI/badge.svg?branch=master)
+![node-current (scoped)](https://img.shields.io/node/v/@hayes0724/shopify-packer)
 [![GitHub license](https://img.shields.io/github/license/hayes0724/shopify-packer.svg)](https://github.com/hayes0724/shopify-packer/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/hayes0724/shopify-packer.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)
 
 Shopify development tool using themekit and webpack. Also a compatible replacement for Slate and existing websites.
 
+* [Shopify Packer ](#Shopify Packer )
   * [Features](#features)
   * [Install](#install)
   * [Quick Start](#quick-start)
@@ -26,6 +29,8 @@ Shopify development tool using themekit and webpack. Also a compatible replaceme
     + [theme:download](#theme-download)
     + [help](#help)
   * [Configuration](#configuration)
+    + [Environment](#environment)
+    + [Settings](#settings)
     + [Network settings](#network-settings)
   * [Concepts](#concepts)
     + [Theme structure](#theme-structure)
@@ -41,8 +46,6 @@ Shopify development tool using themekit and webpack. Also a compatible replaceme
       - [Including generated bundles in your theme](#including-generated-bundles-in-your-theme)
     + [Asset minification](#asset-minification)
     + [Bundle Analyzer](#bundle-analyzer)
-    + [Modify webpack config](#modify-webpack-config)
-    + [PostCSS Config](#postcss-config)
   * [Themes](#themes)
     + [List](#list)
     + [Create](#create)
@@ -93,7 +96,6 @@ packer theme:create
 ```
 packer start
 ```
-
 
 ## Commands
 
@@ -224,15 +226,28 @@ packer help
 ```
 
 ## Configuration
-All settings are located in ``config.json`` in the root directory. 
+All configuration files to fully customize Packer, are located in the root directory.
+
+- .babelrc 
+- .eslintrc 
+- .stylelintrc 
+- .prettierignore 
+- .stylelintignore
+- .prettierrc.json
+- .eslintignore
+- .editorconfig
+- packer.env.json - Packer env settings
+- packer.config.js - Packer app settings
+- dev.config.js 
+- prod.config.js 
+- postcss.config.js 
+
+### Environment
+
+Environment settings are located in ``packer.env.json``. 
 
 ```json
 {
-  "network": {
-    "ipAddress": null,
-    "external": false,
-    "interface": null
-  },
   "themes": {
     "development": {
       "id": "74500041118",
@@ -245,13 +260,37 @@ All settings are located in ``config.json`` in the root directory.
   }
 }
 ```
-
 By default most commands will use development environment unless you 
 override with the ``--env`` flag
 ```
 packer start --env=production
 ```
-This will use the settings set under themes production
+This will use the settings set `packer.env.json` production
+
+### Settings
+Packer app settings are located in ``packer.config.js``. You can modify any setting from the node module without having to edit it:
+
+1. packer.schema.js
+2. packer-env.schema.js
+
+```javascript
+const path = require('path')
+
+module.exports = {
+    // Change your theme root
+    'theme.src.root': path.join(process.cwd(), 'src'),
+    // Change your dist root
+    'theme.dist.root': path.join(process.cwd(), 'dist'),
+    // Change your theme source templates
+    'theme.src.templates': path.join(process.cwd(), 'src/templates'),
+    // Configure network settigns if you don't like the autoconfig 
+    'network.ipAddress': '192.168.1.1',
+    'network.external': '',
+    'network.interface': '',
+    // Add additonal entrypoints
+    'entrypoints': {},
+}
+```
 
 ### Network settings
 These are not required and by default are blank. If you would like to change the ip address that the local development server
@@ -264,25 +303,32 @@ interface ip address in your system.
 Packer can be used with existing themes or you can create a new theme. 
 It must follow the following structure:
 ```
-├── .babelrc [1]
-├── .eslintrc [3]
-├── .gitignore
-├── .stylelintrc [4]
-├── package.json [5]
-├── config.json [6]
-├── dev.config.js [7]
-├── prod.config.js [8]
-├── yarn.lock [9]
+├── .babelrc 
+├── .eslintrc 
+├── .gitignore 
+├── .stylelintrc 
+├── .prettierignore 
+├── .stylelintignore
+├── .prettierrc.json
+├── .eslintignore
+├── .editorconfig
+├── packer.env.json 
+├── packer.config.js 
+├── dev.config.js 
+├── prod.config.js 
+├── postcss.config.js 
+├── package.json 
+├── yarn.lock 
 └── src
-   ├── assets [8]
-   ├── config [9]
-   ├── layout [9]
-   ├── locales [9]
-   ├── scripts [10]
-   ├── sections [9]
-   ├── snippets [9]
-   ├── styles [11]
-   └── templates [9]
+   ├── assets
+   ├── config
+   ├── layout
+   ├── locales
+   ├── scripts
+   ├── sections
+   ├── snippets
+   ├── styles
+   └── templates
 ```
 #### Script and Style tags
 Webpack will create the following snippets that load all style and script chunks. 
@@ -478,41 +524,6 @@ Packer's build script can use Webpack Bundle Analyzer to see what's
 inside each bundle for further optimization
 
 ![Bundle Analyzer](./docs/webpack-bundle-analyzer.png)
-
-### Modify webpack config
-This project uses webpack merge to combine webpack config files.
-
-`dev.config.js` - Add development webpack settings
-
-`prod.config.js` - Add production webpack settings
-
-```javascript
-const mergeProd = {
-  module: {
-    rules: [
-
-    ],
-  }
-}
-
-module.exports = mergeProd
-```
-
-### PostCSS Config
-Packer will read the `postcss.config.js` in your root directory. 
-
-Example: Add tailwindcss and cssnano
-```javascript
-module.exports = {
-  plugins: [
-    require('tailwindcss'),
-    require('postcss-preset-env'),
-    require('cssnano')({
-      preset: 'advanced',
-    })
-  ]
-}
-```
 
 ## Themes
 Packer comes with several utilities to make managing and setting up 

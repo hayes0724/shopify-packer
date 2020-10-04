@@ -1,26 +1,32 @@
-const {getThemes, create, remove, download} = require('../../src/theme');
-const chalk = require('chalk')
-const Environment = require('../../src/utilities/enviroment');
+const chalk = require('chalk');
+
+const {
+  getThemes,
+  createTheme,
+  removeTheme,
+  downloadTheme,
+} = require('../../src/theme');
+const {assign} = require('../../src/env');
 
 module.exports = async (args) => {
-    const env = new Environment(args.env);
-    if (args.list) {
-        await getThemes(args);
-    }
-    if (args.create) {
-        await create(args);
-    }
-    if (args.remove) {
-        await remove(args);
-    }
-    if (args.download) {
-        download(args)
-            .then((result) =>{
-                console.log(chalk.green('Theme downloaded!'));
-            })
-            .catch((e) => {
-                console.log(chalk.red('Error downloading files\n'));
-                console.log(chalk.red(e));
-            })
-    }
+  assign(args.env);
+  if (args.list) {
+    await getThemes();
+  }
+  if (args.create) {
+    await createTheme(args);
+  }
+  if (args.remove) {
+    await removeTheme();
+  }
+  if (args.download) {
+    downloadTheme()
+      .then(() => {
+        console.log(chalk.green('Theme downloaded!'));
+      })
+      .catch((err) => {
+        console.log(chalk.red('Error downloading files\n'));
+        console.log(chalk.red(err));
+      });
+  }
 };

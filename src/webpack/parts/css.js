@@ -1,46 +1,45 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const isDev = process.env.NODE_ENV !== 'production';
 
 const part = {
-    module: {
-        rules: [],
-    },
-    plugins: [],
+  module: {
+    rules: [],
+  },
+  plugins: [],
 };
 
 const cssRule = {
-    test: /\.css$/,
+  test: /\.css$/,
 };
 
 const styleLoader = {
-    loader: 'style-loader',
-    options: {
-
-    },
+  loader: 'style-loader',
+  options: {},
 };
 
 const cssLoader = {
-    loader: 'css-loader',
-    // Enabling sourcemaps in styles when using HMR causes style-loader to inject
-    // styles using a <link> tag instead of <style> tag. This causes
-    // a FOUC content, which can cause issues with JS that is reading
-    // the DOM for styles (width, height, visibility) on page load.
-    options: {sourceMap: !isDev},
+  loader: 'css-loader',
+  // Enabling sourcemaps in styles when using HMR causes style-loader to inject
+  // styles using a <link> tag instead of <style> tag. This causes
+  // a FOUC content, which can cause issues with JS that is reading
+  // the DOM for styles (width, height, visibility) on page load.
+  options: {sourceMap: !isDev},
 };
 
 const postcssLoader = {
-    loader: 'postcss-loader',
-    options: {
-        sourceMap: isDev,
-    },
+  loader: 'postcss-loader',
+  options: {
+    sourceMap: isDev,
+  },
 };
 
-//const cssVarLoader = {loader: '@shopify/slate-cssvar-loader'};
+// const cssVarLoader = {loader: '@shopify/slate-cssvar-loader'};
 
 cssRule.use = [
-    ...(isDev ? [styleLoader] : [MiniCssExtractPlugin.loader]),
-    cssLoader,
-    postcssLoader,
+  ...(isDev ? [styleLoader] : [MiniCssExtractPlugin.loader]),
+  cssLoader,
+  postcssLoader,
 ];
 part.module.rules.push(cssRule);
 

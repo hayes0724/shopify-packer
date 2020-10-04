@@ -1,36 +1,36 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
 const ora = require('ora');
+
 const spinner = ora(chalk.magenta('Compiling...'));
 
 module.exports = (args) => {
-    let config;
-    if (args.analyze) {
-        config = require('../../src/webpack/config/analyze.config');
-        console.log(chalk.green(`Loading Bundle Analyzer`))
-    }
-    else {
-        config = require('../../src/webpack/config/prod.config');
-    }
+  let config;
+  if (args.analyze) {
+    config = require('../../src/webpack/config/analyze.config');
+    console.log(chalk.green(`Loading Bundle Analyzer`));
+  } else {
+    config = require('../../src/webpack/config/prod.config');
+  }
 
-    spinner.start();
+  spinner.start();
 
-    webpack(config, (err, stats) => {
-        if (err) throw err;
+  webpack(config, (err, stats) => {
+    if (err) throw err;
 
-        process.stdout.write(
-            `${stats.toString({
-                colors: true,
-                modules: false,
-                children: false,
-                chunks: false,
-                chunkModules: false,
-            })}`,
-        );
+    process.stdout.write(
+      `${stats.toString({
+        colors: true,
+        modules: false,
+        children: false,
+        chunks: false,
+        chunkModules: false,
+      })}`
+    );
 
-        console.log('');
-        spinner.stop();
+    console.log('');
+    spinner.stop();
 
-        if (stats.compilation.errors.length) process.exit(1);
-    });
-}
+    if (stats.compilation.errors.length) process.exit(1);
+  });
+};

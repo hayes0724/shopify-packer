@@ -6,10 +6,11 @@
   },
   "repository": "https://github.com/hayes0724/shopify-packer.git",
   "bugs": "https://github.com/hayes0724/shopify-packer/issues",
+  "homepage": "https://github.com/hayes0724/shopify-packer/",
   "author": "eric hayes <eric@hayesmarketing.io>",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "engines": {
+    "node": ">=10.13.0"
   },
   "keywords": [
     "shopify",
@@ -22,6 +23,11 @@
   "browserslist": [
     "defaults"
   ],
+  "scripts": {
+    "test": "jest",
+    "lint:js": "eslint src/** cli/**",
+    "lint:fix-js": "eslint src/** cli/** --fix"
+  },
   "dependencies": {
     "@babel/core": "latest",
     "@babel/plugin-transform-async-to-generator": "^7.10.1",
@@ -50,7 +56,7 @@
     "download": "^8.0.0",
     "edit-json-file": "^1.4.0",
     "eslint": "7.10.0",
-    "eslint-plugin-shopify": "35.1.0",
+    "eslint-plugin-shopify": "^35.1.0",
     "expose-loader": "1.0.0",
     "express": "^4.17.1",
     "extract-loader": "5.1.0",
@@ -74,11 +80,11 @@
     "postcss": "^8.1.1",
     "postcss-loader": "^4.0.2",
     "postcss-preset-env": "latest",
-    "prettier": "^1.19.1",
+    "prettier": "^2.1.2",
     "read-yaml": "^1.1.0",
     "sass-loader": "latest",
     "style-loader": "latest",
-    "stylelint": "^11.1.0",
+    "stylelint": "^13.7.2",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-config-shopify": "^7.4.0",
@@ -97,5 +103,32 @@
     "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "latest",
     "yargs": "latest"
+  },
+  "devDependencies": {
+    "babel-jest": "^26.3.0",
+    "babel-preset-shopify": "^21.0.0",
+    "jest": "^26.4.2",
+    "lerna-changelog": "^1.0.1",
+    "prettier-stylelint": "^0.4.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": false
+  },
+  "changelog": {
+    "repo": "@hayes0724/shopify-packer",
+    "labels": {
+      "feat": ":rocket: Feature",
+      "fix": ":bug: Bug Fix",
+      "docs": ":memo: Documentation",
+      "test": ":memo: Tests",
+      "build": ":memo: Build",
+      "refactor": ":memo: Refactor",
+      "style": ":memo: Style",
+      "internal": ":house: Internal",
+      "config": ":wrench Config"
+    },
+    "cacheDir": ".changelog"
   }
 }
