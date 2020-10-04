@@ -1,21 +1,18 @@
 const path = require('path');
 const fs = require('fs');
 
-function getPackerUserConfig() {
-  const packerConfigPath = path.join(process.cwd(), 'packer.config.js');
-  if (fs.existsSync(packerConfigPath)) {
-    return require(packerConfigPath);
-  } else {
-    return {};
-  }
-}
-
 // Fetch the contents of Packer's user config once, and only once
 global.packerUserConfig = global.packerUserConfig || getPackerUserConfig();
 
 module.exports = class PackerConfig {
-  constructor(schema) {
-    this.schema = {...schema};
+  constructor(schema, userConfigOverride) {
+    if (typeof schema === 'undefined') {
+      throw new TypeError(
+        '[packer-config]: A schema object must be provided as the first argument'
+      );
+    }
+    this.userConfigOverride = userConfigOverride;
+    this.schema = Object.assign({}, schema);
   }
 
   get userConfig() {
@@ -51,7 +48,23 @@ module.exports = class PackerConfig {
     }
   }
 
-  set(key, value) {
-    this.config[key] = value;
+  set(key, value, override = false) {
+    if (typeof this.schema[key] !== 'undefined' && !override) {
+      throw new Error(
+        `[packer-config]: A value for '${key}' has already been set. A value can only be set once.`
+      );
+    }
+
+    this.schema[key] = value;
   }
 };
+
+function getPackerUserConfig() {
+  const packerConfigPath =
+    global.packerConfigPath || path.join(process.cwd(), 'packer.config.js');
+  if (fs.existsSync(packerConfigPath)) {
+    return require(packerConfigPath);
+  } else {
+    return {};
+  }
+}

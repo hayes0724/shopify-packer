@@ -274,15 +274,17 @@ Packer app settings are located in ``packer.config.js``. You can modify any sett
 2. packer-env.schema.js
 
 ```javascript
+const path = require('path')
+
 module.exports = {
     // Change your theme root
-    'theme.src.root': 'src',
+    'theme.src.root': path.join(process.cwd(), 'src'),
     // Change your dist root
-    'theme.dist.root': 'src',
+    'theme.dist.root': path.join(process.cwd(), 'dist'),
     // Change your theme source templates
-    'theme.src.templates': 'templates',
+    'theme.src.templates': path.join(process.cwd(), 'src/templates'),
     // Configure network settigns if you don't like the autoconfig 
-    'network.ipAddress': '',
+    'network.ipAddress': '192.168.1.1',
     'network.external': '',
     'network.interface': '',
     // Add additonal entrypoints
