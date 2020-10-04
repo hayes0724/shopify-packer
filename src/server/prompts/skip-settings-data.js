@@ -5,7 +5,9 @@ const {flatten} = require('array-flatten');
 const minimatch = require('minimatch');
 const {argv} = require('yargs');
 
-const Environment = require('../../utilities/enviroment');
+const {
+  getIgnoreFilesValue,
+} = require('../../env');
 
 const question = {
   type: 'confirm',
@@ -22,7 +24,7 @@ function _includesSettingsData(files) {
 }
 
 function _filterIgnoredFiles(files) {
-  const envIgnoreGlobs = Environment.getIgnoreFilesValue().split(':');
+  const envIgnoreGlobs = getIgnoreFilesValue().split(':');
   console.log(envIgnoreGlobs);
   return flatten(
     envIgnoreGlobs.map((glob) => {

@@ -2,13 +2,14 @@ const fs = require('fs');
 const {exec} = require('child_process');
 const {promisify} = require('util');
 
-const paths = require('../../utilities/paths').config;
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 async function prettier({scripts, styles, json} = {}) {
-  const executable = paths.prettier.bin;
-  const prettierConfig = `--config ${paths.prettier.config}`;
-  const ignorePath = fs.existsSync(paths.prettier.ignore)
-    ? `--ignore-path ${paths.prettier.ignore}`
+  const executable = config.get('prettier.bin');
+  const prettierConfig = `--config ${config.get('prettier.config')}`;
+  const ignorePath = fs.existsSync(config.get('prettier.ignore'))
+    ? `--ignore-path ${config.get('prettier.ignore')}`
     : '';
   const extensions = [
     ...(scripts ? ['js'] : []),

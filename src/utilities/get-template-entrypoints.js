@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
+
 const VALID_LIQUID_TEMPLATES = [
   '404',
   'article',
@@ -30,12 +33,12 @@ function isValidTemplate(filename) {
   return Boolean(name);
 }
 
-module.exports = function (settings) {
+module.exports = function () {
   const entrypoints = {};
-  fs.readdirSync(settings.theme.src.templates).forEach((file) => {
+  fs.readdirSync(config.get('theme.src.templates')).forEach((file) => {
     const name = path.parse(file).name;
     const jsFile = path.join(
-      settings.theme.src.scripts,
+      config.get('theme.src.scripts'),
       'templates',
       `${name}.js`
     );
@@ -45,10 +48,10 @@ module.exports = function (settings) {
     }
   });
 
-  fs.readdirSync(settings.theme.src.customers).forEach((file) => {
+  fs.readdirSync(config.get('theme.src.customers')).forEach((file) => {
     const name = `${path.parse(file).name}`;
     const jsFile = path.join(
-      settings.theme.src.scripts,
+      config.get('theme.src.scripts'),
       'templates',
       'customers',
       `${name}.js`

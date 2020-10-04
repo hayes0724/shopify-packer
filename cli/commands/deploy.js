@@ -2,12 +2,11 @@ const chalk = require('chalk');
 
 const {deploy, replace} = require('../../src/server/sync');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
-const Environment = require('../../src/utilities/enviroment');
+const {getThemeIdValue, assign} = require('../../src/env');
 
 module.exports = (args) => {
-  const envFlag = args.env ? args.env : process.env.NODE_ENV || 'development';
-  const env = new Environment(envFlag);
-  promptContinueIfPublishedTheme(Environment.getThemeIdValue())
+  assign(args.env);
+  promptContinueIfPublishedTheme(getThemeIdValue())
     .then((answer) => {
       if (!answer) {
         process.exit(0);

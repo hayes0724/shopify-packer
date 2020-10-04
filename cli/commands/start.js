@@ -4,7 +4,6 @@ const figures = require('figures');
 const ora = require('ora');
 const ip = require('ip');
 const consoleControl = require('console-control-strings');
-
 const clearConsole = require('../../src/utilities/clear-console');
 const AssetServer = require('../../src/server/asset');
 const DevServer = require('../../src/server/dev');
@@ -12,15 +11,15 @@ const webpackConfig = require('../../src/webpack/config/dev.config');
 const getAvailablePortSeries = require('../../src/utilities/get-available-port-series');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
 const promptSkipSettingsData = require('../../src/server/prompts/skip-settings-data');
-const Environment = require('../../src/utilities/enviroment');
-const paths = require('../../src/utilities/paths').config;
-
-const envFlag = flags.env ? flags.env : process.env.NODE_ENV || 'development';
-const env = new Environment(envFlag);
-const config = require(paths.settings);
 const spinner = ora(chalk.magenta('Compiling...'));
-
 const address = getIpAddress();
+const {
+  getStoreValue,
+  getThemeIdValue,
+  assign,
+} = require('../../src/env');
+const PackerConfig = require('../../src/config');
+const config = new PackerConfig(require('../../packer.schema'));
 
 let firstSync = true;
 let skipSettingsData = null;
@@ -31,13 +30,15 @@ let themeId;
 let url;
 let previewUrl;
 
+assign(flags.env);
+
 module.exports = () => {
   Promise.all([getAvailablePortSeries(3000, 3)])
     .then((ports) => {
       ports = ports[0];
 
-      themeId = Environment.getThemeIdValue();
-      url = Environment.getStoreValue();
+      themeId = getThemeIdValue();
+      url = getStoreValue();
 
       assetServer = new AssetServer({
         env: process.env.NODE_ENV,
@@ -74,14 +75,14 @@ module.exports = () => {
 };
 
 function getIpAddress() {
-  if (config.network.ipAddress) {
-    console.log(`Using forced IP Address ${config.network.ipAddress}`);
-    return config.network.ipAddress;
+  if (config.get('network.ipAddress')) {
+    console.log(`Using forced IP Address ${config.get('network.ipAddress')}`);
+    return config.get('network.ipAddress');
   }
-  if (config.network.interface) {
-    return ip.address(config.network.interface);
+  if (config.get('network.interface')) {
+    return ip.address(config.get('network.interface'));
   }
-  if (config.network.external) {
+  if (config.get('network.external')) {
     return ip.address('public');
   }
   return ip.address('private');
@@ -126,7 +127,7 @@ function onCompilerDone(stats) {
   }
 }
 async function onClientBeforeSync(files) {
-  const themeID = Environment.getThemeIdValue();
+  const themeID = getThemeIdValue();
 
   if (firstSync && flags.skipFirstDeploy) {
     assetServer.skipDeploy = true;
@@ -189,7 +190,7 @@ async function onClientAfterSync() {
     `${chalk.yellow(
       figures.star
     )}  You are editing files in theme ${chalk.green(
-      Environment.getThemeIdValue()
+      getThemeIdValue()
     )} on the following store:\n`
   );
 

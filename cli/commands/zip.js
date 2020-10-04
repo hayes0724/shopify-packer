@@ -4,20 +4,21 @@ const path = require('path');
 const archiver = require('archiver');
 const chalk = require('chalk');
 
-const paths = require('../../src/utilities/paths').config;
+const PackerConfig = require('../../src/config');
+const config = new PackerConfig(require('../../packer.schema'));
 
-module.exports = (args) => {
-  const zipName = fs.existsSync(paths.theme.packageJson)
-    ? require(paths.theme.packageJson).name
+module.exports = () => {
+  const zipName = fs.existsSync(config.get('package'))
+    ? require(config.get('package')).name
     : 'theme-zip';
-  const zipPath = getZipPath(paths.theme.root, zipName, 'zip');
+  const zipPath = getZipPath(config.get('root'), zipName, 'zip');
   const output = fs.createWriteStream(zipPath);
   const archive = archiver('zip');
 
-  if (!fs.existsSync(paths.theme.dist.root)) {
+  if (!fs.existsSync(config.get('theme.dist.root'))) {
     console.log(
       chalk.red(
-        `${paths.theme.dist.root} was not found. \n` +
+        `${config.get('theme.dist.root')} was not found. \n` +
           'Please run the Packer Build script before running Packer Zip'
       )
     );
@@ -42,7 +43,7 @@ module.exports = (args) => {
   });
 
   archive.pipe(output);
-  archive.directory(paths.theme.dist.root, '/');
+  archive.directory(config.get('theme.dist.root'), '/');
   archive.finalize();
 };
 

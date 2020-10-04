@@ -1,17 +1,18 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
 
-const paths = require('../../utilities/paths').config;
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 const chalk = require('chalk');
 
 function stylelint({fix} = {}) {
-  const executable = paths.stylelint.bin;
+  const executable = config.get('stylelint.bin');
   const fixFlag = fix ? '--fix' : '';
   const glob = `./**/*.{${['css', 'scss', 'sass'].join(',')}}`;
-  const stylelintConfig = `--config ${paths.stylelint.config}`;
-  const ignorePath = fs.existsSync(paths.stylelint.ignore)
-    ? `--ignore-path ${paths.stylelint.ignore}`
+  const stylelintConfig = `--config ${config.get('stylelint.config')}`;
+  const ignorePath = fs.existsSync(config.get('stylelint.ignore'))
+    ? `--ignore-path ${config.get('stylelint.ignore')}`
     : '';
 
   execSync(

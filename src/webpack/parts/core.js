@@ -1,39 +1,45 @@
 const path = require('path');
 
-const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const paths = require('../../utilities/paths').config;
+const PackerConfig = require('../../config');
+const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
+const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 const extractLiquidStyles = new ExtractTextPlugin(
   '[name].styleLiquid.scss.liquid'
 );
 
 const core = {
-  context: paths.theme.root,
+  context: config.get('root'),
 
   output: {
     filename: '[name].js',
-    path: paths.theme.dist.assets,
+    path: config.get('theme.dist.assets'),
     chunkFilename: '[name].bundle.js',
   },
 
-  entry: {...paths.liquidLayouts, ...paths.liquidTemplates},
+  entry: {
+    ...getLayoutEntrypoints(),
+    ...getTemplateEntrypoints(),
+    ...config.get('entrypoints'),
+  },
   resolveLoader: {
     modules: [
       path.resolve(__dirname, '../../../node_modules'),
       path.resolve(__dirname, '../../'),
-      path.resolve(paths.theme.root, 'node_modules'),
-      paths.theme.root,
+      path.resolve(config.get('root'), 'node_modules'),
+      config.get('root'),
     ],
   },
   module: {
     rules: [
       {
         test: /\.(liquid|json)$/,
-        exclude: [/(css|scss|sass)\.liquid$/, ...paths.commonExcludes],
+        exclude: [/(css|scss|sass)\.liquid$/, ...config.get('commonExcludes')],
         loader: 'file-loader',
         options: {
           name: '../[path][name].[ext]',
@@ -45,7 +51,7 @@ const core = {
       },
       {
         test: /(css|scss|sass)\.liquid$/,
-        exclude: paths.commonExcludes,
+        exclude: config.get('commonExcludes'),
         use: extractLiquidStyles.extract(['concat-style-loader']),
       },
     ],
@@ -59,33 +65,33 @@ const core = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: paths.theme.src.assets,
-          to: paths.theme.dist.assets,
+          from: config.get('theme.src.assets'),
+          to: config.get('theme.dist.assets'),
           flatten: true,
         },
         {
-          from: paths.theme.src.layout,
-          to: paths.theme.dist.layout,
+          from: config.get('theme.src.layout'),
+          to: config.get('theme.dist.layout'),
         },
         {
-          from: paths.theme.src.config,
-          to: paths.theme.dist.config,
+          from: config.get('theme.src.config'),
+          to: config.get('theme.dist.config'),
         },
         {
-          from: paths.theme.src.locales,
-          to: paths.theme.dist.locales,
+          from: config.get('theme.src.locales'),
+          to: config.get('theme.dist.locales'),
         },
         {
-          from: paths.theme.src.snippets,
-          to: paths.theme.dist.snippets,
+          from: config.get('theme.src.snippets'),
+          to: config.get('theme.dist.snippets'),
         },
         {
-          from: paths.theme.src.templates,
-          to: paths.theme.dist.templates,
+          from: config.get('theme.src.templates'),
+          to: config.get('theme.dist.templates'),
         },
         {
-          from: paths.theme.src.sections,
-          to: paths.theme.dist.sections,
+          from: config.get('theme.src.sections'),
+          to: config.get('theme.dist.sections'),
         },
       ],
     }),

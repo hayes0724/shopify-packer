@@ -9,7 +9,8 @@ const createHash = require('crypto').createHash;
 
 const {sslKeyCert} = require('../ssl');
 const isHotUpdateFile = require('../is-hot-update-file');
-const paths = require('../../utilities/paths').config;
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 module.exports = class AssetServer {
   constructor(options) {
@@ -89,7 +90,7 @@ module.exports = class AssetServer {
         })
         /* eslint-disable-next-line no-unused-vars */
         .map(([key, asset]) => {
-          return asset.existsAt.replace(paths.theme.dist.root, '');
+          return asset.existsAt.replace(config.get('theme.dist.root'), '');
         })
     );
   }

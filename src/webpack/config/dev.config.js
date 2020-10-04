@@ -6,15 +6,16 @@ const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const paths = require('../../utilities/paths').config;
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 const development = process.env.NODE_ENV !== 'production';
 const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-chunks');
+
 // Parts
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
-const dev = require('../parts/dev');
 
 let mergeDev;
 
@@ -33,12 +34,40 @@ Object.keys(core.entry).forEach((name) => {
 
 module.exports = merge([
   core,
-  dev,
   scss,
   css,
   {
     mode: 'development',
     devtool: '#eval-source-map',
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: config.get('commonExcludes'),
+          loader: path.resolve(__dirname, '../hmr-alamo-loader.js'),
+        },
+        {
+          test: /fonts\/.*\.(eot|svg|ttf|woff|woff2|otf)$/,
+          exclude: /node_modules/,
+          loader: 'file-loader',
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          exclude: config.get('commonExcludes'),
+          use: [
+            {loader: 'file-loader', options: {name: '[name].[ext]'}},
+            {loader: 'img-loader'},
+            {
+              loader: 'url-loader',
+              options: {
+                limit: false,
+                name: '[name].[ext]',
+              },
+            },
+          ],
+        },
+      ],
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {NODE_ENV: '"development"'},
@@ -48,7 +77,7 @@ module.exports = merge([
 
       new HtmlWebpackPlugin({
         excludeChunks: ['static'],
-        filename: `${paths.theme.dist.snippets}/script-tags.liquid`,
+        filename: `${config.get('theme.dist.snippets')}/script-tags.liquid`,
         template: path.resolve(__dirname, '../script-tags.html'),
         inject: false,
         minify: {

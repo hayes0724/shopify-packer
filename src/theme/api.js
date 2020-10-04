@@ -1,13 +1,11 @@
 const axios = require('axios');
 
-const Environment = require('../utilities/enviroment');
+const {getStoreValue, getPasswordValue, getThemeIdValue} = require('../env');
 
 const _headers = () => {
-  axios.defaults.headers.common[
-    'X-Shopify-Access-Token'
-  ] = Environment.getPasswordValue();
-  axios.defaults.baseURL = `https://${Environment.getStoreValue()}`;
-  axios.defaults.auth = Environment.getPasswordValue();
+  axios.defaults.headers.common['X-Shopify-Access-Token'] = getPasswordValue();
+  axios.defaults.baseURL = `https://${getStoreValue()}`;
+  axios.defaults.auth = getPasswordValue();
 };
 
 const list = () => {
@@ -43,11 +41,7 @@ const _isMainTheme = async (themeId) => {
   }
 };
 
-module.exports.list = () => {
-  return list();
-};
-
-module.exports.create = (args) => {
+const create = (args) => {
   _headers();
   const data = {
     theme: {
@@ -70,9 +64,9 @@ module.exports.create = (args) => {
     });
 };
 
-module.exports.remove = async () => {
+const remove = async () => {
   _headers();
-  const themeId = Environment.getThemeIdValue();
+  const themeId = getThemeIdValue();
   const mainTheme = await _isMainTheme(themeId);
   if (mainTheme.status === 'error') {
     return {
@@ -90,4 +84,11 @@ module.exports.remove = async () => {
     });
 };
 
-module.exports.download = () => {};
+const download = () => {};
+
+module.exports = {
+  download,
+  remove,
+  create,
+  list,
+};

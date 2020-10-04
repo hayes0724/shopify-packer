@@ -3,14 +3,18 @@ const table = require('table').table;
 const chalk = require('chalk');
 const ora = require('ora');
 
-const Environment = require('../utilities/enviroment');
+const PackerConfig = require('../config');
 const clearConsole = require('../utilities/clear-console');
-const paths = require('../utilities/paths').config;
+const {
+  getEnvNameValue,
+  getPasswordValue,
+  getThemeIdValue,
+  getStoreValue,
+  getIgnoreFilesValue,
+} = require('../env');
+const config = new PackerConfig(require('../../packer.schema'));
 
 const {list, create, remove} = require('./api');
-const Manager = require('./config-manager');
-
-const manager = new Manager();
 
 const _excludeByIndex = (array, values) => {
   return array.filter((item, index) => {
@@ -39,13 +43,13 @@ const _parseThemes = (themes) => {
   return [_excludeByIndex(headers, exclude), ...data];
 };
 
-module.exports.getThemes = async () => {
+const getThemes = async () => {
   const themes = await list();
   const parsed = _parseThemes(themes);
   console.log(table(parsed));
 };
 
-module.exports.create = async (args) => {
+const createTheme = async (args) => {
   clearConsole();
   const spinner = ora(chalk.magenta(`'Creating new theme: ${args.name} ...'`));
   spinner.start();
@@ -54,7 +58,7 @@ module.exports.create = async (args) => {
   }
   const result = await create(args);
   const parsed = _parseThemes([result.theme]);
-  manager.setId(result.theme.id.toString());
+  // manager.setId(result.theme.id.toString());
   spinner.succeed(
     `Theme ${chalk.cyan(result.theme.name)} with id ${chalk.cyan(
       result.theme.id
@@ -63,20 +67,18 @@ module.exports.create = async (args) => {
   console.log(table(parsed));
 };
 
-module.exports.remove = async (args) => {
+const removeTheme = async () => {
   clearConsole();
   const spinner = ora(
-    chalk.magenta(
-      `'Deleting theme for environment: ${Environment.getEnvNameValue()} ...'`
-    )
+    chalk.magenta(`'Deleting theme for environment: ${getEnvNameValue()} ...'`)
   );
   spinner.start();
-  const result = await remove(args);
+  const result = await remove();
   if (result.status === 'error') {
     spinner.color = 'red';
     spinner.fail(chalk.red(result.message));
   } else {
-    manager.setId('');
+    // manager.setId('');
     spinner.succeed(
       `Theme ${chalk.cyan(result.name)} with id ${chalk.cyan(
         result.id
@@ -85,18 +87,26 @@ module.exports.remove = async (args) => {
   }
 };
 
-module.exports.download = async () => {
+const downloadTheme = async () => {
+  // @TODO: add warning message if directory is not empty
   await themeKit.command(
     'download',
     {
-      password: Environment.getPasswordValue(),
-      themeid: Environment.getThemeIdValue(),
-      store: Environment.getStoreValue(),
-      env: Environment.getEnvNameValue(),
-      ignoredFiles: Environment.getIgnoreFilesValue().split(':'),
+      password: getPasswordValue(),
+      themeid: getThemeIdValue(),
+      store: getStoreValue(),
+      env: getEnvNameValue(),
+      ignoredFiles: getIgnoreFilesValue(),
     },
     {
-      cwd: paths.theme.src.root,
+      cwd: config.get('theme.src.root'),
     }
   );
+};
+
+module.exports = {
+  downloadTheme,
+  removeTheme,
+  createTheme,
+  getThemes,
 };

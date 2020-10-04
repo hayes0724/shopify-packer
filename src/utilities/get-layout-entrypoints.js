@@ -1,13 +1,16 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function (settings) {
+const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
+
+module.exports = function () {
   const entrypoints = {};
 
-  fs.readdirSync(settings.theme.src.layout).forEach((file) => {
+  fs.readdirSync(config.get('theme.src.layout')).forEach((file) => {
     const name = path.parse(file).name;
     const jsFile = path.join(
-      settings.theme.src.scripts,
+      config.get('theme.src.scripts'),
       'layout',
       `${name}.js`
     );

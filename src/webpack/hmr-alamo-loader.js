@@ -1,7 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-const paths = require('../utilities/paths').config;
+const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
+const getLayoutEntrypoints = require('../utilities/get-layout-entrypoints');
+const getTemplateEntrypoints = require('../utilities/get-template-entrypoints');
 
-const entrypoints = paths.entrypoints;
+const entrypoints = {
+  ...getLayoutEntrypoints(),
+  ...getTemplateEntrypoints(),
+  ...config.get('entrypoints'),
+};
 
 const jsEntries = Object.keys(entrypoints).reduce((carry, key) => {
   const entry = entrypoints[key];

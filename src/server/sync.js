@@ -4,8 +4,16 @@ const chalk = require('chalk');
 const figures = require('figures');
 const themekit = require('@shopify/themekit');
 
-const Environment = require('../utilities/enviroment');
-const paths = require('../utilities/paths').config;
+const {
+  validate,
+  getEnvNameValue,
+  getPasswordValue,
+  getStoreValue,
+  getThemeIdValue,
+  getIgnoreFilesValue,
+} = require('../env');
+const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
 
 let deploying = false;
 let filesToDeploy = [];
@@ -25,12 +33,12 @@ function maybeDeploy() {
 }
 
 function _validateEnvValues() {
-  const result = Environment.validate();
+  const result = validate();
 
   if (!result.isValid) {
     console.log(
       chalk.red(
-        `Some values in environment '${Environment.getEnvNameValue()}' are invalid:`
+        `Some values in environment '${getEnvNameValue()}' are invalid:`
       )
     );
     result.errors.forEach((error) => {
@@ -45,11 +53,11 @@ function _generateConfigFlags() {
   _validateEnvValues();
 
   return {
-    password: Environment.getPasswordValue(),
-    themeid: Environment.getThemeIdValue(),
-    store: Environment.getStoreValue(),
-    env: Environment.getEnvNameValue(),
-    ignoredFiles: Environment.getIgnoreFilesValue().split(':'),
+    password: getPasswordValue(),
+    themeid: getThemeIdValue(),
+    store: getStoreValue(),
+    env: getEnvNameValue(),
+    ignoredFiles: getIgnoreFilesValue().split(':'),
   };
 }
 
@@ -83,21 +91,21 @@ async function deploy(cmd = '', files = [], replace = true) {
 }
 
 async function promiseThemekitConfig() {
-  return await themekit.command('configure', _generateConfigFlags(), {
-    cwd: paths.theme.dist.root,
+  await themekit.command('configure', _generateConfigFlags(), {
+    cwd: config.get('theme.dist.root'),
   });
 }
 
 async function promiseThemekitDeploy(cmd, files, replace) {
-  const config = _generateConfigFlags();
-  config.noUpdateNotifier = true;
-  config.files = files;
+  const settings = _generateConfigFlags();
+  settings.noUpdateNotifier = true;
+  settings.files = files;
   if (!replace) {
     console.log('using no delete flag, files will not be removed before');
-    config.nodelete = true;
+    settings.nodelete = true;
   }
-  return await themekit.command(cmd, config, {
-    cwd: paths.theme.dist.root,
+  await themekit.command(cmd, settings, {
+    cwd: config.get('theme.dist.root'),
   });
 }
 
@@ -113,12 +121,12 @@ function fetchMainThemeId() {
   return new Promise((resolve, reject) => {
     https.get(
       {
-        hostname: Environment.getStoreValue(),
+        hostname: getStoreValue(),
         path: '/admin/themes.json',
-        auth: `:${Environment.getPasswordValue}`,
+        auth: `:${getPasswordValue}`,
         agent: false,
         headers: {
-          'X-Shopify-Access-Token': Environment.getPasswordValue(),
+          'X-Shopify-Access-Token': getPasswordValue(),
         },
       },
       (res) => {
