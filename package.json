@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -107,6 +107,7 @@
   "devDependencies": {
     "babel-jest": "^26.3.0",
     "babel-preset-shopify": "^21.0.0",
+    "conventional-changelog": "^3.1.23",
     "jest": "^26.4.2",
     "lerna-changelog": "^1.0.1",
     "prettier-stylelint": "^0.4.2"
