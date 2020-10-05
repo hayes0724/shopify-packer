@@ -16,22 +16,13 @@ const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-ch
 const getChunkName = require('../../utilities/get-chunk-name');
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
-
+const {customConfigCheck} = require('../custom');
 // Parts
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
 
-let mergeProd;
-
-if (fs.existsSync(config.get('merge.prod'))) {
-  mergeProd = require(config.get('merge.prod'));
-  console.log(
-    chalk.green(
-      `Custom webpack configuration found ${config.get('merge.prod')}`
-    )
-  );
-}
+const mergeProd = customConfigCheck(config.get('merge.prod'));
 
 const output = merge([
   core,

@@ -68,12 +68,12 @@ function getPasswordValue() {
 }
 
 function getThemeIdValue() {
-  const value = process.env[config.get('env.keys.themeId')];
+  const value = process.env[config.get('env.keys.id')];
   return typeof value === 'undefined' ? '' : value;
 }
 
 function getIgnoreFilesValue() {
-  const value = process.env[config.get('env.keys.ignoreFiles')];
+  const value = process.env[config.get('env.keys.ignore')];
   return typeof value === 'undefined' ? '' : value;
 }
 
