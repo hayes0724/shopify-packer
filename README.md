@@ -90,7 +90,7 @@ packer init <dirname>
 
 3. Create new empty theme on shopify
 ```
-packer theme:create
+packer theme:create --name=sample-theme-name
 ```
 4. Deploy files and start working
 ```
