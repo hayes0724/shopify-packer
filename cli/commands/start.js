@@ -11,8 +11,7 @@ const webpackConfig = require('../../src/webpack/config/dev.config');
 const getAvailablePortSeries = require('../../src/utilities/get-available-port-series');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
 const promptSkipSettingsData = require('../../src/server/prompts/skip-settings-data');
-const spinner = ora(chalk.magenta('Compiling...'));
-const address = getIpAddress();
+
 const {
   getStoreValue,
   getThemeIdValue,
@@ -20,6 +19,9 @@ const {
 } = require('../../src/env');
 const PackerConfig = require('../../src/config');
 const config = new PackerConfig(require('../../packer.schema'));
+
+const address = getIpAddress();
+const spinner = ora(chalk.magenta('Compiling...'));
 
 let firstSync = true;
 let skipSettingsData = null;
@@ -75,9 +77,9 @@ module.exports = () => {
 };
 
 function getIpAddress() {
-  if (config.get('network.ipAddress')) {
-    console.log(`Using forced IP Address ${config.get('network.ipAddress')}`);
-    return config.get('network.ipAddress');
+  if (config.get('network.ip')) {
+    console.log(`Using forced IP Address ${config.get('network.ip')}`);
+    return config.get('network.ip');
   }
   if (config.get('network.interface')) {
     return ip.address(config.get('network.interface'));

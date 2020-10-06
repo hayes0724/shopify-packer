@@ -4,7 +4,7 @@ const commonPaths = require('./src/config/common-paths');
 module.exports = {
   ...commonPaths,
   entrypoints: {},
-  'network.ipAddress': '',
+  'network.ip': '',
   'network.external': '',
   'network.interface': '',
 };

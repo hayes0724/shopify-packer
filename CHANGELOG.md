@@ -1,3 +1,21 @@
+## [1.2.1](https://github.com/hayes0724/shopify-packer/compare/1.2.0...1.2.1) (2020-10-06)
+
+
+* Update README.md ([3cc94ba](https://github.com/hayes0724/shopify-packer/commit/3cc94ba76a93e0cad193ffc2ced6e5763d511731))
+
+
+### :bug: Bug Fixes
+
+* **packer-config:** config keys set as strings ([42fc6e2](https://github.com/hayes0724/shopify-packer/commit/42fc6e2119fbf06b1c3e04dbeb2ab89dd302d99d))
+* fixed issue with empty config files and webpack merge ([eba227c](https://github.com/hayes0724/shopify-packer/commit/eba227c64ae94ca9527851c459b30dc549d47f0d))
+
+
+### :wrench: Build System
+
+* .editorconfig added ([86a4f29](https://github.com/hayes0724/shopify-packer/commit/86a4f29d4c408f73643ccd1063b3c62f1d8cd1c7))
+
+
+
 # [1.2.0](https://github.com/hayes0724/shopify-packer/compare/1.1.0...1.2.0) (2020-10-05)
 
 

@@ -5,65 +5,84 @@ module.exports = {
   package: (config) => path.join(config.get('root'), 'package.json'),
   commonExcludes: [/node_modules/, /assets\/static/],
   cache: (config) => path.join(config.get('root'), '.cache'),
-  'packer.config': (config) => path.join(config.get('root'), 'packer.config.js'),
+  'packer.config': (config) =>
+    path.join(config.get('root'), 'packer.config.js'),
   'packer.env': (config) => path.join(config.get('root'), 'packer.env.json'),
-  merge: {
-    dev: (config) => path.join(config.get('root'), 'dev.schema.js'),
-    prod: (config) => path.join(config.get('root'), 'prod.schema.js'),
-  },
+
+  /* Webpack merge files - https://www.npmjs.com/package/webpack-merge */
+  'merge.dev': (config) => path.join(config.get('root'), 'dev.config.js'),
+  'merge.prod': (config) => path.join(config.get('root'), 'prod.config.js'),
+
+  /* PostCSS */
   postcss: (config) => path.join(config.get('root'), 'postcss.schema.js'),
-  themelint: {
-    bin: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
-    schema: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
-    ignore: path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
-  },
-  eslint: {
-    bin: path.resolve(__dirname, '../../node_modules/.bin/eslint'),
-    ignore: (config) => path.join(config.get('root'), '.eslintignore'),
-    schema: (config) => path.join(config.get('root'), '.eslintrc'),
-  },
-  prettier: {
-    bin: path.resolve(__dirname, '../../node_modules/.bin/prettier'),
-    ignore: (config) => path.join(config.get('root'), '.prettierignore'),
-    schema: (config) => path.join(config.get('root'), '.prettierrc'),
-  },
-  stylelint: {
-    bin: path.resolve(__dirname, '../../node_modules/.bin/stylelint'),
-    ignore: (config) => path.join(config.get('root'), '.stylelintignore'),
-    schema: (config) => path.join(config.get('root'), '.stylelintrc'),
-  },
-  theme: {
-    src: {
-      assets: (config) => path.join(config.get('theme.src.root'), 'assets'),
-      schema: (config) => path.join(config.get('theme.src.root'), 'schema'),
-      scripts: (config) => path.join(config.get('theme.src.root'), 'scripts'),
-      styles: (config) => path.join(config.get('theme.src.root'), 'styles'),
-      layout: (config) => path.join(config.get('theme.src.root'), 'layout'),
-      locales: (config) => path.join(config.get('theme.src.root'), 'locales'),
-      snippets: (config) => path.join(config.get('theme.src.root'), 'snippets'),
-      templates: (config) =>
-        path.join(config.get('theme.src.root'), 'templates'),
-      customers: (config) =>
-        path.join(config.get('theme.src.root'), 'templates/customers'),
-      sections: (config) => path.join(config.get('theme.src.root'), 'sections'),
-      root: (config) => path.join(config.get('root'), 'src'),
-    },
-    dist: {
-      assets: (config) => path.join(config.get('theme.dist.root'), 'assets'),
-      schema: (config) => path.join(config.get('theme.dist.root'), 'schema'),
-      scripts: (config) => path.join(config.get('theme.dist.root'), 'scripts'),
-      styles: (config) => path.join(config.get('theme.dist.root'), 'styles'),
-      layout: (config) => path.join(config.get('theme.dist.root'), 'layout'),
-      locales: (config) => path.join(config.get('theme.dist.root'), 'locales'),
-      snippets: (config) =>
-        path.join(config.get('theme.dist.root'), 'snippets'),
-      templates: (config) =>
-        path.join(config.get('theme.dist.root'), 'templates'),
-      customers: (config) =>
-        path.join(config.get('theme.dist.root'), 'templates/customers'),
-      sections: (config) =>
-        path.join(config.get('theme.dist.root'), 'sections'),
-      root: (config) => path.join(config.get('root'), './dist'),
-    },
-  },
+
+  /* Theme Lint */
+  'themelint.bin': () =>
+    path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
+
+  /* ESLint */
+  'eslint.bin': () => path.resolve(__dirname, '../../node_modules/.bin/eslint'),
+  'eslint.schema': (config) => path.join(config.get('root'), '.eslintrc'),
+  'eslint.ignore': (config) => path.join(config.get('root'), '.eslintignore'),
+
+  /* Prettier */
+  'prettier.bin': () =>
+    path.resolve(__dirname, '../../node_modules/.bin/prettier'),
+  'prettier.schema': (config) => path.join(config.get('root'), '.prettierrc'),
+  'prettier.ignore': (config) =>
+    path.join(config.get('root'), '.prettierignore'),
+
+  /* Stylelint */
+  'stylelint.bin': () =>
+    path.resolve(__dirname, '../../node_modules/.bin/stylelint'),
+  'stylelint.schema': (config) => path.join(config.get('root'), '.stylelintrc'),
+  'stylelint.ignore': (config) =>
+    path.join(config.get('root'), '.stylelintignore'),
+
+  /* Theme path settings */
+  /* src folder */
+  'theme.src.assets': (config) =>
+    path.join(config.get('theme.src.root'), 'assets'),
+  'theme.src.scripts': (config) =>
+    path.join(config.get('theme.src.root'), 'scripts'),
+  'theme.src.styles': (config) =>
+    path.join(config.get('theme.src.root'), 'styles'),
+  'theme.src.layout': (config) =>
+    path.join(config.get('theme.src.root'), 'layout'),
+  'theme.src.locales': (config) =>
+    path.join(config.get('theme.src.root'), 'locales'),
+  'theme.src.templates': (config) =>
+    path.join(config.get('theme.src.root'), 'templates'),
+  'theme.src.customers': (config) =>
+    path.join(config.get('theme.src.root'), 'templates/customers'),
+  'theme.src.sections': (config) =>
+    path.join(config.get('theme.src.root'), 'sections'),
+  'theme.src.snippets': (config) =>
+    path.join(config.get('theme.src.root'), 'snippets'),
+  'theme.src.config': (config) =>
+    path.join(config.get('theme.src.root'), 'config'),
+  'theme.src.root': (config) => path.join(config.get('root'), './src'),
+
+  /* dist folder */
+  'theme.dist.assets': (config) =>
+    path.join(config.get('theme.dist.root'), 'assets'),
+  'theme.dist.scripts': (config) =>
+    path.join(config.get('theme.dist.root'), 'scripts'),
+  'theme.dist.styles': (config) =>
+    path.join(config.get('theme.dist.root'), 'styles'),
+  'theme.dist.layout': (config) =>
+    path.join(config.get('theme.dist.root'), 'layout'),
+  'theme.dist.locales': (config) =>
+    path.join(config.get('theme.dist.root'), 'locales'),
+  'theme.dist.templates': (config) =>
+    path.join(config.get('theme.dist.root'), 'templates'),
+  'theme.dist.customers': (config) =>
+    path.join(config.get('theme.dist.root'), 'templates/customers'),
+  'theme.dist.sections': (config) =>
+    path.join(config.get('theme.dist.root'), 'sections'),
+  'theme.dist.snippets': (config) =>
+    path.join(config.get('theme.dist.root'), 'snippets'),
+  'theme.dist.config': (config) =>
+    path.join(config.get('theme.dist.root'), 'config'),
+  'theme.dist.root': (config) => path.join(config.get('root'), './dist'),
 };
