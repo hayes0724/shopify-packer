@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -26,7 +26,9 @@
   "scripts": {
     "test": "jest",
     "lint:js": "eslint src/** cli/**",
-    "lint:fix-js": "eslint src/** cli/** --fix"
+    "lint:fix-js": "eslint src/** cli/** --fix",
+    "preversion": "npm test",
+    "version": "conventional-changelog -n docs/changelog/index.js -i CHANGELOG.md --same-file"
   },
   "dependencies": {
     "@babel/core": "latest",
