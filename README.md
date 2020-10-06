@@ -1,4 +1,4 @@
-# Shopify Packer 
+# Shopify Packer
 [![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
 ![build](https://github.com/hayes0724/shopify-packer/workflows/Node.js%20CI/badge.svg?branch=master)
@@ -115,12 +115,12 @@ List of all API commands for Packer:
 - [help](#help)
 
 ### init
-Creates a blank start theme in specified directory. By default, it will use `hayes0724/packer-blank-theme` 
-unless you specify the repo flag with the name of the themes github repo. It will pull the latest release and fail 
+Creates a blank start theme in specified directory. By default, it will use `hayes0724/packer-blank-theme`
+unless you specify the repo flag with the name of the themes github repo. It will pull the latest release and fail
 if the custom theme repo has no releases.
 ```
 packer init <dir> [--repo=hayes0724/packer-blank-theme]
-``` 
+```
 ### start
 Compiles your local theme files into a dist directory, uploads these files to your remote Shopify store and finally
 boots up a local Express server that will serve most of your CSS and JavaScript.
@@ -168,7 +168,7 @@ packer lint [--scripts] [--styles] [--locales]
 | ``--styles`` | Runs linting only on style files |
 | ``--locales`` | Runs linting only on locales files |
 ### format
-Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files. By default, it uses 
+Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files. By default, it uses
 ESLint Fix to format JS files, Stylelint Fix to format CSS files and Prettier to format JSON files.
 ```bash
 packer format [--scripts] [--styles] [--json]
@@ -228,23 +228,23 @@ packer help
 ## Configuration
 All configuration files to fully customize Packer, are located in the root directory.
 
-- .babelrc 
-- .eslintrc 
-- .stylelintrc 
-- .prettierignore 
+- .babelrc
+- .eslintrc
+- .stylelintrc
+- .prettierignore
 - .stylelintignore
 - .prettierrc.json
 - .eslintignore
 - .editorconfig
 - packer.env.json - Packer env settings
 - packer.config.js - Packer app settings
-- dev.config.js 
-- prod.config.js 
-- postcss.config.js 
+- dev.config.js
+- prod.config.js
+- postcss.config.js
 
 ### Environment
 
-Environment settings are located in ``packer.env.json``. 
+Environment settings are located in ``packer.env.json``.
 
 ```json
 {
@@ -260,7 +260,7 @@ Environment settings are located in ``packer.env.json``.
   }
 }
 ```
-By default most commands will use development environment unless you 
+By default, most commands will use development environment unless you
 override with the ``--env`` flag
 ```
 packer start --env=production
@@ -268,11 +268,14 @@ packer start --env=production
 This will use the settings set `packer.env.json` production
 
 ### Settings
-Packer app settings are located in ``packer.config.js``. You can modify any setting from the node module without having to edit it:
+Packer app configuration are in ``packer.config.js``. You can modify any setting from the node module without having to edit it:
 
-1. packer.schema.js
-2. packer-env.schema.js
+Any value from these files can be overridden:
+1. [packer-env.schema.js](/src/env/packer-env.schema.js) - environment values
+2. [common-paths.js](src/config/common-paths.js) - path settings
+2. [packer.schema.js](packer.schema.js) - app settings
 
+Example:
 ```javascript
 const path = require('path')
 
@@ -287,20 +290,20 @@ module.exports = {
     'network.ipAddress': '192.168.1.1',
     'network.external': '',
     'network.interface': '',
-    // Add additonal entrypoints
+    // Add additional entrypoint
     'entrypoints': {},
 }
 ```
 
 ### Network settings
 These are not required and by default are blank. If you would like to change the ip address that the local development server
-runs on manually or by setting the interface (by name) you can change that here. It will otherwise run using the first 
+runs on manually or by setting the interface (by name) you can change that here. It will otherwise run using the first
 interface ip address in your system.
 
 ## Concepts
 
 ### Theme structure
-Packer can be used with existing themes or you can create a new theme. 
+Packer can be used with existing themes or you can create a new theme.
 It must follow the following structure:
 ```
 ├── .babelrc 
@@ -331,7 +334,7 @@ It must follow the following structure:
    └── templates
 ```
 #### Script and Style tags
-Webpack will create the following snippets that load all style and script chunks. 
+Webpack will create the following snippets that load all style and script chunks.
 You need to include this in your ``theme.liquid`` file.
 ```liquid
  {% include 'script-tags' %}
@@ -342,22 +345,22 @@ See [Template and layout bundles](#Template-and-layout-bundles) for more informa
 ### Local development
 
 Packer uses a local server which compiles and serves theme JavaScript and CSS locally.
-By serving these assets locally, developers don't need to wait for them 
+By serving these assets locally, developers don't need to wait for them
 to be uploaded to Shopify servers to preview the changes they are making.
-When combined with Hot Module Reloading, developers see changes in 
+When combined with Hot Module Reloading, developers see changes in
 their code reflected almost instantly.
 
 For the local server to function properly you must have [SSL](#ssl) setup properly.
 
-Developers wanting to share an instance of their store with other 
-developers are often confused when they see their store appear broken. 
-Because CSS and JavaScript are being served locally, your theme won’t 
-function on any machine other than the one the 
+Developers wanting to share an instance of their store with other
+developers are often confused when they see their store appear broken.
+Because CSS and JavaScript are being served locally, your theme won’t
+function on any machine other than the one the
 Express server is currently running on.
 
 ### SSL
-For the development server to function you need to accept/setup a SSL cert. 
-When SSL is not working your css/js will be blocked in the browser and 
+For the development server to function you need to accept/setup a SSL cert.
+When SSL is not working your css/js will be blocked in the browser and
 the site will appear broken. You can also see the requests being blocked
 in the network tab chrome developer tools. There are two methods for fixing this:
 
@@ -366,34 +369,34 @@ This is the fastest method but will often have to be repeated
 1. Run start/watch
 2. When browser launches if there is a warning follow these steps
     1. Click advanced
-    
+
     ![SSL Error](./docs/ssl_1.png)
-    
+
     2. Click proceed
-    
+
     ![SSL Error 2](./docs/ssl_2.png)
 
 #### Create self signed cert
-Create a trusted, self-signed SSL certificate on your device so the 
-assets, served via https, are never blocked. This takes longer and the 
+Create a trusted, self-signed SSL certificate on your device so the
+assets, served via https, are never blocked. This takes longer and the
 steps very depending on what OS you are using.
 
-Packer will look for the cert named ``localhost.cer`` 
+Packer will look for the cert named ``localhost.cer``
 in ``~/.localhost_ssl`` for windows it will be in the users home directory
 
-The certificate common name must match the ip you are using with packer. 
+The certificate common name must match the ip you are using with packer.
 When your IP changes you will need to make a new cert
 
 ### Styles with Liquid
 
 
 ### Template and layout bundles
-Template and layout bundles are a build-time optimization which ensures 
-that only the JS and CSS needed for the current page is downloaded and 
-executed. This optimization results in improved page load speed, 
+Template and layout bundles are a build-time optimization which ensures
+that only the JS and CSS needed for the current page is downloaded and
+executed. This optimization results in improved page load speed,
 especially on mobile devices with limited computing power and network capacity.
 
-In order to take advantage of template and layout bundles, 
+In order to take advantage of template and layout bundles,
 your Packer project's src/script/ folder must include the following folders:
 ```
 └── src
@@ -404,9 +407,9 @@ your Packer project's src/script/ folder must include the following folders:
    └── templates
 ```
 
-On build, Packer will look for each file in the src/scripts/layout and 
-src/scripts/templates folders and see if there is a matching file 
-in the src/layout and src/templates folders. If there is a match, a 
+On build, Packer will look for each file in the src/scripts/layout and
+src/scripts/templates folders and see if there is a matching file
+in the src/layout and src/templates folders. If there is a match, a
 template or layout bundle is created for that match.
 ```
 └── src
@@ -422,7 +425,7 @@ template or layout bundle is created for that match.
        ├── index.liquid
        └── product.liquid
 ```
-Using the example above and calling packer build, Packer will look for matching template and 
+Using the example above and calling packer build, Packer will look for matching template and
 layout files inside the src/scripts/ folder and generate the following JS bundles:
 
 - ``layout.theme.js``: Both ``theme.liquid`` and ``theme.js`` exist.
@@ -436,8 +439,8 @@ Note that the following bundles **are not** generated:
 
 #### Shared JS dependencies chunking
 A critical optimization needed for template and layout bundles to be successful
-is to split shared dependencies between bundles into separate chunks. 
-This reduces the amount of duplicate code included in each bundle and 
+is to split shared dependencies between bundles into separate chunks.
+This reduces the amount of duplicate code included in each bundle and
 further improves page load performance.
 
 Let's continue with the file structure from the previous example, and
@@ -457,7 +460,7 @@ see how shared dependencies are separated:
 
 In the example above, we have 2 files which each import 2 dependencies.
 Both files have a shared dependency, depB. Instead of bundling depB into
-template.index.js and again in template.product.js, Packer splits depB 
+template.index.js and again in template.product.js, Packer splits depB
 into its own bundle chunk. The resulting generated files are:
 
 - ``template.index.js``: Code that is only used on the index template.
@@ -465,9 +468,9 @@ into its own bundle chunk. The resulting generated files are:
 - ``template.index@template.product.js``: Code that is used on both index and product templates.
 
 #### Template and layout styles
-It's also possible to structure your styles so that only those needed 
+It's also possible to structure your styles so that only those needed
 for the current page are loaded. This is made possible by the JS bundling
-mentioned above. Let's take a look at what a typical Packer project might 
+mentioned above. Let's take a look at what a typical Packer project might
 look like and how it would take advantage of template and layout styles.
 
 *layout/theme.js*
@@ -480,10 +483,10 @@ import '../../styles/layout/theme.scss';
 import '../../styles/templates/product.scss';
 ```
 
-Looking at the above examples, we can see that we are importing two 
-different SCSS files. We can expect that ``theme.scss`` contains global 
-styles that are used through most of the theme's pages, such as header 
-and navigation styles. ``product.scss`` might include styles that are 
+Looking at the above examples, we can see that we are importing two
+different SCSS files. We can expect that ``theme.scss`` contains global
+styles that are used through most of the theme's pages, such as header
+and navigation styles. ``product.scss`` might include styles that are
 specific to the product template, such as a product image gallery.
 
 The following imports would generate the following files:
@@ -493,12 +496,12 @@ The following imports would generate the following files:
 
 #### Including generated bundles in your theme
 Now that you have template and layout bundles with shared dependency chunking,
-you'll notice that there are a lot of JS files in your compiled Packer project 
+you'll notice that there are a lot of JS files in your compiled Packer project
 (found in the dist folder). It would be pretty tedious to code and manage
 all the ``<script>`` tags for each of these assets. So let's have Packer handle this!
 
-packer generates ``script-tags.liquid`` and ``styles-tags.liquid`` snippets 
-which include ``<script>`` and ``<link>`` tags needed for each bundle. 
+packer generates ``script-tags.liquid`` and ``styles-tags.liquid`` snippets
+which include ``<script>`` and ``<link>`` tags needed for each bundle.
 These snippets also include all the liquid logic needed to selectively load
 these bundles based on the current template and layout.
 All you need to do is include these snippets in your layout files.
@@ -512,7 +515,7 @@ For example, here is what you would include in your ``layout/theme.liquid``:
 where the layout option value is the name of the layout.
 
 ### Asset minification
-Packer's build script compiles the theme so that it is fully optimized 
+Packer's build script compiles the theme so that it is fully optimized
 to run in production. These optimizations include:
 
 - Minified JS and bundle splitting
@@ -520,13 +523,13 @@ to run in production. These optimizations include:
 - Minified HTML
 
 ### Bundle Analyzer
-Packer's build script can use Webpack Bundle Analyzer to see what's 
+Packer's build script can use Webpack Bundle Analyzer to see what's
 inside each bundle for further optimization
 
 ![Bundle Analyzer](./docs/webpack-bundle-analyzer.png)
 
 ## Themes
-Packer comes with several utilities to make managing and setting up 
+Packer comes with several utilities to make managing and setting up
 themes easier and without needing to use Shopify admin.
 
 ### List
@@ -534,7 +537,7 @@ Requires password and store URL in ``config.json``. This will list all themes
 on the store, showing name, id, created/modified dates and role.
 ```
 packer theme:list
-``` 
+```
 output
 ```
 ╔═════════════╤═════════════╤═══════════════════════════╤═══════════════════════════╤═════════════╗
@@ -548,16 +551,16 @@ output
 ```
 
 ### Create
-Creates an empty theme on Shopify that you can deploy to or start 
+Creates an empty theme on Shopify that you can deploy to or start
 development on. It will automatically add the theme id to your ``config.json``
 ```
 packer theme:create --env=development
-``` 
+```
 By default, it will use the development environment if no flag is provided.
 
 ### Download
 Downloads the theme from Shopify to your src folder
 ```
 packer theme:download --env=development
-``` 
+```
 By default, it will use the development environment if no flag is provided.
