@@ -62,18 +62,19 @@ const createTheme = async (args) => {
   spinner.succeed(
     `Theme ${chalk.cyan(result.theme.name)} with id ${chalk.cyan(
       result.theme.id
-    )} created and config.json updated!`
+    )} created and packer.config.json updated!`
   );
   console.log(table(parsed));
 };
 
-const removeTheme = async () => {
+const removeTheme = async (args) => {
+  const themeIdFlag = args.id ? args.id : null;
   clearConsole();
   const spinner = ora(
     chalk.magenta(`'Deleting theme for environment: ${getEnvNameValue()} ...'`)
   );
   spinner.start();
-  const result = await remove();
+  const result = await remove(themeIdFlag);
   if (result.status === 'error') {
     spinner.color = 'red';
     spinner.fail(chalk.red(result.message));

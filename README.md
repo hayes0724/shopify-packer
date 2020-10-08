@@ -66,7 +66,7 @@ Shopify development tool using themekit and webpack. Also a compatible replaceme
 - Multiple entrypoints for templates and layouts
 - List themes on store
 - Delete themes from CLI
-- Create new empty theme in Shopify from CLI, adds theme id to config.json
+- Create new empty theme in Shopify from CLI, adds theme id to packer.config.json
 - Download existing themes
 - Download files/sync changes
 - Init base packer theme from cli or use a custom github repo
@@ -86,7 +86,7 @@ yarn global add @hayes0724/shopify-packer
 ```
 packer init <dirname>
 ```
-2. Add app password and store url to config.json
+2. Add app password and store url to packer.config.json
 
 3. Create new empty theme on shopify
 ```
@@ -130,7 +130,7 @@ packer start [--env=my-custom-env-name] [--skipPrompts] [--skipFirstDeploy]
 
 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
-| `--env` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| `--env` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 | `--skipPrompts` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
 | `--skipFirstDeploy` | Skips the file upload sequence and simply boots up the local Express server |
 
@@ -146,7 +146,7 @@ packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace]
 ```
 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 | ``--skipPrompts`` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
 | ``--nodelete`` | By default deploy will replace all files in theme, use this flag to update without removing existing files |
 ### build
@@ -184,21 +184,21 @@ Compiles the contents of the dist directory and creates a ZIP file in the root o
 packer zip
 ```
 ### theme:list
-Lists all themes (shows name, themeID, etc...) on the site, requires app password and store url be set first. By default looks at the store for development env in config.json
+Lists all themes (shows name, themeID, etc...) on the site, requires app password and store url be set first. By default looks at the store for development env in packer.config.json
 ```bash
 packer theme:list
 ```
 | Flag | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 ### theme:create
-Creates a new empty theme on Shopify and updates config.json for the selected env with the proper themeID
+Creates a new empty theme on Shopify and updates packer.config.json for the selected env with the proper themeID
 ```bash
 packer theme:create
 ```
 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Flag &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 | ``--name=my-theme-name `` | Sets the theme name on Shopify, it's required |
 ### theme:remove
 Removes the theme set in the selected env from Shopify
@@ -207,7 +207,8 @@ packer theme:remove
 ```
 | Flag | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| ``--env`` | Targets a custom environment (defaults to development). Setting --env=production would use the production settings in packer.config.json |
+| ``--id`` | Delete a theme by using its ID  |
 
 ### theme:download
 Downloads the theme set in the selected env from Shopify
@@ -216,7 +217,7 @@ packer theme:download
 ```
 | Flag | Description |
 | --- | --- |
-| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in config.json |
+| ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 
 
 ### help

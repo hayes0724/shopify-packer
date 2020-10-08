@@ -79,20 +79,21 @@ module.exports = () => {
   ]);
   commands.push([
     chalk.greenBright.bold('theme:list'),
-    'Lists all themes on the store using credentials in config.json',
+    'Lists all themes on the store using credentials in packer.config.json',
     '--env=my-custom-env-name',
   ]);
   commands.push([
     chalk.greenBright.bold('theme:create'),
-    'Create a new theme using credentials in config.json, it will add the store id to your config',
+    'Create a new theme using credentials in packer.config.json, it will add the store id to your config',
     `--env=my-custom-env-name
 --name=my-theme-name
 --deploy`,
   ]);
   commands.push([
     chalk.greenBright.bold('theme:remove'),
-    'Completely deletes the theme using the id set in config.json',
+    'Completely deletes the theme using the id set in packer.config.json or by providing a id flag',
     '--env=my-custom-env-name\n',
+    '--id=1234456789\n',
   ]);
   commands.push([
     chalk.greenBright.bold('theme:download'),
