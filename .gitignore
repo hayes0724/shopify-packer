@@ -5,3 +5,4 @@ node_modules/
 /config.js
 /yarn-error.log
 /config.json
+/.github/.token
