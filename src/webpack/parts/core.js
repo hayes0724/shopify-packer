@@ -46,7 +46,7 @@ const core = {
         },
       },
       {
-        test: /\.js$/,
+        test: /\.(ts|js)$/,
         loader: 'babel-loader',
       },
       {
