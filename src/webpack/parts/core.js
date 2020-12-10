@@ -58,7 +58,12 @@ const core = {
   },
 
   plugins: [
-    new CleanWebpackPlugin({}),
+    new CleanWebpackPlugin({
+      verbose: true,
+      cleanOnceBeforeBuildPatterns: [
+        path.join(process.cwd(), 'dist/**/*')
+      ]
+    }),
 
     extractLiquidStyles,
 
