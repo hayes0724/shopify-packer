@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/hayes0724/shopify-packer/compare/1.3.0...1.3.1) (2020-12-10)
+
+
+### :bug: Bug Fixes
+
+* **packer-config:** env value live for allowing live theme deploy ([abd0d9f](https://github.com/hayes0724/shopify-packer/commit/abd0d9f5bc98a50eb8850e8785c5a34d50d1df72)), closes [#25](https://github.com/hayes0724/shopify-packer/issues/25)
+
+
+
 # [1.3.0](https://github.com/hayes0724/shopify-packer/compare/1.2.1...1.3.0) (2020-12-10)
 
 

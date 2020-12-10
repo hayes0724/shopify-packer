@@ -8,6 +8,7 @@ const PACKER_ENV_VARS = [
   config.get('env.keys.password'),
   config.get('env.keys.id'),
   config.get('env.keys.ignore'),
+  config.get('env.keys.live'),
 ];
 
 const DEFAULT_ENV_VARS = [
@@ -15,6 +16,7 @@ const DEFAULT_ENV_VARS = [
   config.get('env.keys.password'),
   config.get('env.keys.id'),
   config.get('env.keys.ignore'),
+  config.get('env.keys.live'),
 ];
 
 function assign(envName = undefined) {
@@ -56,7 +58,7 @@ function getEnvNameValue() {
   return process.env[config.get('env.keys.name')];
 }
 
-// Returns the configurable environment varible that reference the store URL
+// Returns the configurable environment variable that reference the store URL
 function getStoreValue() {
   const value = process.env[config.get('env.keys.store')];
   return typeof value === 'undefined' ? '' : value;
@@ -72,9 +74,18 @@ function getThemeIdValue() {
   return typeof value === 'undefined' ? '' : value;
 }
 
+function getAllowLiveValue() {
+  const value = process.env[config.get('env.keys.live')];
+  return value === 'true';
+}
+
 function getIgnoreFilesValue() {
   const value = process.env[config.get('env.keys.ignore')];
   return typeof value === 'undefined' ? '' : value;
+}
+
+function setAllowLiveValue(value) {
+  process.env[config.get('env.keys.live')] = value;
 }
 
 function validate() {
@@ -168,6 +179,8 @@ module.exports = {
   clear,
   getPackerEnv,
   getEmptyPackerEnv,
+  getAllowLiveValue,
+  setAllowLiveValue,
   getEnvNameValue,
   getStoreValue,
   getPasswordValue,

@@ -2,15 +2,21 @@ const chalk = require('chalk');
 
 const {deploy, replace} = require('../../src/server/sync');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
-const {getThemeIdValue, assign} = require('../../src/env');
+const {
+  getThemeIdValue,
+  getAllowLiveValue,
+  setAllowLiveValue,
+  assign,
+} = require('../../src/env');
 
-module.exports = (args) => {
+module.exports = async (args) => {
   assign(args.env);
-  promptContinueIfPublishedTheme(getThemeIdValue())
+  await promptContinueIfPublishedTheme(getThemeIdValue(), getAllowLiveValue())
     .then((answer) => {
       if (!answer) {
         process.exit(0);
       }
+      setAllowLiveValue('true');
       if (args.nodelete) {
         return deploy();
       }
