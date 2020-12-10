@@ -11,6 +11,7 @@ const {
   getStoreValue,
   getThemeIdValue,
   getIgnoreFilesValue,
+  getAllowLiveValue,
 } = require('../env');
 const PackerConfig = require('../config');
 const config = new PackerConfig(require('../../packer.schema'));
@@ -58,6 +59,7 @@ function _generateConfigFlags() {
     store: getStoreValue(),
     env: getEnvNameValue(),
     ignoredFiles: getIgnoreFilesValue().split(':'),
+    allowLive: getAllowLiveValue(),
   };
 }
 
@@ -83,6 +85,7 @@ async function deploy(cmd = '', files = [], replace = true) {
     await promiseThemekitDeploy(cmd, files, replace);
   } catch (error) {
     console.log(chalk.red(`- ${error}`));
+    process.exit(1);
   }
 
   deploying = false;

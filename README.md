@@ -249,20 +249,24 @@ Environment settings are located in ``packer.env.json``.
 
 ```json
 {
-  "themes": {
     "development": {
       "id": "74500041118",
       "password": "ebd6ce7f27aae8cdafb8111a5b887b9",
       "store": "my-store-name.myshopify.com",
+      "live": "false",
       "ignore": [
         "settings_data.json"
       ]
     }
-  }
 }
+
 ```
+
 By default, most commands will use development environment unless you
 override with the ``--env`` flag
+
+live - will allow deploying to published themes and skip the default prompts
+
 ```
 packer start --env=production
 ```
@@ -287,7 +291,7 @@ module.exports = {
     'theme.dist.root': path.join(process.cwd(), 'dist'),
     // Change your theme source templates
     'theme.src.templates': path.join(process.cwd(), 'src/templates'),
-    // Configure network settigns if you don't like the autoconfig 
+    // Configure network settigns if you don't like the autoconfig
     'network.ipAddress': '192.168.1.1',
     'network.external': '',
     'network.interface': '',
@@ -307,22 +311,22 @@ interface ip address in your system.
 Packer can be used with existing themes or you can create a new theme.
 It must follow the following structure:
 ```
-├── .babelrc 
-├── .eslintrc 
-├── .gitignore 
-├── .stylelintrc 
-├── .prettierignore 
+├── .babelrc
+├── .eslintrc
+├── .gitignore
+├── .stylelintrc
+├── .prettierignore
 ├── .stylelintignore
 ├── .prettierrc.json
 ├── .eslintignore
 ├── .editorconfig
-├── packer.env.json 
-├── packer.config.js 
-├── dev.config.js 
-├── prod.config.js 
-├── postcss.config.js 
-├── package.json 
-├── yarn.lock 
+├── packer.env.json
+├── packer.config.js
+├── dev.config.js
+├── prod.config.js
+├── postcss.config.js
+├── package.json
+├── yarn.lock
 └── src
    ├── assets
    ├── config
@@ -510,7 +514,7 @@ All you need to do is include these snippets in your layout files.
 For example, here is what you would include in your ``layout/theme.liquid``:
 
 ```
-{% include 'style-tags' %} 
+{% include 'style-tags' %}
 {% include 'script-tags', layout: 'theme' %}
 ```
 where the layout option value is the name of the layout.

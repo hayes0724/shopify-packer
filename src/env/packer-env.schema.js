@@ -5,7 +5,7 @@ module.exports = {
 
   // The environment variable key which contains the name of the environment
   // Packer is running in
-  'env.keys.name': 'ENV_NAME',
+  'env.keys.name': 'PACKER_ENV',
 
   // The environment variable key which contains the myshopify.com URL to your
   // Shopify store
@@ -22,4 +22,8 @@ module.exports = {
   // The environment variable key which contains a list of file patterns to
   // ignore, with each list item separated by ':'
   'env.keys.ignore': 'PACKER_IGNORE',
+
+  // The environment variable key which contains a list of file patterns to
+  // allow deployment to live themes
+  'env.keys.live': 'PACKER_LIVE',
 };

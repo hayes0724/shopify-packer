@@ -17,10 +17,12 @@ const question = {
  * Prompt the user to confirm if they are about to deploy to the main theme
  *
  * @return Promise Reason for abort or empty resolve
- * @param  themeID
+ * @param {String} themeID
+ * @param {Boolean} allowLive [false]
+ *
  */
-module.exports = async function continueIfPublishedTheme(themeID) {
-  if (argv.skipPrompts) {
+module.exports = async function continueIfPublishedTheme(themeID, allowLive = false) {
+  if (argv.skipPrompts || allowLive) {
     return question.default;
   }
 
