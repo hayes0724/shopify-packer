@@ -64,9 +64,9 @@ const create = (args) => {
     });
 };
 
-const remove = async () => {
+const remove = async (themeIdFlag = null) => {
   _headers();
-  const themeId = getThemeIdValue();
+  const themeId = themeIdFlag ? themeIdFlag : getThemeIdValue();
   const mainTheme = await _isMainTheme(themeId);
   if (mainTheme.status === 'error') {
     return {

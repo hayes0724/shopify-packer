@@ -46,7 +46,7 @@ const core = {
         },
       },
       {
-        test: /\.js$/,
+        test: /\.(ts|js)$/,
         loader: 'babel-loader',
       },
       {
@@ -58,7 +58,12 @@ const core = {
   },
 
   plugins: [
-    new CleanWebpackPlugin({}),
+    new CleanWebpackPlugin({
+      verbose: true,
+      cleanOnceBeforeBuildPatterns: [
+        path.join(process.cwd(), 'dist/**/*')
+      ]
+    }),
 
     extractLiquidStyles,
 

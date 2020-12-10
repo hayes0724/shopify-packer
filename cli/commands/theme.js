@@ -17,7 +17,7 @@ module.exports = async (args) => {
     await createTheme(args);
   }
   if (args.remove) {
-    await removeTheme();
+    await removeTheme(args);
   }
   if (args.download) {
     downloadTheme()
