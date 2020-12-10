@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/hayes0724/shopify-packer/compare/1.3.1...1.3.2) (2020-12-10)
+
+
+### :bug: Bug Fixes
+
+* **packer-theme:** theme:download command typo in ignored files ([060d803](https://github.com/hayes0724/shopify-packer/commit/060d803e9faa2c7b37649617981c99af9522c117)), closes [#18](https://github.com/hayes0724/shopify-packer/issues/18)
+
+
+
 ## [1.3.1](https://github.com/hayes0724/shopify-packer/compare/1.3.0...1.3.1) (2020-12-10)
 
 

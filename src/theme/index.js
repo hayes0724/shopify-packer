@@ -4,6 +4,8 @@ const chalk = require('chalk');
 const ora = require('ora');
 
 const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
+
 const clearConsole = require('../utilities/clear-console');
 const {
   getEnvNameValue,
@@ -12,7 +14,6 @@ const {
   getStoreValue,
   getIgnoreFilesValue,
 } = require('../env');
-const config = new PackerConfig(require('../../packer.schema'));
 
 const {list, create, remove} = require('./api');
 
@@ -90,6 +91,7 @@ const removeTheme = async (args) => {
 
 const downloadTheme = async () => {
   // @TODO: add warning message if directory is not empty
+  clearConsole();
   await themeKit.command(
     'download',
     {
@@ -97,10 +99,11 @@ const downloadTheme = async () => {
       themeid: getThemeIdValue(),
       store: getStoreValue(),
       env: getEnvNameValue(),
-      ignoredFiles: getIgnoreFilesValue(),
+      ignoredFiles: getIgnoreFilesValue().split(':'),
     },
     {
       cwd: config.get('theme.src.root'),
+      logLevel: 'silly',
     }
   );
 };

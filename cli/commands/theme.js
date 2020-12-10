@@ -20,7 +20,7 @@ module.exports = async (args) => {
     await removeTheme(args);
   }
   if (args.download) {
-    downloadTheme()
+    await downloadTheme()
       .then(() => {
         console.log(chalk.green('Theme downloaded!'));
       })
