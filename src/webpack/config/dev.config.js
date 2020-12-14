@@ -51,12 +51,16 @@ module.exports = merge([
           test: /\.(png|svg|jpg|gif)$/,
           exclude: config.get('commonExcludes'),
           use: [
-            {loader: 'file-loader', options: {name: '[name].[ext]'}},
-            {loader: 'img-loader'},
             {
               loader: 'url-loader',
               options: {
                 limit: false,
+                name: '[name].[ext]',
+              },
+            },
+            {
+              loader: 'file-loader',
+              options: {
                 name: '[name].[ext]',
               },
             },
