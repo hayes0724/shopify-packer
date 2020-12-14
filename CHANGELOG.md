@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/hayes0724/shopify-packer/compare/1.3.2...1.3.3) (2020-12-14)
+
+
+### chore
+
+* **webpack-config:** verbose output removed from clean webpack plugin ([50c7a34](https://github.com/hayes0724/shopify-packer/commit/50c7a3444b4d4f8a265cb26b932e2838b85ce39a))
+
+
+
 ## [1.3.2](https://github.com/hayes0724/shopify-packer/compare/1.3.1...1.3.2) (2020-12-10)
 
 
