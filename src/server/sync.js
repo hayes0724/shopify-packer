@@ -85,7 +85,6 @@ async function deploy(cmd = '', files = [], replace = true) {
     await promiseThemekitDeploy(cmd, files, replace);
   } catch (error) {
     console.log(chalk.red(`- ${error}`));
-    process.exit(1);
   }
 
   deploying = false;
