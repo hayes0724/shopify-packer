@@ -1,3 +1,22 @@
+## [1.3.4](https://github.com/hayes0724/shopify-packer/compare/1.3.2...1.3.4) (2021-01-13)
+
+
+### :bug: Bug Fixes
+
+* init command extract releases that use v in tag name ([76d4188](https://github.com/hayes0724/shopify-packer/commit/76d4188557f92746b15d108539bda5fd6b6a9b2f))
+
+
+### :hammer: Code Refactoring
+
+* **webpack-config:** removed img-loader and changed order of image loaders ([48966af](https://github.com/hayes0724/shopify-packer/commit/48966afb5d6ef7009e77317a6bc1e8271091e447))
+
+
+### chore
+
+* **webpack-config:** verbose output removed from clean webpack plugin ([4ae1f5c](https://github.com/hayes0724/shopify-packer/commit/4ae1f5c4e2077bfa3d462f1bc08b9919d2adea0d))
+
+
+
 ## [1.3.3](https://github.com/hayes0724/shopify-packer/compare/1.3.2...1.3.3) (2020-12-14)
 
 

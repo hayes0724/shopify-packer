@@ -26,7 +26,7 @@ module.exports = (args) => {
       const release = `https://github.com/${args.repo}/archive/${response.data.tag_name}.zip`;
       const extracted = path.join(
         dir,
-        `${args.repo.split('/')[1]}-${response.data.tag_name}`
+        `${args.repo.split('/')[1]}-${response.data.tag_name.replace('v', '')}`
       );
       spinner.text = 'Starting download...';
       fs.ensureDir(dir)
