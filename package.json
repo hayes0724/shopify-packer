@@ -42,7 +42,7 @@
     "archiver": "^4.0.1",
     "array-flatten": "^3.0.0",
     "autoprefixer": "^9.7.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.26.12",
     "chalk": "latest",
