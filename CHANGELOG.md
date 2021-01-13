@@ -1,3 +1,17 @@
+## [1.3.5](https://github.com/hayes0724/shopify-packer/compare/1.3.4...1.3.5) (2021-01-13)
+
+
+### :bug: Bug Fixes
+
+* show error instead of exiting on deploy exception ([6d0107f](https://github.com/hayes0724/shopify-packer/commit/6d0107fc4b264db8de694610012e6e4e18780b63))
+
+
+### :wrench: Build System
+
+* **deps:** bump axios from 0.19.2 to 0.21.1 ([7334d5d](https://github.com/hayes0724/shopify-packer/commit/7334d5d403666574f8dec3bc8cc26ff29be60646))
+
+
+
 ## [1.3.4](https://github.com/hayes0724/shopify-packer/compare/1.3.2...1.3.4) (2021-01-13)
 
 
