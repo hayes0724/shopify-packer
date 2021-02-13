@@ -1,6 +1,9 @@
-# Shopify Packer
-
-Modern development tool for Shopify using themekit and webpack. Also a compatible replacement for Slate and existing websites.
+---
+id: overview
+title: Overview
+sidebar_label: Overview
+slug: /
+---
 
 [![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
@@ -10,8 +13,7 @@ Modern development tool for Shopify using themekit and webpack. Also a compatibl
 [![GitHub stars](https://img.shields.io/github/stars/hayes0724/shopify-packer.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)
 
-## Documentation
-View the [documentation website](https://shopify-packer.github.io) for usage
+Shopify development tool using themekit and webpack. Also a compatible replacement for Slate and existing websites.
 
 ## Features
 - Webpack 4
@@ -32,6 +34,3 @@ View the [documentation website](https://shopify-packer.github.io) for usage
 - Download existing themes
 - Download files/sync changes
 - Init base packer theme from cli or use a custom github repo
-
-## Changelog
-View recent changes [here](https://github.com/hayes0724/shopify-packer/blob/master/CHANGELOG.md)

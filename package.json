@@ -28,7 +28,7 @@
     "lint:js": "eslint src/** cli/**",
     "lint:fix-js": "eslint src/** cli/** --fix",
     "preversion": "npm test",
-    "version": "conventional-changelog -n docs/changelog/index.js -i CHANGELOG.md --same-file"
+    "version": "conventional-changelog -n changelog/index.js -i CHANGELOG.md --same-file"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
