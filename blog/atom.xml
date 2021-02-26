@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://hayes0724.github.io/blog</id>
+    <id>https://hayes0724.github.io/shopify-packer/blog</id>
     <title>Shopify Packer Blog</title>
     <updated>2015-10-25T23:29:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://hayes0724.github.io/blog"/>
+    <link rel="alternate" href="https://hayes0724.github.io/shopify-packer/blog"/>
     <subtitle>Shopify Packer Blog</subtitle>
-    <icon>https://hayes0724.github.io/img/favicon.ico</icon>
+    <icon>https://hayes0724.github.io/shopify-packer/img/favicon.ico</icon>
 </feed>
