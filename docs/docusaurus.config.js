@@ -2,7 +2,7 @@ module.exports = {
   title: 'Shopify Packer',
   tagline: 'Shopify development tool using themekit and webpack',
   url: 'https://hayes0724.github.io/shopify-packer',
-  baseUrl: '/',
+  baseUrl: '/shopify-packer/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
