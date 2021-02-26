@@ -8,9 +8,9 @@ slug: /config/settings
 Packer app configuration settings are located in ``packer.config.js``. You can modify any setting from the package without having to edit the source:
 
 Any value from these files can be overridden:
-1. [packer-env.schema.js](/src/env/packer-env.schema.js) - environment values
-2. [common-paths.js](src/config/common-paths.js) - path settings
-2. [packer.schema.js](packer.schema.js) - app settings
+1. [packer-env.schema.js](https://github.com/hayes0724/shopify-packer/blob/master/src/env/packer-env.schema.js) - environment values
+2. [common-paths.js](https://github.com/hayes0724/shopify-packer/blob/master/src/config/common-paths.js) - path settings
+2. [packer.schema.js](https://github.com/hayes0724/shopify-packer/blob/master/packer.schema.js) - app settings
 
 Example:
 ```javascript

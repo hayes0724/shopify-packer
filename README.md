@@ -11,7 +11,7 @@ Modern development tool for Shopify using themekit and webpack. Also a compatibl
 [![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)
 
 ## Documentation
-View the [documentation website](https://shopify-packer.github.io) for usage
+View the [documentation website](https://hayes0724.github.io/shopify-packer/) for usage
 
 ## Features
 - Webpack 4
