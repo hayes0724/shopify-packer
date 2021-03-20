@@ -1,6 +1,6 @@
 const path = require('path');
 const os = require('os');
-const {existsSync, readFileSync} = require('fs');
+const {existsSync, readFileSync, readdirSync} = require('fs');
 
 function sslKeyCert() {
   const key = readFileSync(getSSLKeyPath());
@@ -10,13 +10,25 @@ function sslKeyCert() {
 }
 
 function getSSLKeyPath() {
-  const key = path.resolve(os.homedir(), '.localhost_ssl/server.key');
+  const fileName = findKey() || 'localhost.key';
+  const key = path.resolve(os.homedir(), '.localhost_ssl/', fileName);
   return existsSync(key) ? key : path.join(__dirname, './server.pem');
 }
 
 function getSSLCertPath() {
-  const cert = path.resolve(os.homedir(), '.localhost_ssl/server.crt');
+  const fileName = findCert() || 'localhost.crt';
+  const cert = path.resolve(os.homedir(), '.localhost_ssl/', fileName);
   return existsSync(cert) ? cert : path.join(__dirname, './server.pem');
+}
+
+function findCert() {
+  const files = readdirSync(path.resolve(os.homedir(), '.localhost_ssl'));
+  return files.find((file) => file.includes('.crt') || file.includes('.cer'));
+}
+
+function findKey() {
+  const files = readdirSync(path.resolve(os.homedir(), '.localhost_ssl'));
+  return files.find((file) => file.includes('.key') || file.includes('.pem'));
 }
 
 module.exports = {
