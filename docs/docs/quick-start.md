@@ -26,3 +26,15 @@ packer start
 ```
 
 ### Existing project
+1. Initialize Packer and import a repo from a remote source. Packer will pull the latest release and fail if the repo has no releases.
+```bash
+  packer init <dirname> [--repo=hayes0724/packer-blank-theme]
+```
+2. Install packages
+```bash
+yarn install
+```
+3. Deploy files and start working
+```bash
+packer start
+```
