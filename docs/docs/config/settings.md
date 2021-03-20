@@ -27,6 +27,8 @@ module.exports = {
     'network.ipAddress': '192.168.1.1',
     'network.external': '',
     'network.interface': '',
+    // Add a reload delay before refreshing browser in ms, Shopify may need several seconds
+    'network.reload': 0,
     // Add additional entrypoint
     'entrypoints': {},
 }
@@ -179,5 +181,7 @@ module.exports = {
   'network.ip': '',
   'network.external': '',
   'network.interface': '',
+  // Add a reload delay before refreshing browser
+  'network.reload': '',
 };
 ```

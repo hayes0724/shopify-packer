@@ -4,19 +4,14 @@ const figures = require('figures');
 const ora = require('ora');
 const ip = require('ip');
 const consoleControl = require('console-control-strings');
-const clearConsole = require('../../src/utilities/clear-console');
+
 const AssetServer = require('../../src/server/asset');
 const DevServer = require('../../src/server/dev');
 const webpackConfig = require('../../src/webpack/config/dev.config');
 const getAvailablePortSeries = require('../../src/utilities/get-available-port-series');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
 const promptSkipSettingsData = require('../../src/server/prompts/skip-settings-data');
-
-const {
-  getStoreValue,
-  getThemeIdValue,
-  assign,
-} = require('../../src/env');
+const {getStoreValue, getThemeIdValue, assign} = require('../../src/env');
 const PackerConfig = require('../../src/config');
 const config = new PackerConfig(require('../../packer.schema'));
 

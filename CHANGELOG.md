@@ -1,3 +1,20 @@
+## [1.3.6](https://github.com/hayes0724/shopify-packer/compare/1.3.5...1.3.6) (2021-03-20)
+
+
+### :memo: Documentation
+
+* changed docusaurus.config.js ([4755789](https://github.com/hayes0724/shopify-packer/commit/4755789c12cd7359fcd832c54a01882d6172ea40))
+* changed docusaurus.config.js again ([d6ba1ed](https://github.com/hayes0724/shopify-packer/commit/d6ba1edc116b63d0ceade781c7bcfab0c19c1e4d))
+* documentation website ([b5ab20f](https://github.com/hayes0724/shopify-packer/commit/b5ab20fbdc758a42812ad03d216e9c39e87a9014))
+* fixed broken links ([f6f4a9e](https://github.com/hayes0724/shopify-packer/commit/f6f4a9e15d81c4561f36310b0045d7bfce23b7d1))
+
+
+### :sparkles: Features
+
+* Added reload delay setting ([3ef3b40](https://github.com/hayes0724/shopify-packer/commit/3ef3b408c6e24ba244f811443d4a5e97c256b904))
+
+
+
 ## [1.3.5](https://github.com/hayes0724/shopify-packer/compare/1.3.4...1.3.5) (2021-01-13)
 
 

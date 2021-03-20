@@ -50,10 +50,13 @@ module.exports = class AssetServer {
   }
 
   _onAfterSync(files) {
-    this.app.webpackHotMiddleware.publish({
-      action: 'shopify_upload_finished',
-      force: files.length > 0,
-    });
+    const _syncHandler = () => {
+      this.app.webpackHotMiddleware.publish({
+        action: 'shopify_upload_finished',
+        force: files.length > 0,
+      });
+    };
+    setTimeout(_syncHandler, parseInt(config.get('network.reload')));
   }
 
   _isChunk(key, chunks) {

@@ -6,4 +6,5 @@ module.exports = {
   'network.ip': '',
   'network.external': '',
   'network.interface': '',
+  'network.reload': 0,
 };
