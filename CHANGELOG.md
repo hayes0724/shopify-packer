@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/hayes0724/shopify-packer/compare/1.3.8...2.0.0) (2021-03-22)
+
+
+### :sparkles: Features
+
+* replace node sass with dart sass ([fff7650](https://github.com/hayes0724/shopify-packer/commit/fff7650fc377f4a3c7bcb9b8eb48fb9626ae1fd4))
+* webpack upgraded to v5 ([b5d68fd](https://github.com/hayes0724/shopify-packer/commit/b5d68fd6a301d1750fbfd920a55e09dc7e3aeac7))
+
+
+### :wrench: Build System
+
+* bumped fs-extra to ^9.1.0 ([873228f](https://github.com/hayes0724/shopify-packer/commit/873228fe4b1458686cc04e10a2e94604d5477835))
+
+
+
 # [1.4.0](https://github.com/hayes0724/shopify-packer/compare/1.3.8...1.4.0) (2021-03-21)
 
 

@@ -5,18 +5,22 @@ sidebar_label: Overview
 slug: /
 ---
 
-[![GitHub issues](https://img.shields.io/github/issues/hayes0724/shopify-packer.svg)](https://GitHub.com/hayes0724/shopify-packer/issues/)
+Modern development tool for Shopify using ThemeKit and Webpack. Easy extend and customize,
+zero build config, and compatible with Slate and existing websites.
+
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
-![build](https://github.com/hayes0724/shopify-packer/workflows/Node.js%20CI/badge.svg?branch=master)
 ![node-current (scoped)](https://img.shields.io/node/v/@hayes0724/shopify-packer)
+![build](https://github.com/hayes0724/shopify-packer/workflows/Node.js%20CI/badge.svg?branch=master)
+![dependency](https://img.shields.io/david/hayes0724/shopify-packer)
+![DevDependency](https://img.shields.io/david/dev/hayes0724/shopify-packer)
 [![GitHub license](https://img.shields.io/github/license/hayes0724/shopify-packer.svg)](https://github.com/hayes0724/shopify-packer/blob/master/LICENSE)
+
+![downloads](https://img.shields.io/npm/dt/@hayes0724/shopify-packer)
 [![GitHub stars](https://img.shields.io/github/stars/hayes0724/shopify-packer.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/hayes0724/shopify-packer.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/hayes0724/shopify-packer/network/)
 
-Shopify development tool using themekit and webpack. Also a compatible replacement for Slate and existing websites.
-
 ## Features
-- Webpack 4
+- Webpack 5
 - Stylelint
 - ESLint
 - Babel

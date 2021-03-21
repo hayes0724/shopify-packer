@@ -1,17 +1,8 @@
 const path = require('path');
-
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const PackerConfig = require('../../config');
-const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
-const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
 const config = new PackerConfig(require('../../../packer.schema'));
-
-const extractLiquidStyles = new ExtractTextPlugin(
-  '[name].styleLiquid.scss.liquid'
-);
 
 const core = {
   context: config.get('root'),
@@ -19,13 +10,6 @@ const core = {
   output: {
     filename: '[name].js',
     path: config.get('theme.dist.assets'),
-    chunkFilename: '[name].bundle.js',
-  },
-
-  entry: {
-    ...getLayoutEntrypoints(),
-    ...getTemplateEntrypoints(),
-    ...config.get('entrypoints'),
   },
   resolveLoader: {
     modules: [
@@ -46,32 +30,37 @@ const core = {
         },
       },
       {
-        test: /\.(ts|js)$/,
-        loader: 'babel-loader',
-      },
-      {
         test: /(css|scss|sass)\.liquid$/,
         exclude: config.get('commonExcludes'),
-        use: extractLiquidStyles.extract(['concat-style-loader']),
+        type: 'asset/resource',
+        generator: {
+          filename: (pathData) => {
+            return `${pathData.runtime.split('.')[0]}.${
+              path.basename(pathData.filename).split('.')[0]
+            }.styleLiquid.css.liquid`;
+          },
+        },
+      },
+      {
+        test: /\.(ts|js)$/,
+        loader: 'babel-loader',
       },
     ],
   },
 
   plugins: [
+
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         path.join(process.cwd(), 'dist/**/*')
       ]
     }),
 
-    extractLiquidStyles,
-
     new CopyWebpackPlugin({
       patterns: [
         {
           from: config.get('theme.src.assets'),
-          to: config.get('theme.dist.assets'),
-          flatten: true,
+          to: `${config.get('theme.dist.assets')}/[name][ext]`,
         },
         {
           from: config.get('theme.src.layout'),
