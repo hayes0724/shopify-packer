@@ -32,11 +32,13 @@ This is the fastest method but will often have to be repeated
 
 ### Create self signed cert
 Create a trusted, self-signed SSL certificate on your device so the
-assets, served via https, are never blocked. This takes longer and the
-steps very depending on what OS you are using.
+assets, served via https, are never blocked.
 
 Packer will look for the certificate with extension `.cer` or `.crt`
 in ``~/.localhost_ssl`` it will be in the users home directory
 
 The certificate common name must match the ip you are using with Packer.
 When your IP changes you will need to make a new cert
+
+Packer can create an SSL cert for you using the `packer ssl:make` command, 
+see [commands](commands.md) for usage

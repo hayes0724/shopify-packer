@@ -18,6 +18,7 @@ List of all API commands for Packer:
 - [theme:create](#theme:create)
 - [theme:remove](#theme:remove)
 - [theme:download](#theme:download)
+- [ssl:make](#ssl:make)
 - [help](#help)
 
 ### init
@@ -124,6 +125,15 @@ packer theme:download
 | Flag | Description |
 | --- | --- |
 | ``--env`` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
+
+### ssl:make
+Create a self-signed ssl cert for local development
+```bash
+packer ssl:make
+```
+| Flag | Description |
+| --- | --- |
+| ``--name`` | Name for SSL cert, defaults to localhost |
 
 
 ### help

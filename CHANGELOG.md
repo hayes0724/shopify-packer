@@ -1,3 +1,12 @@
+## [1.3.8](https://github.com/hayes0724/shopify-packer/compare/1.3.7...1.3.8) (2021-03-21)
+
+
+### :sparkles: Features
+
+* Create self-signed ssl cert from Packer CLI ([98701e6](https://github.com/hayes0724/shopify-packer/commit/98701e637889794b688a7ee4a1b9193e55d10379))
+
+
+
 ## [1.3.7](https://github.com/hayes0724/shopify-packer/compare/1.3.6...1.3.7) (2021-03-20)
 
 

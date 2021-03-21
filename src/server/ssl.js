@@ -1,6 +1,41 @@
 const path = require('path');
 const os = require('os');
-const {existsSync, readFileSync, readdirSync} = require('fs');
+const {existsSync, readFileSync, readdirSync, writeFileSync} = require('fs');
+
+const chalk = require('chalk');
+const ora = require('ora');
+const selfsigned = require('selfsigned');
+
+const spinner = ora(chalk.magenta('Creating SSL certificate...'));
+
+function makeCert(args) {
+  const name = args.name ? args.name : 'localhost';
+  spinner.start();
+  const attrs = [{name: 'commonName', value: name}];
+  const pems = selfsigned.generate(attrs, {days: 365});
+  try {
+    const certFile = path.resolve(
+      os.homedir(),
+      '.localhost_ssl/',
+      `${name}.crt`
+    );
+    const keyFile = path.resolve(
+      os.homedir(),
+      '.localhost_ssl/',
+      `${name}.key`
+    );
+    writeFileSync(certFile, pems.cert);
+    writeFileSync(keyFile, pems.private);
+    console.log('\n');
+    console.log(chalk.green(`SSL Cert: ${certFile}`));
+    console.log(chalk.green(`SSL Key: ${keyFile}`));
+    console.log('\n');
+    spinner.succeed('SSL certificate created successfully!');
+  } catch (err) {
+    console.error(err);
+    spinner.fail();
+  }
+}
 
 function sslKeyCert() {
   const key = readFileSync(getSSLKeyPath());
@@ -32,6 +67,7 @@ function findKey() {
 }
 
 module.exports = {
+  makeCert,
   sslKeyCert,
   getSSLCertPath,
   getSSLKeyPath,
