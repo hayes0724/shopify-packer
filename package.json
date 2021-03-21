@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -66,9 +66,9 @@
     "extract-zip": "^1.7.0",
     "fibers": "^5.0.0",
     "figlet": "^1.4.0",
-    "figures": "latest",
+    "figures": "^3.2.0",
     "file-loader": "^4.3.0",
-    "fs-extra": "latest",
+    "fs-extra": "^9.1.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^3.2.0",
     "inquirer": "^7.1.0",
@@ -78,10 +78,10 @@
     "minimatch": "^3.0.4",
     "minimist": "^1.2.5",
     "ora": "^4.0.4",
-    "portscanner": "latest",
+    "portscanner": "^2.2.0",
     "postcss": "^8.1.1",
     "postcss-loader": "^4.0.2",
-    "postcss-preset-env": "latest",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "read-yaml": "^1.1.0",
     "sass": "^1.32.8",
