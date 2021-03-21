@@ -52,6 +52,14 @@ switch (process.argv[2]) {
     args.download = true;
     require('./commands/theme')(args);
     break;
+  case 'ssl:make':
+    args.make = true
+    require('./commands/ssl')(args);
+    break;
+  case 'ssl:check':
+    args.check = true
+    require('./commands/ssl')(args);
+    break;
   case '--version':
     console.log(chalk.green(`Shopify Packer - v${version}`));
     break;
