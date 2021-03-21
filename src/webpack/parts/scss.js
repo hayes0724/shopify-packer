@@ -37,7 +37,13 @@ const postcssLoader = {
 
 const sassLoader = {
   loader: 'sass-loader',
-  options: {sourceMap: isDev},
+  options: {
+    sourceMap: isDev,
+    implementation: require('sass'),
+    sassOptions: {
+      fiber: false,
+    },
+  },
 };
 
 sassRule.use = [
