@@ -1,18 +1,15 @@
-const fs = require('fs');
 const path = require('path');
-
-const chalk = require('chalk');
 const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const IncludeLiquidStylesPlugin = require('../include-liquid-styles');
 
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
 
 const development = false;
 process.env.NODE_ENV = 'production';
-const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-chunks');
 const getChunkName = require('../../utilities/get-chunk-name');
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
@@ -23,6 +20,14 @@ const css = require('../parts/css');
 const scss = require('../parts/scss');
 
 const mergeProd = customConfigCheck(config.get('merge.prod'));
+config.set('layoutEntrypoints', getLayoutEntrypoints())
+config.set('templateEntrypoints', getTemplateEntrypoints())
+
+core.entry = {
+  ...config.get('layoutEntrypoints'),
+  ...config.get('templateEntrypoints'),
+  ...config.get('entrypoints'),
+}
 
 const output = merge([
   core,
@@ -30,33 +35,31 @@ const output = merge([
   css,
   {
     mode: 'production',
-    devtool: 'hidden-source-map',
+    devtool: false,
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css.liquid',
+        filename: '[name].css',
       }),
 
       new webpack.DefinePlugin({
         'process.env': {NODE_ENV: '"production"'},
       }),
 
-      // generate dist/layout/*.liquid for all layout files with correct paths to assets
       new HtmlWebpackPlugin({
         excludeChunks: ['static'],
         filename: `${config.get('theme.dist.snippets')}/script-tags.liquid`,
         template: path.resolve(__dirname, '../script-tags.html'),
         inject: false,
+        showErrors: true,
         minify: {
           removeComments: true,
           collapseWhitespace: true,
           removeAttributeQuotes: false,
           preserveLineBreaks: true,
-          // more options:
-          // https://github.com/kangax/html-minifier#options-quick-reference
         },
         isDevServer: development,
-        liquidTemplates: getTemplateEntrypoints(),
-        liquidLayouts: getLayoutEntrypoints(),
+        liquidTemplates: config.get('templateEntrypoints'),
+        liquidLayouts: config.get('layoutEntrypoints'),
       }),
 
       new HtmlWebpackPlugin({
@@ -69,24 +72,25 @@ const output = merge([
           collapseWhitespace: true,
           removeAttributeQuotes: false,
           preserveLineBreaks: true,
-          // more options:
-          // https://github.com/kangax/html-minifier#options-quick-reference
         },
         isDevServer: development,
-        liquidTemplates: getTemplateEntrypoints(),
-        liquidLayouts: getLayoutEntrypoints(),
+        liquidTemplates: config.get('templateEntrypoints'),
+        liquidLayouts: config.get('layoutEntrypoints'),
       }),
-
-      new HtmlWebpackIncludeLiquidStylesPlugin(),
-
-      // new SlateTagPlugin(packageJson.version),
+      new IncludeLiquidStylesPlugin()
     ],
     optimization: {
       nodeEnv: 'production',
       minimize: true,
       splitChunks: {
-        chunks: 'all',
-        name: getChunkName,
+        cacheGroups: {
+          defaultVendors: false,
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: getChunkName,
+            chunks: 'all',
+          },
+        },
       },
     },
   },

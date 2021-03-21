@@ -39,10 +39,6 @@ const sassLoader = {
   loader: 'sass-loader',
   options: {
     sourceMap: isDev,
-    implementation: require('sass'),
-    sassOptions: {
-      fiber: false,
-    },
   },
 };
 
