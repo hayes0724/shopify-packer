@@ -35,8 +35,8 @@ Create a trusted, self-signed SSL certificate on your device so the
 assets, served via https, are never blocked. This takes longer and the
 steps very depending on what OS you are using.
 
-Packer will look for the cert named ``localhost.cer``
-in ``~/.localhost_ssl`` for windows it will be in the users home directory
+Packer will look for the certificate with extension `.cer` or `.crt`
+in ``~/.localhost_ssl`` it will be in the users home directory
 
-The certificate common name must match the ip you are using with packer.
+The certificate common name must match the ip you are using with Packer.
 When your IP changes you will need to make a new cert

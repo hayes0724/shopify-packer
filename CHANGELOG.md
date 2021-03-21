@@ -1,3 +1,25 @@
+## [1.3.7](https://github.com/hayes0724/shopify-packer/compare/1.3.6...1.3.7) (2021-03-20)
+
+
+### :memo: Documentation
+
+* Updated SSL docs ([097f30c](https://github.com/hayes0724/shopify-packer/commit/097f30c3963da932f98982a1e46b388987cbbf23))
+
+
+### :sparkles: Features
+
+* Check for certificate extensions instead of fixed filename ([71789a1](https://github.com/hayes0724/shopify-packer/commit/71789a13e46b4d0934dfeca8201efbb811e47255))
+
+
+### chore
+
+* Changed homepage in package.json ([44536a8](https://github.com/hayes0724/shopify-packer/commit/44536a836e1866203c67eb33ffdd810b1f1d15c9))
+
+
+* Add docs for existing projects ([a44f9c6](https://github.com/hayes0724/shopify-packer/commit/a44f9c632d3f9f40ccc4fec543fba9c0db3f2e8d))
+
+
+
 ## [1.3.6](https://github.com/hayes0724/shopify-packer/compare/1.3.5...1.3.6) (2021-03-20)
 
 
