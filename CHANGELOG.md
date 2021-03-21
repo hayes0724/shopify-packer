@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/hayes0724/shopify-packer/compare/1.3.8...1.4.0) (2021-03-21)
+
+
+### :sparkles: Features
+
+* replace node sass with dart sass ([9bdda25](https://github.com/hayes0724/shopify-packer/commit/9bdda25b2e056bca51141a36836ba7448bfe6363))
+
+
+
 ## [1.3.8](https://github.com/hayes0724/shopify-packer/compare/1.3.7...1.3.8) (2021-03-21)
 
 
