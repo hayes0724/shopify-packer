@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.13.10",
-    "@babel/plugin-transform-async-to-generator": "^7.13.0",
     "@babel/preset-env": "^7.13.10",
     "@babel/register": "^7.13.8",
     "@namics/stylelint-bem": "^6.3.0",
