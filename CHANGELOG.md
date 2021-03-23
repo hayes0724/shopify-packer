@@ -1,9 +1,20 @@
+## [2.0.1](https://github.com/hayes0724/shopify-packer/compare/1.4.0...2.0.1) (2021-03-23)
+
+
+### :bug: Bug Fixes
+
+* --nodelete flag not checked before deploying ([b2aabe5](https://github.com/hayes0724/shopify-packer/commit/b2aabe5c45e0cc10219c38315be33bcd73fa772d)), closes [#60](https://github.com/hayes0724/shopify-packer/issues/60)
+
+
+* Create FUNDING.yml ([0604700](https://github.com/hayes0724/shopify-packer/commit/0604700b21f0c6a53af51715aafc29578c6890ed))
+
+
+
 # [2.0.0](https://github.com/hayes0724/shopify-packer/compare/1.3.8...2.0.0) (2021-03-22)
 
 
 ### :sparkles: Features
 
-* replace node sass with dart sass ([fff7650](https://github.com/hayes0724/shopify-packer/commit/fff7650fc377f4a3c7bcb9b8eb48fb9626ae1fd4))
 * webpack upgraded to v5 ([b5d68fd](https://github.com/hayes0724/shopify-packer/commit/b5d68fd6a301d1750fbfd920a55e09dc7e3aeac7))
 
 
@@ -18,7 +29,7 @@
 
 ### :sparkles: Features
 
-* replace node sass with dart sass ([9bdda25](https://github.com/hayes0724/shopify-packer/commit/9bdda25b2e056bca51141a36836ba7448bfe6363))
+* replace node sass with dart sass ([fff7650](https://github.com/hayes0724/shopify-packer/commit/fff7650fc377f4a3c7bcb9b8eb48fb9626ae1fd4))
 
 
 

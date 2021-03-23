@@ -72,13 +72,15 @@ function _generateConfigFlags() {
  * @return          Promise
  */
 async function deploy(cmd = '', files = [], replace = true) {
+
   if (!['deploy'].includes(cmd)) {
     throw new Error('shopify-deploy.deploy() first argument must be deploy');
   }
 
   deploying = true;
 
-  console.log(chalk.magenta(`\n${figures.arrowUp}  Uploading to Shopify...\n`));
+  console.log(chalk.magenta(`\n${figures.arrowUp}  Uploading to Shopify...`));
+  getDeploymentSettings(replace);
 
   try {
     await promiseThemekitConfig();
@@ -187,6 +189,12 @@ function fetchMainThemeId() {
   });
 }
 
+function getDeploymentSettings(replace) {
+  const mode = replace ? 'replace' : 'noDelete';
+  console.log(chalk.blue(`${figures.info} Deploy Mode: ${mode}`));
+  console.log(chalk.blue(`${figures.info} Environment: ${getEnvNameValue()} \n`));
+}
+
 module.exports = {
   sync(files = []) {
     if (!files.length) {
@@ -203,7 +211,7 @@ module.exports = {
   },
 
   deploy() {
-    return deploy('deploy');
+    return deploy('deploy', [], false);
   },
 
   fetchMainThemeId,
