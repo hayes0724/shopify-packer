@@ -1,26 +1,26 @@
-const fs = require('fs');
 const path = require('path');
-
-const chalk = require('chalk');
 const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
-
 const development = process.env.NODE_ENV !== 'production';
-const HtmlWebpackIncludeLiquidStylesPlugin = require('../html-webpack-include-chunks');
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
-
-// Parts
+const {customConfigCheck} = require('../custom');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
-const {customConfigCheck} = require('../custom');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
+config.set('layoutEntrypoints', getLayoutEntrypoints())
+config.set('templateEntrypoints', getTemplateEntrypoints())
+
+core.entry = {
+  ...config.get('layoutEntrypoints'),
+  ...config.get('templateEntrypoints'),
+  ...config.get('entrypoints'),
+}
 
 Object.keys(core.entry).forEach((name) => {
   core.entry[name] = [path.join(__dirname, '../hot-client.js')].concat(
@@ -34,7 +34,7 @@ module.exports = merge([
   css,
   {
     mode: 'development',
-    devtool: '#eval-source-map',
+    devtool: 'source-map',
     module: {
       rules: [
         {
@@ -83,12 +83,10 @@ module.exports = merge([
         minify: {
           removeComments: true,
           removeAttributeQuotes: false,
-          // more options:
-          // https://github.com/kangax/html-minifier#options-quick-reference
         },
         isDevServer: development,
-        liquidTemplates: getTemplateEntrypoints(),
-        liquidLayouts: getLayoutEntrypoints(),
+        liquidTemplates: config.get('templateEntrypoints'),
+        liquidLayouts: config.get('layoutEntrypoints'),
       }),
 
       new HtmlWebpackPlugin({
@@ -99,15 +97,12 @@ module.exports = merge([
         minify: {
           removeComments: true,
           removeAttributeQuotes: false,
-          // more options:
-          // https://github.com/kangax/html-minifier#options-quick-reference
         },
         isDevServer: development,
-        liquidTemplates: getTemplateEntrypoints(),
-        liquidLayouts: getLayoutEntrypoints(),
+        liquidTemplates: config.get('templateEntrypoints'),
+        liquidLayouts: config.get('layoutEntrypoints'),
       }),
 
-      new HtmlWebpackIncludeLiquidStylesPlugin(),
     ],
   },
   mergeDev,

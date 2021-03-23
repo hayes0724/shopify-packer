@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
 const ora = require('ora');
-
+const {writeFileSync} = require('fs');
 const spinner = ora(chalk.magenta('Compiling...'));
 
 module.exports = (args) => {
@@ -18,6 +18,13 @@ module.exports = (args) => {
   webpack(config, (err, stats) => {
     if (err) throw err;
 
+    if (args.stats) {
+      const level = typeof args.stats === 'string' ? args.stats : 'verbose';
+      writeFileSync(
+        'stats.json',
+        JSON.stringify(stats.toJson(level), null, 2),
+        'utf8')
+    }
     process.stdout.write(
       `${stats.toString({
         colors: true,

@@ -10,8 +10,6 @@ class App {
     const app = express();
 
     app.webpackDevMiddleware = webpackDevMiddleware(compiler, {
-      logLevel: 'silent',
-      reload: true,
       writeToDisk: (filePath) => {
         return !isHotUpdateFile(filePath);
       },

@@ -58,11 +58,12 @@ packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace]
 | ``--nodelete`` | By default deploy will replace all files in theme, use this flag to update without removing existing files |
 ### build
 ```bash
-packer build [--analyze]
+packer build [--analyze] [--stats]
 ```
 | Flag | Description |
 | --- | --- |
 | ``--analyze`` | Analyzes bundles |
+| ``--stats`` | Create a stats.json file in the root directory |
 
 Builds a production-ready version of the theme by compiling the files into the dist folder.
 ### lint
