@@ -26,7 +26,7 @@ function eslint({fix} = {}) {
 module.exports.eslint = eslint;
 
 module.exports.runEslint = function runEslint() {
-  console.log('Linting script files...\n');
+  console.log('\n Linting script files...');
   try {
     eslint();
   } catch (error) {
@@ -35,6 +35,7 @@ module.exports.runEslint = function runEslint() {
 };
 
 module.exports.runEslintFix = function runEslintFix() {
+  console.log('\n Linting script files and fixing...');
   try {
     eslint({fix: true});
   } catch (error) {

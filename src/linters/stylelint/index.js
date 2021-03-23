@@ -28,7 +28,7 @@ function stylelint({fix} = {}) {
 module.exports.stylelint = stylelint;
 
 module.exports.runStylelint = function runStylelint() {
-  console.log('Linting style files...\n');
+  console.log('\n Linting style files...');
   try {
     stylelint();
   } catch (error) {
@@ -37,7 +37,7 @@ module.exports.runStylelint = function runStylelint() {
 };
 
 module.exports.runStylelintFix = function runStylelintFix() {
-  console.log('Linting style files and fixing...\n');
+  console.log('\n Linting style files and fixing...');
   try {
     stylelint({fix: true});
   } catch (error) {
