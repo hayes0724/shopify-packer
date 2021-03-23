@@ -1,3 +1,26 @@
+## [2.0.3](https://github.com/hayes0724/shopify-packer/compare/2.0.2...2.0.3) (2021-03-23)
+
+
+### :bug: Bug Fixes
+
+* added missing dependency eslint ([b424792](https://github.com/hayes0724/shopify-packer/commit/b4247924e3e35a639c7e827aa865d832b5b2e1a5))
+* typo in config name for eslint and stylelint ([69310ac](https://github.com/hayes0724/shopify-packer/commit/69310ac9a2413c6cd37beb225113fcca50ee236e))
+
+
+### :hammer: Code Refactoring
+
+* added dart-sass and fibers to sass-loader ([536ab5a](https://github.com/hayes0724/shopify-packer/commit/536ab5ad43c988ff496e44d0a3009ab306abfead))
+* changed stylelint and eslint messages ([8164129](https://github.com/hayes0724/shopify-packer/commit/816412987bb76997810b5c4f3615367a67e4ed2c))
+
+
+### :wrench: Build System
+
+* removed babel-preset-shopify and stylelint-selector-bem-pattern ([4d9c492](https://github.com/hayes0724/shopify-packer/commit/4d9c4923e1c375228b78b6787f81d77b7fb0f2e7))
+* removed stylelint-config-shopify ([10f5918](https://github.com/hayes0724/shopify-packer/commit/10f5918a2856d07037fe75b0f1efa11965676cbf))
+* removed stylelint-prettier ([c7dedff](https://github.com/hayes0724/shopify-packer/commit/c7dedffa718fa889a18ea7188cd9c82eb25a6708))
+
+
+
 ## [2.0.2](https://github.com/hayes0724/shopify-packer/compare/4.0.1...2.0.2) (2021-03-23)
 
 
