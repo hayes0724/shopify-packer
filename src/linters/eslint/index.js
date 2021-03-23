@@ -10,7 +10,7 @@ function eslint({fix} = {}) {
   const executable = config.get('eslint.bin');
   const extensions = ['--ext .js'];
   const fixFlag = fix ? '--fix' : '';
-  const eslintConfig = `--config ${config.get('eslint.config')}`;
+  const eslintConfig = `--config ${config.get('eslint.schema')}`;
   const ignorePath = fs.existsSync(config.get('eslint.ignore'))
     ? `--ignore-path ${config.get('eslint.ignore')}`
     : '';
@@ -30,7 +30,7 @@ module.exports.runEslint = function runEslint() {
   try {
     eslint();
   } catch (error) {
-    console.log(chalk.red('ESLint errors found.'));
+    console.error(error)
   }
 };
 
@@ -39,6 +39,6 @@ module.exports.runEslintFix = function runEslintFix() {
   try {
     eslint({fix: true});
   } catch (error) {
-    console.log(chalk.red('ESLint errors found.'));
+    console.error(error)
   }
 };

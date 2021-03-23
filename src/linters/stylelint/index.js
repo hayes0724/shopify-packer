@@ -10,7 +10,7 @@ function stylelint({fix} = {}) {
   const executable = config.get('stylelint.bin');
   const fixFlag = fix ? '--fix' : '';
   const glob = `./**/*.{${['css', 'scss', 'sass'].join(',')}}`;
-  const stylelintConfig = `--config ${config.get('stylelint.config')}`;
+  const stylelintConfig = `--config ${config.get('stylelint.schema')}`;
   const ignorePath = fs.existsSync(config.get('stylelint.ignore'))
     ? `--ignore-path ${config.get('stylelint.ignore')}`
     : '';
@@ -32,7 +32,7 @@ module.exports.runStylelint = function runStylelint() {
   try {
     stylelint();
   } catch (error) {
-    console.log(chalk.red('StyleLint errors found.'));
+    console.error(error)
   }
 };
 
@@ -41,6 +41,6 @@ module.exports.runStylelintFix = function runStylelintFix() {
   try {
     stylelint({fix: true});
   } catch (error) {
-    console.log(chalk.red('StyleLint errors found.'));
+    console.error(error)
   }
 };
