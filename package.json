@@ -67,7 +67,6 @@
     "postcss": "^8.2.8",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.1.2",
-    "read-yaml": "^1.1.0",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "selfsigned": "^1.10.8",
