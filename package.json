@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.13.10",
-    "@namics/stylelint-bem": "^6.3.0",
     "@shopify/babel-preset": "^23.4.0",
     "@shopify/theme-lint": "^3.0.0",
     "@shopify/themekit": "^1.1.7",
