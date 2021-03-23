@@ -57,6 +57,7 @@ packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace]
 | ``--skipPrompts`` | Skips all prompts. This is especially useful when using Packer with continuous integration tools |
 | ``--nodelete`` | By default deploy will replace all files in theme, use this flag to update without removing existing files |
 ### build
+Builds a production-ready version of the theme by compiling the files into the dist folder.
 ```bash
 packer build [--analyze] [--stats]
 ```
@@ -65,16 +66,16 @@ packer build [--analyze] [--stats]
 | ``--analyze`` | Analyzes bundles |
 | ``--stats`` | Create a stats.json file in the root directory |
 
-Builds a production-ready version of the theme by compiling the files into the dist folder.
 ### lint
+Lints the themes styles and scripts
 ```bash
-packer lint [--scripts] [--styles] [--locales]
+packer lint [--scripts] [--styles]
 ```
 | Flag | Description |
 | --- | --- |
 | ``--scripts`` | Runs linting only on script files |
 | ``--styles`` | Runs linting only on style files |
-| ``--locales`` | Runs linting only on locales files |
+
 ### format
 Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files. By default, it uses
 ESLint Fix to format JS files, Stylelint Fix to format CSS files and Prettier to format JSON files.
@@ -85,7 +86,7 @@ packer format [--scripts] [--styles] [--json]
 | --- | --- |
 | ``--scripts`` | Runs formatting only on script files |
 | ``--styles`` | Runs formatting only on style files |
-| ``--locales`` | Runs formatting only on locales files |
+
 ### zip
 Compiles the contents of the dist directory and creates a ZIP file in the root of the project.
 ```bash

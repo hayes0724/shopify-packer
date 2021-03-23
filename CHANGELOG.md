@@ -1,3 +1,31 @@
+## [2.0.2](https://github.com/hayes0724/shopify-packer/compare/4.0.1...2.0.2) (2021-03-23)
+
+
+### :wrench: Build System
+
+* removed @babel/plugin-transform-async-to-generator ([68f27de](https://github.com/hayes0724/shopify-packer/commit/68f27de0ca9f3c53c94e45b98cf2468b8cd9c8e0))
+* removed @babel/preset-env ([dcedb37](https://github.com/hayes0724/shopify-packer/commit/dcedb3740c8547b2aa510bc414ca3c3e725fca27))
+* removed @babel/register ([ee853c1](https://github.com/hayes0724/shopify-packer/commit/ee853c14e5b4c857c32d5654d604d9cd01d7c916))
+* removed @namics/stylelint-bem ([44d0678](https://github.com/hayes0724/shopify-packer/commit/44d0678ad4dd6e861bcfbfa7c050f6ad99a5a489))
+* removed @shopify/babel-preset ([a22d493](https://github.com/hayes0724/shopify-packer/commit/a22d493e509ba25301026f6a38a9bc49585b4084))
+* removed @shopify/theme-lint since it's not longer updated ([d46ef33](https://github.com/hayes0724/shopify-packer/commit/d46ef33fa6056a474ed4d2582b30fc60d8466617))
+* removed autoprefixer ([c7d63ee](https://github.com/hayes0724/shopify-packer/commit/c7d63eeedb1ca96621c31fcb913fb1f3d736b665))
+* removed cross-env ([d4b38c4](https://github.com/hayes0724/shopify-packer/commit/d4b38c4cf92fb4f2c4849b7d48aa6b8dda3674e7))
+* removed cssnano ([94420ca](https://github.com/hayes0724/shopify-packer/commit/94420cadef974a10b671ea2fdeaf7ce7488c1e6d))
+* removed edit-json-file ([8a2d722](https://github.com/hayes0724/shopify-packer/commit/8a2d72248ee95b996364ee57c74bb7bdbf16f405))
+* removed eslint-plugin-shopify ([3106ded](https://github.com/hayes0724/shopify-packer/commit/3106dede9207f6e85562cf8af6b5fb25ebde3db2))
+* removed expose-loader ([c4cdb68](https://github.com/hayes0724/shopify-packer/commit/c4cdb681ef59da16279c2078b5a7ae2b11c38ef0))
+* removed extract-text-webpack-plugin ([e1b88fe](https://github.com/hayes0724/shopify-packer/commit/e1b88fe2cbbc5742b930fad44c2545c8b2fc21a8))
+* removed glob ([b62d24a](https://github.com/hayes0724/shopify-packer/commit/b62d24af763b966b79380a3a82d68c58cd4c1d98))
+* removed lodash ([25c4ec5](https://github.com/hayes0724/shopify-packer/commit/25c4ec556e3c4796cb53f7b4eb9637cf6c3131f9))
+* removed postcss-preset-env ([67a5c40](https://github.com/hayes0724/shopify-packer/commit/67a5c40f49f7b37789d05d6233f16eade95f0e0c))
+* removed raw-loader ([ab11469](https://github.com/hayes0724/shopify-packer/commit/ab11469cbc225c52c786d6f86216f957de6ff83d))
+* removed read-yaml ([0719688](https://github.com/hayes0724/shopify-packer/commit/0719688d136941a881dcddadd717d0e9f1021e6d))
+* removed stylelint-config-prettier ([881ebfa](https://github.com/hayes0724/shopify-packer/commit/881ebfa52508fc4f7bfc9415a703bd4f8143d5cb))
+* removed stylelint-config-recommended-scss ([cb60324](https://github.com/hayes0724/shopify-packer/commit/cb60324a91b02633cc15765f597c7be7d2dbdcfb))
+
+
+
 ## [2.0.1](https://github.com/hayes0724/shopify-packer/compare/1.4.0...2.0.1) (2021-03-23)
 
 

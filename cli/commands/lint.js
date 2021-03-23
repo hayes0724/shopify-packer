@@ -1,13 +1,11 @@
 const {runEslint} = require('../../src/linters/eslint');
 const {runStylelint} = require('../../src/linters/stylelint');
-const {runThemelint} = require('../../src/linters/theme-lint');
 
 module.exports = (args) => {
-  const {scripts, styles, locales} = args;
+  const {scripts, styles} = args;
   const runAll =
     typeof scripts === 'undefined' &&
-    typeof styles === 'undefined' &&
-    typeof locales === 'undefined';
+    typeof styles === 'undefined';
 
   if (scripts || runAll) {
     runEslint();
@@ -17,7 +15,4 @@ module.exports = (args) => {
     runStylelint();
   }
 
-  if (locales || runAll) {
-    runThemelint();
-  }
 };

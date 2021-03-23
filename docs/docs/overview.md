@@ -5,8 +5,7 @@ sidebar_label: Overview
 slug: /
 ---
 
-Modern development tool for Shopify using ThemeKit and Webpack. Easy extend and customize,
-zero build config, and compatible with Slate and existing websites.
+Modern development tool for Shopify using Webpack 5. Easy to extend and customize, zero build config, compatible with Slate and existing websites.
 
 ![npm (scoped)](https://img.shields.io/npm/v/@hayes0724/shopify-packer)
 ![node-current (scoped)](https://img.shields.io/node/v/@hayes0724/shopify-packer)

@@ -16,10 +16,6 @@ module.exports = {
   /* PostCSS */
   postcss: (config) => path.join(config.get('root'), 'postcss.schema.js'),
 
-  /* Theme Lint */
-  'themelint.bin': () =>
-    path.resolve(__dirname, '../../node_modules/.bin/theme-lint'),
-
   /* ESLint */
   'eslint.bin': () => path.resolve(__dirname, '../../node_modules/.bin/eslint'),
   'eslint.schema': (config) => path.join(config.get('root'), '.eslintrc'),
