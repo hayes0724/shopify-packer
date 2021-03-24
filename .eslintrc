@@ -1,8 +1,8 @@
 {
     "extends": [
-        "plugin:shopify/esnext",
-        "plugin:shopify/node",
-        "plugin:shopify/prettier"
+        "eslint:recommended",
+        "plugin:node/recommended",
+        "plugin:prettier/recommended"
     ],
     "env": {
         "jest": true
