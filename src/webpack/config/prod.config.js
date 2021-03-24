@@ -88,7 +88,12 @@ const output = merge([
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: getChunkName,
-            chunks: 'all',
+            chunks: 'initial',
+          },
+          default: {
+            test: /[\\/]src[\\/]/,
+            name: getChunkName,
+            chunks: 'initial',
           },
         },
       },
