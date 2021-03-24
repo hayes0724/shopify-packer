@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/hayes0724/shopify-packer/compare/2.0.3...2.0.4) (2021-03-24)
+
+
+### :bug: Bug Fixes
+
+* packer init hanging during extraction ([ab7d65d](https://github.com/hayes0724/shopify-packer/commit/ab7d65dbc68a2522aecc5d6c663b84a38662972c)), closes [#67](https://github.com/hayes0724/shopify-packer/issues/67)
+
+
+
 ## [2.0.3](https://github.com/hayes0724/shopify-packer/compare/2.0.2...2.0.3) (2021-03-23)
 
 

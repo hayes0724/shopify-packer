@@ -31,14 +31,14 @@ module.exports = (args) => {
       spinner.text = 'Starting download...';
       fs.ensureDir(dir)
         .then(() => download(release, dir, {filename: 'temp.zip'}))
-        .then(() => {
+        .then(async () => {
           spinner.text = 'Extracting the files from archive...';
-          return new Promise((res, rej) => {
-            extract(tempfile, {dir}, (e) => {
-              if (e) rej(e);
-              res(fs.copy(extracted, dir));
-            });
-          });
+          try {
+            await extract(tempfile, {dir})
+          }
+          catch(e) {
+            console.error(e)
+          }
         })
         .then(() => fs.remove(tempfile))
         .then(() => fs.remove(extracted))
