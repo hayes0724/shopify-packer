@@ -1,10 +1,7 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
-
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
-
-const chalk = require('chalk');
 
 function eslint({fix} = {}) {
   const executable = config.get('eslint.bin');
@@ -30,7 +27,7 @@ module.exports.runEslint = function runEslint() {
   try {
     eslint();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -39,6 +36,6 @@ module.exports.runEslintFix = function runEslintFix() {
   try {
     eslint({fix: true});
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };

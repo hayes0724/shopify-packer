@@ -1,5 +1,4 @@
 const chalk = require('chalk');
-
 const {deploy, replace} = require('../../src/server/sync');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
 const {
@@ -14,7 +13,9 @@ module.exports = async (args) => {
   await promptContinueIfPublishedTheme(getThemeIdValue(), getAllowLiveValue())
     .then((answer) => {
       if (!answer) {
-        process.exit(0);
+        throw Error(
+          'This is a live theme! Try adding the live setting to your theme config'
+        );
       }
       setAllowLiveValue('true');
       if (args.nodelete) {

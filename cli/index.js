@@ -53,11 +53,11 @@ switch (process.argv[2]) {
     require('./commands/theme')(args);
     break;
   case 'ssl:make':
-    args.make = true
+    args.make = true;
     require('./commands/ssl')(args);
     break;
   case 'ssl:check':
-    args.check = true
+    args.check = true;
     require('./commands/ssl')(args);
     break;
   case '--version':

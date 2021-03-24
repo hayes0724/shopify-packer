@@ -1,12 +1,8 @@
 const {createServer} = require('https');
-
 const webpack = require('webpack');
-
 const App = require('../app');
 const Client = require('../client');
-
 const createHash = require('crypto').createHash;
-
 const {sslKeyCert} = require('../ssl');
 const isHotUpdateFile = require('../is-hot-update-file');
 const PackerConfig = require('../../config');

@@ -20,14 +20,14 @@ const css = require('../parts/css');
 const scss = require('../parts/scss');
 
 const mergeProd = customConfigCheck(config.get('merge.prod'));
-config.set('layoutEntrypoints', getLayoutEntrypoints())
-config.set('templateEntrypoints', getTemplateEntrypoints())
+config.set('layoutEntrypoints', getLayoutEntrypoints());
+config.set('templateEntrypoints', getTemplateEntrypoints());
 
 core.entry = {
   ...config.get('layoutEntrypoints'),
   ...config.get('templateEntrypoints'),
   ...config.get('entrypoints'),
-}
+};
 
 const output = merge([
   core,
@@ -77,7 +77,7 @@ const output = merge([
         liquidTemplates: config.get('templateEntrypoints'),
         liquidLayouts: config.get('layoutEntrypoints'),
       }),
-      new IncludeLiquidStylesPlugin()
+      new IncludeLiquidStylesPlugin(),
     ],
     optimization: {
       nodeEnv: 'production',

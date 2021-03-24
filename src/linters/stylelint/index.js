@@ -1,10 +1,7 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
-
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
-
-const chalk = require('chalk');
 
 function stylelint({fix} = {}) {
   const executable = config.get('stylelint.bin');
@@ -32,7 +29,7 @@ module.exports.runStylelint = function runStylelint() {
   try {
     stylelint();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -41,6 +38,6 @@ module.exports.runStylelintFix = function runStylelintFix() {
   try {
     stylelint({fix: true});
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };

@@ -23,7 +23,8 @@ module.exports = (args) => {
       writeFileSync(
         'stats.json',
         JSON.stringify(stats.toJson(level), null, 2),
-        'utf8')
+        'utf8'
+      );
     }
     process.stdout.write(
       `${stats.toString({
@@ -38,6 +39,6 @@ module.exports = (args) => {
     console.log('');
     spinner.stop();
 
-    if (stats.compilation.errors.length) process.exit(1);
+    if (stats.compilation.errors.length) throw Error('Compile errors');
   });
 };

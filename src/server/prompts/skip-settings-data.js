@@ -5,9 +5,7 @@ const {flatten} = require('array-flatten');
 const minimatch = require('minimatch');
 const {argv} = require('yargs');
 
-const {
-  getIgnoreFilesValue,
-} = require('../../env');
+const {getIgnoreFilesValue} = require('../../env');
 
 const question = {
   type: 'confirm',

@@ -37,9 +37,5 @@ async function prettier({scripts, styles, json} = {}) {
 module.exports.prettier = prettier;
 
 module.exports.runPrettierJson = function runPrettierJson() {
-  try {
-    return prettier({json: true});
-  } catch (error) {
-    throw error;
-  }
+  return prettier({json: true});
 };

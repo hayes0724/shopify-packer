@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const PackerConfig = require('../config');
 const config = new PackerConfig(require('../../packer.schema'));
 const getLayoutEntrypoints = require('../utilities/get-layout-entrypoints');

@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
 const archiver = require('archiver');
-const chalk = require('chalk');
-
 const PackerConfig = require('../../src/config');
 const config = new PackerConfig(require('../../packer.schema'));
 
@@ -16,14 +13,10 @@ module.exports = () => {
   const archive = archiver('zip');
 
   if (!fs.existsSync(config.get('theme.dist.root'))) {
-    console.log(
-      chalk.red(
-        `${config.get('theme.dist.root')} was not found. \n` +
-          'Please run the Packer Build script before running Packer Zip'
-      )
+    throw Error(
+      `${config.get('theme.dist.root')} was not found. \n` +
+        'Please run the Packer Build script before running Packer Zip'
     );
-
-    process.exit();
   }
 
   output.on('close', () => {
@@ -44,7 +37,15 @@ module.exports = () => {
 
   archive.pipe(output);
   archive.directory(config.get('theme.dist.root'), '/');
-  archive.finalize();
+  archive
+    .finalize()
+    .then(() =>
+      console.log(
+        `Theme has been zipped to this location: ${config.get(
+          'theme.dist.root'
+        )}`
+      )
+    );
 };
 
 function getZipPath(dir, name, ext) {

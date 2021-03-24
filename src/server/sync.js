@@ -42,11 +42,9 @@ function _validateEnvValues() {
         `Some values in environment '${getEnvNameValue()}' are invalid:`
       )
     );
-    result.errors.forEach((error) => {
+    throw result.errors.forEach((error) => {
       console.log(chalk.red(`- ${error}`));
     });
-
-    process.exit(1);
   }
 }
 
@@ -72,7 +70,6 @@ function _generateConfigFlags() {
  * @return          Promise
  */
 async function deploy(cmd = '', files = [], replace = true) {
-
   if (!['deploy'].includes(cmd)) {
     throw new Error('shopify-deploy.deploy() first argument must be deploy');
   }
@@ -115,9 +112,7 @@ async function promiseThemekitDeploy(cmd, files, replace) {
 
 /**
  * Fetch the main theme ID from Shopify
- *
- * @param   env   String  The environment to check against
- * @return        Promise Reason for abort or the main theme ID
+ * @return {Promise} Reason for abort or the main theme ID
  */
 function fetchMainThemeId() {
   _validateEnvValues();
@@ -192,7 +187,9 @@ function fetchMainThemeId() {
 function getDeploymentSettings(replace) {
   const mode = replace ? 'replace' : 'noDelete';
   console.log(chalk.blue(`${figures.info} Deploy Mode: ${mode}`));
-  console.log(chalk.blue(`${figures.info} Environment: ${getEnvNameValue()} \n`));
+  console.log(
+    chalk.blue(`${figures.info} Environment: ${getEnvNameValue()} \n`)
+  );
 }
 
 module.exports = {

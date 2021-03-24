@@ -84,10 +84,7 @@ const remove = async (themeIdFlag = null) => {
     });
 };
 
-const download = () => {};
-
 module.exports = {
-  download,
   remove,
   create,
   list,

@@ -4,7 +4,6 @@ const figures = require('figures');
 const ora = require('ora');
 const ip = require('ip');
 const consoleControl = require('console-control-strings');
-
 const AssetServer = require('../../src/server/asset');
 const DevServer = require('../../src/server/dev');
 const webpackConfig = require('../../src/webpack/config/dev.config');
@@ -14,7 +13,6 @@ const promptSkipSettingsData = require('../../src/server/prompts/skip-settings-d
 const {getStoreValue, getThemeIdValue, assign} = require('../../src/env');
 const PackerConfig = require('../../src/config');
 const config = new PackerConfig(require('../../packer.schema'));
-
 const address = getIpAddress();
 const spinner = ora(chalk.magenta('Compiling...'));
 
@@ -67,7 +65,6 @@ module.exports = () => {
     })
     .catch((error) => {
       console.error(error);
-      process.exit(1);
     });
 };
 
@@ -96,6 +93,7 @@ function onCompilerDone(stats) {
   const statsJson = stats.toJson({}, true);
 
   if (process.env.NODE_ENV !== 'test') {
+    //
   }
 
   if (statsJson.errors.length) {
@@ -141,7 +139,9 @@ async function onClientBeforeSync(files) {
   }
 
   if (!continueIfPublishedTheme) {
-    process.exit(0);
+    throw Error(
+      'This is a live theme! Try adding the live setting to your theme config'
+    );
   }
 
   if (skipSettingsData === null) {
@@ -165,7 +165,7 @@ function onClientSyncSkipped() {
 }
 
 function onClientSync() {
-  // console.log('client sync')
+  //
 }
 
 function onClientSyncDone() {

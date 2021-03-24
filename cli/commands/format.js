@@ -1,6 +1,6 @@
 const {runEslintFix} = require('../../src/linters/eslint');
 const {runStylelintFix} = require('../../src/linters/stylelint');
-const {runPrettierJson} = require('../../src/linters/theme-lint');
+const {runPrettierJson} = require('../../src/linters/prettier');
 
 module.exports = (args) => {
   const {scripts, styles, json} = args;

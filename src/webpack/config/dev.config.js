@@ -13,14 +13,14 @@ const css = require('../parts/css');
 const scss = require('../parts/scss');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
-config.set('layoutEntrypoints', getLayoutEntrypoints())
-config.set('templateEntrypoints', getTemplateEntrypoints())
+config.set('layoutEntrypoints', getLayoutEntrypoints());
+config.set('templateEntrypoints', getTemplateEntrypoints());
 
 core.entry = {
   ...config.get('layoutEntrypoints'),
   ...config.get('templateEntrypoints'),
   ...config.get('entrypoints'),
-}
+};
 
 Object.keys(core.entry).forEach((name) => {
   core.entry[name] = [path.join(__dirname, '../hot-client.js')].concat(
@@ -102,7 +102,6 @@ module.exports = merge([
         liquidTemplates: config.get('templateEntrypoints'),
         liquidLayouts: config.get('layoutEntrypoints'),
       }),
-
     ],
   },
   mergeDev,

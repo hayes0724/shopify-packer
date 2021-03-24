@@ -4,8 +4,7 @@ const {runStylelint} = require('../../src/linters/stylelint');
 module.exports = (args) => {
   const {scripts, styles} = args;
   const runAll =
-    typeof scripts === 'undefined' &&
-    typeof styles === 'undefined';
+    typeof scripts === 'undefined' && typeof styles === 'undefined';
 
   if (scripts || runAll) {
     runEslint();
@@ -14,5 +13,4 @@ module.exports = (args) => {
   if (styles || runAll) {
     runStylelint();
   }
-
 };

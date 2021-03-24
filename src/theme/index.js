@@ -29,6 +29,7 @@ const _parseThemes = (themes) => {
   const data = [];
   themes.forEach((theme) => {
     const row = [];
+    // eslint-disable-next-line no-unused-vars
     for (const [key, value] of Object.entries(theme)) {
       if (theme.role === 'main') {
         row.push(chalk.cyanBright.bold(value));
@@ -38,6 +39,7 @@ const _parseThemes = (themes) => {
     }
     data.push(_excludeByIndex(row, exclude));
   });
+  // eslint-disable-next-line no-unused-vars
   for (const [key, value] of Object.entries(themes[0])) {
     headers.push(chalk.bold.whiteBright(key.toUpperCase().replace('_', ' ')));
   }
@@ -90,7 +92,6 @@ const removeTheme = async (args) => {
 };
 
 const downloadTheme = async () => {
-  // @TODO: add warning message if directory is not empty
   clearConsole();
   await themeKit.command(
     'download',

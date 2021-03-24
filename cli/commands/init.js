@@ -1,5 +1,4 @@
 const path = require('path');
-
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const extract = require('extract-zip');
@@ -11,8 +10,7 @@ module.exports = (args) => {
   args.repo = args.repo ? args.repo : 'hayes0724/packer-blank-theme';
   const cmd = args._;
   if (cmd.length < 2) {
-    console.log(chalk.red('Please include a directory to install in'));
-    process.exit(0);
+    throw console.log(chalk.red('Please include a directory to install in'));
   }
   const spinner = ora(chalk.magenta('Initializing new theme...'));
   spinner.start();
@@ -34,26 +32,24 @@ module.exports = (args) => {
         .then(async () => {
           spinner.text = 'Extracting the files from archive...';
           try {
-            await extract(tempfile, {dir})
-          }
-          catch(e) {
-            console.error(e)
+            await extract(tempfile, {dir});
+          } catch (e) {
+            console.error(e);
           }
         })
         .then(() => fs.remove(tempfile))
         .then(() => fs.remove(extracted))
         .then(() => {
           spinner.succeed('Theme initialized!');
-          process.exit(0);
         })
         .catch((e) => {
           spinner.fail('There was an error:');
           console.log(chalk.red(e.message || e));
           console.log(chalk.red(`Removing directory ${dir}...`));
           fs.remove(dir, (err) => {
-            if (err) console.log(err);
+            if (err);
             spinner.fail('There was an error:');
-            process.exit(1);
+            throw Error(err);
           });
         });
     })

@@ -49,11 +49,8 @@ const core = {
   },
 
   plugins: [
-
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        path.join(process.cwd(), 'dist/**/*')
-      ]
+      cleanOnceBeforeBuildPatterns: [path.join(process.cwd(), 'dist/**/*')],
     }),
 
     new CopyWebpackPlugin({
