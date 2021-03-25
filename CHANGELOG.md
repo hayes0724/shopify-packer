@@ -1,3 +1,28 @@
+## [2.0.5](https://github.com/hayes0724/shopify-packer/compare/2.0.4...2.0.5) (2021-03-25)
+
+
+### :art: Styles
+
+* eslint and prettier issues fixed ([7c81a7c](https://github.com/hayes0724/shopify-packer/commit/7c81a7c9e41371f2378fce4e1812cf7b6504872f))
+
+
+### :bug: Bug Fixes
+
+* replace all special charcters in script names ([ce3da66](https://github.com/hayes0724/shopify-packer/commit/ce3da66879da16e88636e437f95eeea90528e48c))
+
+
+### :sparkles: Features
+
+* added default cache group ([0810d9d](https://github.com/hayes0724/shopify-packer/commit/0810d9dee94943809b7af17dd8e7e8c258607b1b))
+* added shared bundles configuration ([c082182](https://github.com/hayes0724/shopify-packer/commit/c08218264a5ac930eb98f8597838b02247f0b25b))
+
+
+### chore
+
+* eslint and prettier config for packer development ([797493a](https://github.com/hayes0724/shopify-packer/commit/797493a8ed8ecdafcdedaf10e83931e96ad21b39))
+
+
+
 ## [2.0.4](https://github.com/hayes0724/shopify-packer/compare/2.0.3...2.0.4) (2021-03-24)
 
 

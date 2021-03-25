@@ -7,4 +7,5 @@ module.exports = {
   'network.external': '',
   'network.interface': '',
   'network.reload': 0,
+  'build.sharedBundles': true,
 };

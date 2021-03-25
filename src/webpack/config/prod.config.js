@@ -4,28 +4,26 @@ const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const IncludeLiquidStylesPlugin = require('../include-liquid-styles');
-
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
-
 const development = false;
 process.env.NODE_ENV = 'production';
-const getChunkName = require('../../utilities/get-chunk-name');
+const {customConfigCheck} = require('../custom');
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
-const {customConfigCheck} = require('../custom');
+config.set('files.layout', getLayoutEntrypoints());
+config.set('files.template', getTemplateEntrypoints());
+
 // Parts
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
-
+const optimization = require('../parts/optimization');
 const mergeProd = customConfigCheck(config.get('merge.prod'));
-config.set('layoutEntrypoints', getLayoutEntrypoints());
-config.set('templateEntrypoints', getTemplateEntrypoints());
 
 core.entry = {
-  ...config.get('layoutEntrypoints'),
-  ...config.get('templateEntrypoints'),
+  ...config.get('files.layout'),
+  ...config.get('files.template'),
   ...config.get('entrypoints'),
 };
 
@@ -36,6 +34,7 @@ const output = merge([
   {
     mode: 'production',
     devtool: false,
+    optimization: optimization,
     plugins: [
       new MiniCssExtractPlugin({
         filename: '[name].css',
@@ -58,8 +57,8 @@ const output = merge([
           preserveLineBreaks: true,
         },
         isDevServer: development,
-        liquidTemplates: config.get('templateEntrypoints'),
-        liquidLayouts: config.get('layoutEntrypoints'),
+        liquidTemplates: config.get('files.template'),
+        liquidLayouts: config.get('files.layout'),
       }),
 
       new HtmlWebpackPlugin({
@@ -74,30 +73,11 @@ const output = merge([
           preserveLineBreaks: true,
         },
         isDevServer: development,
-        liquidTemplates: config.get('templateEntrypoints'),
-        liquidLayouts: config.get('layoutEntrypoints'),
+        liquidTemplates: config.get('files.template'),
+        liquidLayouts: config.get('files.layout'),
       }),
       new IncludeLiquidStylesPlugin(),
     ],
-    optimization: {
-      nodeEnv: 'production',
-      minimize: true,
-      splitChunks: {
-        cacheGroups: {
-          defaultVendors: false,
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: getChunkName,
-            chunks: 'initial',
-          },
-          default: {
-            test: /[\\/]src[\\/]/,
-            name: getChunkName,
-            chunks: 'initial',
-          },
-        },
-      },
-    },
   },
   mergeProd,
 ]);
