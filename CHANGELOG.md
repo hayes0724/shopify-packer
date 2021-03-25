@@ -1,3 +1,12 @@
+## [2.0.6](https://github.com/hayes0724/shopify-packer/compare/2.0.5...2.0.6) (2021-03-25)
+
+
+### :bug: Bug Fixes
+
+* init theme extraction issue ([0dae9b9](https://github.com/hayes0724/shopify-packer/commit/0dae9b9e782c94d971a1dcc9f4d99345b5a8f774))
+
+
+
 ## [2.0.5](https://github.com/hayes0724/shopify-packer/compare/2.0.4...2.0.5) (2021-03-25)
 
 

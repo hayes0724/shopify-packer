@@ -29,17 +29,11 @@ module.exports = (args) => {
       spinner.text = 'Starting download...';
       fs.ensureDir(dir)
         .then(() => download(release, dir, {filename: 'temp.zip'}))
-        .then(async () => {
-          spinner.text = 'Extracting the files from archive...';
-          try {
-            await extract(tempfile, {dir});
-          } catch (e) {
-            console.error(e);
-          }
-        })
+        .then(() => extract(tempfile, {dir: dir}))
+        .then(() => fs.copy(extracted, dir))
         .then(() => fs.remove(tempfile))
-        .then(() => fs.remove(extracted))
         .then(() => {
+          fs.remove(extracted);
           spinner.succeed('Theme initialized!');
         })
         .catch((e) => {

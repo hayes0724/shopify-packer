@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "bin": {
     "packer": "cli/index.js"
   },
