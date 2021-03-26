@@ -24,9 +24,9 @@ const core = {
       {
         test: /\.(liquid|json)$/,
         exclude: [/(css|scss|sass)\.liquid$/, ...config.get('commonExcludes')],
-        loader: 'file-loader',
-        options: {
-          name: '../[path][name].[ext]',
+        type: 'asset/resource',
+        generator: {
+          filename: '../[path][name].[ext]',
         },
       },
       {

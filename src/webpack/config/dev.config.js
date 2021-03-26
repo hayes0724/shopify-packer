@@ -44,13 +44,19 @@ module.exports = merge([
         },
         {
           test: /\.(eot|ttf|woff|woff2|otf)$/,
-          exclude: /node_modules/,
+          exclude: config.get('commonExcludes'),
           type: 'asset',
+          generator: {
+            filename: '[name].[ext]',
+          },
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
           exclude: config.get('commonExcludes'),
           type: 'asset',
+          generator: {
+            filename: '[name].[ext]',
+          },
         },
       ],
     },

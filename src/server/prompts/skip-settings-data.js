@@ -23,15 +23,13 @@ function _includesSettingsData(files) {
 
 function _filterIgnoredFiles(files) {
   const envIgnoreGlobs = getIgnoreFilesValue().split(':');
-  console.log(envIgnoreGlobs);
   return flatten(
     envIgnoreGlobs.map((glob) => {
       if (glob[0] !== '/') {
         /* eslint-disable-next-line no-param-reassign */
         glob = `/${glob}`;
       }
-
-      return files.filter(minimatch.filter(glob));
+      return [...files].filter(minimatch.filter(glob));
     })
   );
 }

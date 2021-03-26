@@ -17,7 +17,7 @@ module.exports = class Client {
   }
 
   async sync(files, stats) {
-    this.files = files;
+    this.files = [...files];
 
     await this.hooks.beforeSync.promise(this.files, stats);
 
@@ -33,7 +33,7 @@ module.exports = class Client {
       this.hooks.syncDone.call(this.files, stats);
     }
 
-    this.hooks.afterSync.promise(this.files, stats);
+    await this.hooks.afterSync.promise(this.files, stats);
 
     this.skipNextSync = false;
   }

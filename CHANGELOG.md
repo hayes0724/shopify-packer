@@ -1,3 +1,18 @@
+## [2.0.7](https://github.com/hayes0724/shopify-packer/compare/2.0.6...2.0.7) (2021-03-26)
+
+
+### :bug: Bug Fixes
+
+* ssl check if folder exists before creating keys ([79b4223](https://github.com/hayes0724/shopify-packer/commit/79b4223ccbfa0ce33ebfa187b307828c2e07559b))
+
+
+### :sparkles: Features
+
+* dev settings asset loader for fonts and images ([467d081](https://github.com/hayes0724/shopify-packer/commit/467d0810d27857d0d0da7402d6a0ae6151121074))
+* start/watch not detecting file changes ([3fa73a9](https://github.com/hayes0724/shopify-packer/commit/3fa73a9c8fade826301e5c5228cc8eb414154f86))
+
+
+
 ## [2.0.6](https://github.com/hayes0724/shopify-packer/compare/2.0.5...2.0.6) (2021-03-25)
 
 

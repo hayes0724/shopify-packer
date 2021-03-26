@@ -1,8 +1,9 @@
 const https = require('https');
-
 const chalk = require('chalk');
 const figures = require('figures');
 const themekit = require('@shopify/themekit');
+const PackerConfig = require('../config');
+const config = new PackerConfig(require('../../packer.schema'));
 
 const {
   validate,
@@ -13,8 +14,6 @@ const {
   getIgnoreFilesValue,
   getAllowLiveValue,
 } = require('../env');
-const PackerConfig = require('../config');
-const config = new PackerConfig(require('../../packer.schema'));
 
 let deploying = false;
 let filesToDeploy = [];
@@ -73,7 +72,6 @@ async function deploy(cmd = '', files = [], replace = true) {
   if (!['deploy'].includes(cmd)) {
     throw new Error('shopify-deploy.deploy() first argument must be deploy');
   }
-
   deploying = true;
 
   console.log(chalk.magenta(`\n${figures.arrowUp}  Uploading to Shopify...`));
@@ -105,7 +103,7 @@ async function promiseThemekitDeploy(cmd, files, replace) {
     console.log('using no delete flag, files will not be removed before');
     settings.nodelete = true;
   }
-  await themekit.command(cmd, settings, {
+  return await themekit.command(cmd, settings, {
     cwd: config.get('theme.dist.root'),
   });
 }
@@ -197,7 +195,6 @@ module.exports = {
     if (!files.length) {
       return Promise.reject(new Error('No files to deploy.'));
     }
-
     filesToDeploy = [...new Set([...filesToDeploy, ...files])];
 
     return maybeDeploy();

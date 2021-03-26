@@ -7,11 +7,13 @@ const {sslKeyCert} = require('../ssl');
 const isHotUpdateFile = require('../is-hot-update-file');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
+const path = require('path');
 
 module.exports = class AssetServer {
   constructor(options) {
     options.webpackConfig.output.publicPath = `https://${options.address}:${options.port}/`;
-    this.assetHashes = {};
+    this.assetHashes = new Map();
+    this.updates = new Set();
     this.address = options.address;
     this.options = options;
     this.port = options.port;
@@ -26,6 +28,11 @@ module.exports = class AssetServer {
 
   start() {
     this.compiler.hooks.done.tap('DevServer', this._onCompileDone.bind(this));
+    this.compiler.hooks.assetEmitted.tap(
+      'DevServer',
+      this._onAssetEmit.bind(this)
+    );
+
     this.ssl = sslKeyCert();
     this.server = createServer(this.ssl, this.app);
 
@@ -40,19 +47,39 @@ module.exports = class AssetServer {
     this.client.skipNextSync = value;
   }
 
+  _onAssetEmit(file, info) {
+    if (this._isLiquidStyle(file) && this._hasAssetChanged(file, info)) {
+      return this.updates.add(`assets/${file}`);
+    }
+    if (this._isLiquidTagFile(file) && this._hasAssetChanged(file, info)) {
+      return 'snippets/' + path.basename(file);
+    }
+    if (this._isLiquidFile(file) && this._hasAssetChanged(file, info)) {
+      return this.updates.add(file.replace('../', ''));
+    } else {
+      this._hasAssetChanged(file, info);
+    }
+  }
+
   _onCompileDone(stats) {
-    const files = this._getAssetsToUpload(stats);
+    const files = [...this.updates];
+    this.updates.clear();
+    this.files = [...files];
     return this.client.sync(files, stats);
   }
 
   _onAfterSync(files) {
-    const _syncHandler = () => {
+    /*const _syncHandler = () => {
       this.app.webpackHotMiddleware.publish({
         action: 'shopify_upload_finished',
         force: files.length > 0,
       });
     };
-    setTimeout(_syncHandler, parseInt(config.get('network.reload')));
+    setTimeout(_syncHandler, parseInt(config.get('network.reload')));*/
+    this.app.webpackHotMiddleware.publish({
+      action: 'shopify_upload_finished',
+      force: files.length > 0,
+    });
   }
 
   _isChunk(key, chunks) {
@@ -64,19 +91,29 @@ module.exports = class AssetServer {
   }
 
   _isLiquidStyle(key) {
-    return key.indexOf('styleLiquid.scss.liquid') > -1;
+    return key.indexOf('styleLiquid.css.liquid') > -1;
   }
 
-  _hasAssetChanged(key, asset) {
-    const oldHash = this.assetHashes[key];
-    const newHash = this._updateAssetHash(key, asset);
+  _isLiquidFile(file) {
+    return file.includes('.liquid');
+  }
+
+  _isLiquidTagFile(file) {
+    return (
+      file.includes('style-tags.liquid') || file.includes('script-tags.liquid')
+    );
+  }
+
+  _hasAssetChanged(key, info) {
+    const oldHash = this.assetHashes.get(key);
+    const newHash = this._updateAssetHash(key, info);
 
     return oldHash !== newHash;
   }
 
-  _getAssetsToUpload(stats) {
-    const assets = Object.entries(stats.compilation.assets);
-    const chunks = stats.compilation.chunks;
+  _getAssetsToUpload(compilation) {
+    const assets = Object.entries(compilation.assets);
+    const chunks = compilation.chunks;
     return (
       assets
         .filter(([key, asset]) => {
@@ -94,11 +131,10 @@ module.exports = class AssetServer {
     );
   }
 
-  _updateAssetHash(key, asset) {
-    const rawSource = asset.source();
+  _updateAssetHash(key, info) {
+    const rawSource = info.content;
     const source = Array.isArray(rawSource) ? rawSource.join('\n') : rawSource;
     const hash = createHash('sha256').update(source).digest('hex');
-
-    return (this.assetHashes[key] = hash);
+    return this.assetHashes.set(key, hash);
   }
 };
