@@ -13,12 +13,12 @@ const css = require('../parts/css');
 const scss = require('../parts/scss');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
-config.set('layoutEntrypoints', getLayoutEntrypoints());
-config.set('templateEntrypoints', getTemplateEntrypoints());
+config.set('files.layout', getLayoutEntrypoints());
+config.set('files.template', getTemplateEntrypoints());
 
 core.entry = {
-  ...config.get('layoutEntrypoints'),
-  ...config.get('templateEntrypoints'),
+  ...config.get('files.layout'),
+  ...config.get('files.template'),
   ...config.get('entrypoints'),
 };
 
@@ -43,28 +43,14 @@ module.exports = merge([
           loader: path.resolve(__dirname, '../hmr-alamo-loader.js'),
         },
         {
-          test: /fonts\/.*\.(eot|svg|ttf|woff|woff2|otf)$/,
+          test: /\.(eot|ttf|woff|woff2|otf)$/,
           exclude: /node_modules/,
-          loader: 'file-loader',
+          type: 'asset',
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
           exclude: config.get('commonExcludes'),
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: false,
-                name: '[name].[ext]',
-              },
-            },
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-              },
-            },
-          ],
+          type: 'asset',
         },
       ],
     },
@@ -85,8 +71,8 @@ module.exports = merge([
           removeAttributeQuotes: false,
         },
         isDevServer: development,
-        liquidTemplates: config.get('templateEntrypoints'),
-        liquidLayouts: config.get('layoutEntrypoints'),
+        liquidTemplates: config.get('files.template'),
+        liquidLayouts: config.get('files.layout'),
       }),
 
       new HtmlWebpackPlugin({
@@ -99,8 +85,8 @@ module.exports = merge([
           removeAttributeQuotes: false,
         },
         isDevServer: development,
-        liquidTemplates: config.get('templateEntrypoints'),
-        liquidLayouts: config.get('layoutEntrypoints'),
+        liquidTemplates: config.get('files.template'),
+        liquidLayouts: config.get('files.layout'),
       }),
     ],
   },
