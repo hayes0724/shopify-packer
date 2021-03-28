@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
 const development = process.env.NODE_ENV !== 'production';
@@ -100,6 +101,13 @@ module.exports = merge([
         liquidTemplates: config.get('files.template'),
         liquidLayouts: config.get('files.layout'),
       }),
+
+      new HtmlWebpackTagsPlugin({
+        links: ['layout.theme.styleLiquid.css'],
+        append: true,
+      }),
+
+      new HtmlWebpackTagsPlugin({ links: ['layout.theme.styleLiquid.css'], append: true })
     ],
   },
   mergeDev,
