@@ -107,7 +107,10 @@ module.exports = merge([
         append: true,
       }),
 
-      new HtmlWebpackTagsPlugin({ links: ['layout.theme.styleLiquid.css'], append: true })
+      new HtmlWebpackTagsPlugin({
+        links: ['layout.theme.styleLiquid.css'],
+        append: true,
+      }),
     ],
   },
   mergeDev,

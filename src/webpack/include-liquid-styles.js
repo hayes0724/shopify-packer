@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const isDev = process.env.NODE_ENV !== 'production';
 
 class IncludeLiquidStylesPlugin {
   apply(compiler) {
