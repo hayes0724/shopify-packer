@@ -1,3 +1,22 @@
+## [2.0.10](https://github.com/hayes0724/shopify-packer/compare/2.0.9...2.0.10) (2021-03-28)
+
+
+### :art: Styles
+
+* removed unused variable and ran prettier ([a14dc67](https://github.com/hayes0724/shopify-packer/commit/a14dc67a536637a099f82a1e1548c7f6b05c2219))
+
+
+### :bug: Bug Fixes
+
+* dev server not detecting liquid file changes ([9301ce5](https://github.com/hayes0724/shopify-packer/commit/9301ce5b9c578c60ca3a2c08888ffd0622f25d51))
+
+
+### :wrench: Continuous Integration
+
+* Tests now run on macos and windows and linting added ([64166ef](https://github.com/hayes0724/shopify-packer/commit/64166efbda66c3c31768bf10b27fa8c997d41755))
+
+
+
 ## [2.0.8](https://github.com/hayes0724/shopify-packer/compare/2.0.7...2.0.8) (2021-03-28)
 
 

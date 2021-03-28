@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
 const development = process.env.NODE_ENV !== 'production';
@@ -13,6 +14,7 @@ const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
 const liquidStyles = require('../parts/liquid-styles');
+const copy = require('../parts/copy');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
 config.set('files.layout', getLayoutEntrypoints());
@@ -35,6 +37,7 @@ module.exports = merge([
   core,
   scss,
   css,
+  copy,
   {
     mode: 'development',
     devtool: false,
@@ -68,6 +71,8 @@ module.exports = merge([
       ],
     },
     plugins: [
+      new CleanWebpackPlugin(),
+
       new webpack.DefinePlugin({
         'process.env': {NODE_ENV: '"development"'},
       }),
@@ -100,11 +105,6 @@ module.exports = merge([
         isDevServer: development,
         liquidTemplates: config.get('files.template'),
         liquidLayouts: config.get('files.layout'),
-      }),
-
-      new HtmlWebpackTagsPlugin({
-        links: ['layout.theme.styleLiquid.css'],
-        append: true,
       }),
 
       new HtmlWebpackTagsPlugin({

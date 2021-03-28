@@ -55,7 +55,9 @@ module.exports = class AssetServer {
       return this.updates.add(`snippets/${path.basename(file)}`);
     }
     if (this._isLiquidFile(file) && this._hasAssetChanged(file, info)) {
-      return this.updates.add(file.replace('../', ''));
+      return this.updates.add(
+        file.replace(`..${path.sep}`, '').replace(`../`, '')
+      );
     }
     if (
       !this._isLiquidFile(file) &&
