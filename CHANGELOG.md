@@ -1,3 +1,12 @@
+## [2.0.8](https://github.com/hayes0724/shopify-packer/compare/2.0.7...2.0.8) (2021-03-28)
+
+
+### :bug: Bug Fixes
+
+* webpack 5 hot middleware ([5fcbe08](https://github.com/hayes0724/shopify-packer/commit/5fcbe0840fcaf430614d6046c5067c2e9c221a57))
+
+
+
 ## [2.0.7](https://github.com/hayes0724/shopify-packer/compare/2.0.6...2.0.7) (2021-03-26)
 
 

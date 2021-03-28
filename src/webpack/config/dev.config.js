@@ -11,6 +11,7 @@ const {customConfigCheck} = require('../custom');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const liquidStyles = require('../parts/liquid-styles');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
 config.set('files.layout', getLayoutEntrypoints());
@@ -29,12 +30,17 @@ Object.keys(core.entry).forEach((name) => {
 });
 
 module.exports = merge([
+  liquidStyles,
   core,
   scss,
   css,
   {
     mode: 'development',
-    devtool: 'source-map',
+    devtool: false,
+    target: 'web',
+    optimization: {
+      runtimeChunk: 'single',
+    },
     module: {
       rules: [
         {

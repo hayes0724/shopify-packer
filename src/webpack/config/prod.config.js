@@ -11,6 +11,8 @@ process.env.NODE_ENV = 'production';
 const {customConfigCheck} = require('../custom');
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
+const clean = require('../parts/clean');
+const copy = require('../parts/copy');
 config.set('files.layout', getLayoutEntrypoints());
 config.set('files.template', getTemplateEntrypoints());
 
@@ -19,6 +21,7 @@ const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
 const optimization = require('../parts/optimization');
+const liquidStyles = require('../parts/liquid-styles');
 const mergeProd = customConfigCheck(config.get('merge.prod'));
 
 core.entry = {
@@ -28,9 +31,12 @@ core.entry = {
 };
 
 const output = merge([
+  liquidStyles,
   core,
   scss,
   css,
+  clean,
+  copy,
   {
     mode: 'production',
     devtool: false,

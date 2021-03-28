@@ -52,12 +52,18 @@ module.exports = class AssetServer {
       return this.updates.add(`assets/${file}`);
     }
     if (this._isLiquidTagFile(file) && this._hasAssetChanged(file, info)) {
-      return 'snippets/' + path.basename(file);
+      return this.updates.add(`snippets/${path.basename(file)}`);
     }
     if (this._isLiquidFile(file) && this._hasAssetChanged(file, info)) {
       return this.updates.add(file.replace('../', ''));
-    } else {
-      this._hasAssetChanged(file, info);
+    }
+    if (
+      !this._isLiquidFile(file) &&
+      !isHotUpdateFile(file) &&
+      !file.includes('.js') &&
+      this._hasAssetChanged(file, info)
+    ) {
+      return this.updates.add(file.replace('../', ''));
     }
   }
 
@@ -69,25 +75,13 @@ module.exports = class AssetServer {
   }
 
   _onAfterSync(files) {
-    /*const _syncHandler = () => {
+    const _syncHandler = () => {
       this.app.webpackHotMiddleware.publish({
         action: 'shopify_upload_finished',
         force: files.length > 0,
       });
     };
-    setTimeout(_syncHandler, parseInt(config.get('network.reload')));*/
-    this.app.webpackHotMiddleware.publish({
-      action: 'shopify_upload_finished',
-      force: files.length > 0,
-    });
-  }
-
-  _isChunk(key, chunks) {
-    return (
-      chunks.filter((chunk) => {
-        return key.indexOf(chunk.id) > -1 && !this._isLiquidStyle(key);
-      }).length > 0
-    );
+    setTimeout(_syncHandler, parseInt(config.get('network.reload')));
   }
 
   _isLiquidStyle(key) {
@@ -95,7 +89,11 @@ module.exports = class AssetServer {
   }
 
   _isLiquidFile(file) {
-    return file.includes('.liquid');
+    return (
+      !this._isLiquidStyle(file) &&
+      !this._isLiquidTagFile(file) &&
+      file.includes('.liquid')
+    );
   }
 
   _isLiquidTagFile(file) {
@@ -107,34 +105,14 @@ module.exports = class AssetServer {
   _hasAssetChanged(key, info) {
     const oldHash = this.assetHashes.get(key);
     const newHash = this._updateAssetHash(key, info);
-
     return oldHash !== newHash;
   }
 
-  _getAssetsToUpload(compilation) {
-    const assets = Object.entries(compilation.assets);
-    const chunks = compilation.chunks;
-    return (
-      assets
-        .filter(([key, asset]) => {
-          return (
-            asset.emitted &&
-            !this._isChunk(key, chunks) &&
-            !isHotUpdateFile(key) &&
-            this._hasAssetChanged(key, asset)
-          );
-        })
-        /* eslint-disable-next-line no-unused-vars */
-        .map(([key, asset]) => {
-          return asset.existsAt.replace(config.get('theme.dist.root'), '');
-        })
-    );
-  }
-
   _updateAssetHash(key, info) {
-    const rawSource = info.content;
-    const source = Array.isArray(rawSource) ? rawSource.join('\n') : rawSource;
-    const hash = createHash('sha256').update(source).digest('hex');
-    return this.assetHashes.set(key, hash);
+    //const rawSource = info.content;
+    //const source = Array.isArray(rawSource) ? rawSource.join('\n') : rawSource;
+    const hash = createHash('sha256').update(info.content).digest('hex');
+    this.assetHashes.set(key, hash);
+    return hash;
   }
 };
