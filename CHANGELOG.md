@@ -1,3 +1,12 @@
+## [2.0.11](https://github.com/hayes0724/shopify-packer/compare/2.0.10...2.0.11) (2021-03-29)
+
+
+### :bug: Bug Fixes
+
+* updated development asset handling ([e6ccf99](https://github.com/hayes0724/shopify-packer/commit/e6ccf99005e5f7ec05c074c1e35c56b66c5daa5a))
+
+
+
 ## [2.0.10](https://github.com/hayes0724/shopify-packer/compare/2.0.9...2.0.10) (2021-03-28)
 
 

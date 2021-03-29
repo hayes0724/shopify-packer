@@ -13,6 +13,7 @@ const {customConfigCheck} = require('../custom');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const assets = require('../parts/assets');
 const liquidStyles = require('../parts/liquid-styles');
 const copy = require('../parts/copy');
 
@@ -35,6 +36,7 @@ Object.keys(core.entry).forEach((name) => {
 module.exports = merge([
   liquidStyles,
   core,
+  assets,
   scss,
   css,
   copy,
@@ -51,22 +53,6 @@ module.exports = merge([
           test: /\.js$/,
           exclude: config.get('commonExcludes'),
           loader: path.resolve(__dirname, '../hmr-alamo-loader.js'),
-        },
-        {
-          test: /\.(eot|ttf|woff|woff2|otf)$/,
-          exclude: config.get('commonExcludes'),
-          type: 'asset',
-          generator: {
-            filename: '[name].[ext]',
-          },
-        },
-        {
-          test: /\.(png|svg|jpg|gif)$/,
-          exclude: config.get('commonExcludes'),
-          type: 'asset',
-          generator: {
-            filename: '[name].[ext]',
-          },
         },
       ],
     },

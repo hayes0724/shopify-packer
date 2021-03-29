@@ -59,13 +59,8 @@ module.exports = class AssetServer {
         file.replace(`..${path.sep}`, '').replace(`../`, '')
       );
     }
-    if (
-      !this._isLiquidFile(file) &&
-      !isHotUpdateFile(file) &&
-      !file.includes('.js') &&
-      this._hasAssetChanged(file, info)
-    ) {
-      return this.updates.add(file.replace('../', ''));
+    if (this._isAssetFile(file) && this._hasAssetChanged(file, info)) {
+      return this.updates.add(`assets/${file}`);
     }
   }
 
@@ -101,6 +96,15 @@ module.exports = class AssetServer {
   _isLiquidTagFile(file) {
     return (
       file.includes('style-tags.liquid') || file.includes('script-tags.liquid')
+    );
+  }
+
+  _isAssetFile(file) {
+    return (
+      !this._isLiquidFile(file) &&
+      !isHotUpdateFile(file) &&
+      !file.includes('.js') &&
+      !file.includes('.gitkeep')
     );
   }
 

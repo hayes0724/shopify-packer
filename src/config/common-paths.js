@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   root: process.cwd(),
   package: (config) => path.join(config.get('root'), 'package.json'),
-  commonExcludes: [/node_modules/, /assets\/static/],
+  commonExcludes: [/node_modules/, /assets\/static/, /\.gitkeep$/],
   cache: (config) => path.join(config.get('root'), '.cache'),
   'packer.config': (config) =>
     path.join(config.get('root'), 'packer.config.js'),

@@ -18,6 +18,7 @@ config.set('files.template', getTemplateEntrypoints());
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
+const assets = require('../parts/assets');
 const clean = require('../parts/clean');
 const copy = require('../parts/copy');
 const optimization = require('../parts/optimization');
@@ -33,6 +34,7 @@ core.entry = {
 const output = merge([
   liquidStyles,
   core,
+  assets,
   scss,
   css,
   clean,

@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -63,7 +63,7 @@
     "minimist": "^1.2.5",
     "ora": "^5.4.0",
     "portscanner": "^2.2.0",
-    "postcss": "^8.2.8",
+    "postcss": "^7.0.35",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.1.2",
     "sass": "^1.32.8",
