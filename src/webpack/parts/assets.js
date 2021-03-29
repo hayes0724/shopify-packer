@@ -9,7 +9,7 @@ const assets = {
         exclude: config.get('commonExcludes'),
         type: 'asset/resource',
         generator: {
-          filename: '../[name][ext]',
+          filename: '[name][ext]',
         },
       },
       {
@@ -17,7 +17,7 @@ const assets = {
         exclude: config.get('commonExcludes'),
         type: 'asset/resource',
         generator: {
-          filename: '../[name][ext]',
+          filename: '[name][ext]',
         },
       },
     ],

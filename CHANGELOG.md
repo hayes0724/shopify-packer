@@ -1,3 +1,12 @@
+## [2.0.12](https://github.com/hayes0724/shopify-packer/compare/2.0.11...2.0.12) (2021-03-29)
+
+
+### :bug: Bug Fixes
+
+* asset generator filename ([11dda8b](https://github.com/hayes0724/shopify-packer/commit/11dda8b9a5c0cfe0c82c125523238905d79ada04))
+
+
+
 ## [2.0.11](https://github.com/hayes0724/shopify-packer/compare/2.0.10...2.0.11) (2021-03-29)
 
 
