@@ -42,7 +42,7 @@ module.exports = merge([
   copy,
   {
     mode: 'development',
-    devtool: false,
+    devtool: 'eval-source-map',
     target: 'web',
     optimization: {
       runtimeChunk: 'single',
