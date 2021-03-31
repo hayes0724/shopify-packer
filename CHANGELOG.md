@@ -1,3 +1,17 @@
+## [2.1.2](https://github.com/hayes0724/shopify-packer/compare/2.1.1...2.1.2) (2021-03-31)
+
+
+### :bug: Bug Fixes
+
+* remove html encoding from html webpack filenames ([26ef677](https://github.com/hayes0724/shopify-packer/commit/26ef6770afc2cef22b1fc3ffcdae26137751ba15))
+
+
+### chore
+
+* removed html-webpack-tags-plugin from dev dependency ([ce8b83a](https://github.com/hayes0724/shopify-packer/commit/ce8b83a4e8791cadbd65088090da346e3fd0bdd7))
+
+
+
 ## [2.1.1](https://github.com/hayes0724/shopify-packer/compare/2.1.0...2.1.1) (2021-03-31)
 
 
