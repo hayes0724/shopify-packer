@@ -10,13 +10,7 @@ const liquidStyles = {
         test: /(css|scss|sass)\.liquid$/,
         exclude: config.get('commonExcludes'),
         type: 'asset/resource',
-        generator: {
-          filename: (pathData) => {
-            return `${pathData.runtime.split('.')[0]}.${
-              path.basename(pathData.filename).split('.')[0]
-            }.styleLiquid.css.liquid`;
-          },
-        },
+        generator: {},
       },
     ],
   },
@@ -25,7 +19,7 @@ const liquidStyles = {
 if (!isDev) {
   liquidStyles.module.rules[0].generator = {
     filename: (pathData) => {
-      return `${pathData.runtime.split('.')[0]}.${
+      return `assets/${pathData.runtime.split('.')[0]}.${
         path.basename(pathData.filename).split('.')[0]
       }.styleLiquid.css.liquid`;
     },

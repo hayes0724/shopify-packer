@@ -19,7 +19,6 @@ const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
 const assets = require('../parts/assets');
-const clean = require('../parts/clean');
 const copy = require('../parts/copy');
 const optimization = require('../parts/optimization');
 const liquidStyles = require('../parts/liquid-styles');
@@ -37,7 +36,6 @@ const output = merge([
   assets,
   scss,
   css,
-  clean,
   copy,
   {
     mode: 'production',
@@ -45,7 +43,7 @@ const output = merge([
     optimization: optimization,
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: 'assets/[name].css',
       }),
 
       new webpack.DefinePlugin({

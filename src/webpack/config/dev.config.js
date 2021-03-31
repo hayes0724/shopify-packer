@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
 const development = process.env.NODE_ENV !== 'production';
@@ -57,8 +56,6 @@ module.exports = merge([
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(),
-
       new webpack.DefinePlugin({
         'process.env': {NODE_ENV: '"development"'},
       }),

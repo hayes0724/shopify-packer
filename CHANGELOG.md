@@ -1,3 +1,21 @@
+# [2.1.0](https://github.com/hayes0724/shopify-packer/compare/2.0.13...2.1.0) (2021-03-31)
+
+
+### :rocket: Performance Improvements
+
+* optimized assets handling, copying and cleaning ([a75ae4b](https://github.com/hayes0724/shopify-packer/commit/a75ae4badc81ae9c4b52f40c020fc6942d9ddc68))
+
+
+
+## [2.0.13](https://github.com/hayes0724/shopify-packer/compare/2.0.12...2.0.13) (2021-03-30)
+
+
+### :bug: Bug Fixes
+
+* changed devtool to eval-source-map for hmr ([c8ebe24](https://github.com/hayes0724/shopify-packer/commit/c8ebe240efcb02dd701da76272f891e5bad16355))
+
+
+
 ## [2.0.12](https://github.com/hayes0724/shopify-packer/compare/2.0.11...2.0.12) (2021-03-29)
 
 

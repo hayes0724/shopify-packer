@@ -1,13 +1,17 @@
 const path = require('path');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
+const isDev = process.env.NODE_ENV !== 'production';
 
 const core = {
   context: config.get('root'),
 
   output: {
-    filename: '[name].js',
-    path: config.get('theme.dist.assets'),
+    filename: isDev ? '[name].js' : 'assets/[name].js',
+    path: isDev
+      ? config.get('theme.dist.assets')
+      : config.get('theme.dist.root'),
+    clean: true,
   },
   resolveLoader: {
     modules: [
@@ -24,7 +28,7 @@ const core = {
         exclude: [/(css|scss|sass)\.liquid$/, ...config.get('commonExcludes')],
         type: 'asset/resource',
         generator: {
-          filename: '[path][name].[ext]',
+          filename: '[name][ext]',
         },
       },
       {

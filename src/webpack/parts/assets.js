@@ -10,6 +10,7 @@ const assets = {
         type: 'asset/resource',
         generator: {
           filename: '[name][ext]',
+          emit: false,
         },
       },
       {
@@ -18,6 +19,7 @@ const assets = {
         type: 'asset/resource',
         generator: {
           filename: '[name][ext]',
+          emit: false,
         },
       },
     ],
