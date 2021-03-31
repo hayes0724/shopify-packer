@@ -24,14 +24,6 @@ const core = {
   module: {
     rules: [
       {
-        test: /\.(liquid|json)$/,
-        exclude: [/(css|scss|sass)\.liquid$/, ...config.get('commonExcludes')],
-        type: 'asset/resource',
-        generator: {
-          filename: '[name][ext]',
-        },
-      },
-      {
         test: /\.(ts|js)$/,
         loader: 'babel-loader',
         exclude: config.get('commonExcludes'),

@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/hayes0724/shopify-packer/compare/2.1.0...2.1.1) (2021-03-31)
+
+
+### :hammer: Code Refactoring
+
+* replaced liquid loader with copy plugin ([13160b3](https://github.com/hayes0724/shopify-packer/commit/13160b32d4cab733f5607470e1b2c47daf2583d7))
+
+
+
 # [2.1.0](https://github.com/hayes0724/shopify-packer/compare/2.0.13...2.1.0) (2021-03-31)
 
 
