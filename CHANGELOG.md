@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/hayes0724/shopify-packer/compare/2.1.2...2.1.3) (2021-04-01)
+
+
+### :sparkles: Features
+
+* clean dist folder when dev server is first launched ([24b3d8c](https://github.com/hayes0724/shopify-packer/commit/24b3d8c83ab1989c91cae494b2bd395c7865e584))
+
+
+
 ## [2.1.2](https://github.com/hayes0724/shopify-packer/compare/2.1.1...2.1.2) (2021-03-31)
 
 

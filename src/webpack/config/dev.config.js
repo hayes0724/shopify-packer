@@ -9,6 +9,7 @@ const development = process.env.NODE_ENV !== 'production';
 const getLayoutEntrypoints = require('../../utilities/get-layout-entrypoints');
 const getTemplateEntrypoints = require('../../utilities/get-template-entrypoints');
 const {customConfigCheck} = require('../custom');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const core = require('../parts/core');
 const css = require('../parts/css');
 const scss = require('../parts/scss');
@@ -56,6 +57,12 @@ module.exports = merge([
       ],
     },
     plugins: [
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [
+          path.join(config.get('theme.dist.root'), '/**/*'),
+        ],
+      }),
+
       new webpack.DefinePlugin({
         'process.env': {NODE_ENV: '"development"'},
       }),
