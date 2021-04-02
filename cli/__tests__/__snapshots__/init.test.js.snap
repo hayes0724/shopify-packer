@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test init command Clean up downloaded files 1`] = `
+Array [
+  ".babelrc",
+  ".editorconfig",
+  ".eslintignore",
+  ".eslintrc",
+  ".gitignore",
+  ".prettierignore",
+  ".prettierrc.json",
+  ".stylelintignore",
+  ".stylelintrc",
+  ".versionrc",
+  "CHANGELOG.md",
+  "LICENSE",
+  "README.md",
+  "dev.config.js",
+  "package.json",
+  "packer.config.js",
+  "packer.env.example.json",
+  "packer.env.json",
+  "postcss.config.js",
+  "prod.config.js",
+  "src",
+  "yarn.lock",
+]
+`;
+
+exports[`Test init command Get the download url 1`] = `"https://github.com/hayes0724/packer-blank-theme/archive/v1.0.13.zip"`;
+
+exports[`Test init command Get the extracted file name 1`] = `
+Array [
+  "",
+  "temp",
+  "packer-blank-theme-1.0.13",
+]
+`;
+
+exports[`Test init command extract file from zip archive 1`] = `
+Array [
+  ".babelrc",
+  ".editorconfig",
+  ".eslintignore",
+  ".eslintrc",
+  ".gitignore",
+  ".prettierignore",
+  ".prettierrc.json",
+  ".stylelintignore",
+  ".stylelintrc",
+  ".versionrc",
+  "CHANGELOG.md",
+  "LICENSE",
+  "README.md",
+  "dev.config.js",
+  "package.json",
+  "packer.config.js",
+  "packer.env.example.json",
+  "packer.env.json",
+  "postcss.config.js",
+  "prod.config.js",
+  "src",
+  "yarn.lock",
+]
+`;

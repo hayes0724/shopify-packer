@@ -1,3 +1,4 @@
+/* eslint-env jest */
 const help = require('../commands/help');
 
 beforeAll(() => {

@@ -1,0 +1,26 @@
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs #
+*.log
+
+# Custom #
+######################
+changelog/
+docs/
+tests/
+__tests__
+/.idea
+/.yarn-metadata.json
+/yarn-error.log
+/.github/.token
+/jest.config.js
+/test.sh

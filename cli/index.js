@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
 const minimist = require('minimist');
-
 const args = minimist(process.argv.slice(2));
 const chalk = require('chalk');
-
 const version = require('../package').version;
+const {init} = require('./commands/init');
 
 switch (process.argv[2]) {
   case 'init':
-    require('./commands/init')(args);
+    init(args);
     break;
   case 'start':
     require('./commands/start')(args);

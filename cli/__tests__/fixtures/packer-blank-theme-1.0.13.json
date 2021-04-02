@@ -1,0 +1,43 @@
+{
+  "data": {
+    "url": "https://api.github.com/repos/hayes0724/packer-blank-theme/releases/40565421",
+    "assets_url": "https://api.github.com/repos/hayes0724/packer-blank-theme/releases/40565421/assets",
+    "upload_url": "https://uploads.github.com/repos/hayes0724/packer-blank-theme/releases/40565421/assets{?name,label}",
+    "html_url": "https://github.com/hayes0724/packer-blank-theme/releases/tag/v1.0.13",
+    "id": 40565421,
+    "author": {
+      "login": "hayes0724",
+      "id": 12520996,
+      "node_id": "MDQ6VXNlcjEyNTIwOTk2",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12520996?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hayes0724",
+      "html_url": "https://github.com/hayes0724",
+      "followers_url": "https://api.github.com/users/hayes0724/followers",
+      "following_url": "https://api.github.com/users/hayes0724/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hayes0724/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hayes0724/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hayes0724/subscriptions",
+      "organizations_url": "https://api.github.com/users/hayes0724/orgs",
+      "repos_url": "https://api.github.com/users/hayes0724/repos",
+      "events_url": "https://api.github.com/users/hayes0724/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hayes0724/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "node_id": "MDc6UmVsZWFzZTQwNTY1NDIx",
+    "tag_name": "v1.0.13",
+    "target_commitish": "master",
+    "name": "v1.0.13",
+    "draft": false,
+    "prerelease": false,
+    "created_at": "2021-03-26T21:31:48Z",
+    "published_at": "2021-03-26T21:33:25Z",
+    "assets": [
+
+    ],
+    "tarball_url": "https://api.github.com/repos/hayes0724/packer-blank-theme/tarball/v1.0.13",
+    "zipball_url": "https://api.github.com/repos/hayes0724/packer-blank-theme/zipball/v1.0.13",
+    "body": ""
+  }
+}

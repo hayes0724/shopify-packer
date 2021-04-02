@@ -1,3 +1,5 @@
 *.html
 *.pem
 *.md
+*.snap
+cli/__tests__/fixtures/
