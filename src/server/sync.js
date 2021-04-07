@@ -191,7 +191,7 @@ function getDeploymentSettings(replace) {
 }
 
 module.exports = {
-  sync(files = []) {
+  async sync(files = []) {
     if (!files.length) {
       return Promise.reject(new Error('No files to deploy.'));
     }

@@ -29,8 +29,9 @@ module.exports = class Client {
       this.hooks.syncSkipped.call(this.files, stats);
     } else {
       this.hooks.sync.call(this.files, stats);
-      await sync(this.files);
-      this.hooks.syncDone.call(this.files, stats);
+      sync(this.files)
+        .then(() => this.hooks.syncDone.call(this.files, stats))
+        .catch((e) => console.error(e.message || e));
     }
 
     await this.hooks.afterSync.promise(this.files, stats);
