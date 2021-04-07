@@ -30,6 +30,7 @@ const postcssLoader = {
   loader: 'postcss-loader',
   options: {
     sourceMap: isDev,
+    implementation: require('postcss'),
   },
 };
 

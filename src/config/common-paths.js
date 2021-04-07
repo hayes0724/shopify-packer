@@ -14,7 +14,7 @@ module.exports = {
   'merge.prod': (config) => path.join(config.get('root'), 'prod.config.js'),
 
   /* PostCSS */
-  postcss: (config) => path.join(config.get('root'), 'postcss.schema.js'),
+  postcss: (config) => path.join(config.get('root'), 'postcss.config.js'),
 
   /* ESLint */
   'eslint.bin': () => path.resolve(__dirname, '../../node_modules/.bin/eslint'),

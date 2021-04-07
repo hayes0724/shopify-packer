@@ -1,3 +1,23 @@
+## [2.1.4](https://github.com/hayes0724/shopify-packer/compare/2.1.3...2.1.4) (2021-04-07)
+
+
+### :heavy_check_mark: Tests
+
+* refactored init command for better testing ([09efd3d](https://github.com/hayes0724/shopify-packer/commit/09efd3da7cf2ae4abb85b41364ea84e73ef9f4fa))
+
+
+### :sparkles: Features
+
+* postcss updated to v8 ([d266c25](https://github.com/hayes0724/shopify-packer/commit/d266c256c0dc07e7b77bb3343f167b3e6324354d))
+
+
+### :wrench: Continuous Integration
+
+* dockerfiles for testing packer in node 10, 12, 14, and 15. ([f308dc4](https://github.com/hayes0724/shopify-packer/commit/f308dc47706b672b4aa3c8458938b966ec2c649a))
+* removed node 15.x from matrix ([445f1e2](https://github.com/hayes0724/shopify-packer/commit/445f1e2264c953832570205cbf49e6808df9dc3f))
+
+
+
 ## [2.1.3](https://github.com/hayes0724/shopify-packer/compare/2.1.2...2.1.3) (2021-04-01)
 
 
