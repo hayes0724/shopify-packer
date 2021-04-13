@@ -1,3 +1,17 @@
+## [2.1.5](https://github.com/hayes0724/shopify-packer/compare/2.1.4...2.1.5) (2021-04-13)
+
+
+### :bug: Bug Fixes
+
+* catch unhandled exception on deploy in progress ([2414e65](https://github.com/hayes0724/shopify-packer/commit/2414e654024f1859a8131695002508f0e833e0e9))
+
+
+### :hammer: Code Refactoring
+
+* changed shared bundles default to false ([9918a5f](https://github.com/hayes0724/shopify-packer/commit/9918a5fb91c02c941b84c425bee80eafa7448dc9))
+
+
+
 ## [2.1.4](https://github.com/hayes0724/shopify-packer/compare/2.1.3...2.1.4) (2021-04-07)
 
 

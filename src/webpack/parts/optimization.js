@@ -10,8 +10,8 @@ const optimization = {
       defaultVendors: false,
       vendor: {
         test: /[\\/]node_modules[\\/]/,
-        name: getChunkName,
         chunks: 'initial',
+        name: getChunkName,
         priority: 5,
       },
     },
@@ -21,7 +21,14 @@ const optimization = {
 if (config.get('build.sharedBundles')) {
   optimization.splitChunks.cacheGroups.default = {
     name: getChunkName,
-    chunks: 'all',
+    chunks: 'initial',
+  };
+}
+
+if (config.get('build.sharedVendorBundles')) {
+  optimization.splitChunks.cacheGroups.vendor = {
+    name: getChunkName,
+    chunks: 'initial',
   };
 }
 
