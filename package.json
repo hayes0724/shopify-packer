@@ -1,6 +1,6 @@
 {
   "name": "@hayes0724/shopify-packer",
-  "version": "2.1.5",
+  "version": "0.0.0-development",
   "bin": {
     "packer": "cli/index.js"
   },
@@ -27,8 +27,7 @@
     "test": "jest",
     "lint": "eslint --ext .js src/** cli/**",
     "lint:fix": "eslint --ext .js --fix src/** cli/**",
-    "preversion": "npm test && npm run lint",
-    "version": "conventional-changelog -n changelog/index.js -i CHANGELOG.md --same-file"
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "@babel/core": "^7.13.10",
@@ -85,6 +84,8 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "babel-jest": "^26.3.0",
     "conventional-changelog": "^3.1.23",
     "eslint-config-prettier": "^8.1.0",
@@ -93,7 +94,8 @@
     "jest": "^26.4.2",
     "lerna-changelog": "^1.0.1",
     "mock-fs": "^4.13.0",
-    "prettier-eslint": "^12.0.0"
+    "prettier-eslint": "^12.0.0",
+    "semantic-release": "^17.4.2"
   },
   "prettier": {
     "singleQuote": true,
@@ -114,5 +116,35 @@
       "config": ":wrench Config"
     },
     "cacheDir": ".changelog"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "access": "public"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "package-lock.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
   }
 }
