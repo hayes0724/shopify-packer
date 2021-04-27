@@ -58,6 +58,8 @@ module.exports = merge([
     },
     plugins: [
       new CleanWebpackPlugin({
+        dry: false,
+        dangerouslyAllowCleanPatternsOutsideProject: true,
         cleanOnceBeforeBuildPatterns: [
           path.join(config.get('theme.dist.root'), '/**/*'),
         ],

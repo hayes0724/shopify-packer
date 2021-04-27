@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const IncludeLiquidStylesPlugin = require('../include-liquid-styles');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
@@ -42,8 +43,16 @@ const output = merge([
     devtool: false,
     optimization: optimization,
     plugins: [
+      new CleanWebpackPlugin({
+        dry: false,
+        dangerouslyAllowCleanPatternsOutsideProject: true,
+        cleanOnceBeforeBuildPatterns: [
+          path.join(config.get('theme.dist.root'), '/**/*'),
+        ],
+      }),
+
       new MiniCssExtractPlugin({
-        filename: 'assets/[name].css',
+        filename: '[name].css',
       }),
 
       new webpack.DefinePlugin({

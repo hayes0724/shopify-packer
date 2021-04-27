@@ -1,16 +1,13 @@
 const path = require('path');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
-const isDev = process.env.NODE_ENV !== 'production';
 
 const core = {
   context: config.get('root'),
 
   output: {
-    filename: isDev ? '[name].js' : 'assets/[name].js',
-    path: isDev
-      ? config.get('theme.dist.assets')
-      : config.get('theme.dist.root'),
+    filename: '[name].js',
+    path: config.get('theme.dist.assets'),
     clean: true,
   },
   resolveLoader: {
