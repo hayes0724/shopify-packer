@@ -4,6 +4,7 @@ const figures = require('figures');
 const themekit = require('@shopify/themekit');
 const PackerConfig = require('../config');
 const config = new PackerConfig(require('../../packer.schema'));
+const flags = require('minimist')(process.argv.slice(2));
 
 const {
   validate,
@@ -56,7 +57,7 @@ function _generateConfigFlags() {
     store: getStoreValue(),
     env: getEnvNameValue(),
     ignoredFiles: getIgnoreFilesValue().split(':'),
-    allowLive: getAllowLiveValue(),
+    allowLive: flags['allowLive'] || getAllowLiveValue(),
   };
 }
 

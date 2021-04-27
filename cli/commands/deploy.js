@@ -10,7 +10,8 @@ const {
 
 module.exports = async (args) => {
   assign(args.env);
-  await promptContinueIfPublishedTheme(getThemeIdValue(), getAllowLiveValue())
+  const allowLive = args.allowLive || getAllowLiveValue();
+  await promptContinueIfPublishedTheme(getThemeIdValue(), allowLive)
     .then((answer) => {
       if (!answer) {
         throw Error(

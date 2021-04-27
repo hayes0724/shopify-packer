@@ -10,7 +10,12 @@ const webpackConfig = require('../../src/webpack/config/dev.config');
 const getAvailablePortSeries = require('../../src/utilities/get-available-port-series');
 const promptContinueIfPublishedTheme = require('../../src/server/prompts/continue-if-published-theme');
 const promptSkipSettingsData = require('../../src/server/prompts/skip-settings-data');
-const {getStoreValue, getThemeIdValue, assign} = require('../../src/env');
+const {
+  getStoreValue,
+  getThemeIdValue,
+  getAllowLiveValue,
+  assign,
+} = require('../../src/env');
 const PackerConfig = require('../../src/config');
 const config = new PackerConfig(require('../../packer.schema'));
 const address = getIpAddress();
@@ -123,6 +128,7 @@ function onCompilerDone(stats) {
 }
 async function onClientBeforeSync(files) {
   const themeID = getThemeIdValue();
+  const allowLive = flags['allowLive'] || getAllowLiveValue();
 
   if (firstSync && flags.skipFirstDeploy) {
     assetServer.skipDeploy = true;
@@ -132,7 +138,10 @@ async function onClientBeforeSync(files) {
 
   if (continueIfPublishedTheme === null) {
     try {
-      continueIfPublishedTheme = await promptContinueIfPublishedTheme(themeID);
+      continueIfPublishedTheme = await promptContinueIfPublishedTheme(
+        themeID,
+        allowLive
+      );
     } catch (error) {
       console.log(`\n${chalk.red(error)}\n`);
     }
