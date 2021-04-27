@@ -1,3 +1,10 @@
+## [2.1.7](https://github.com/hayes0724/shopify-packer/compare/v2.1.6...v2.1.7) (2021-04-27)
+
+
+### Bug Fixes
+
+* --allowLive flag for start, deploy, and watch ([5c38cf0](https://github.com/hayes0724/shopify-packer/commit/5c38cf05949fb3542f99beb8d1bb0db3ad8d2a48)), closes [#75](https://github.com/hayes0724/shopify-packer/issues/75)
+
 ## [2.1.6](https://github.com/hayes0724/shopify-packer/compare/v2.1.5...v2.1.6) (2021-04-27)
 
 
