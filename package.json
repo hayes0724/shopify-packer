@@ -27,7 +27,8 @@
     "test": "jest",
     "lint": "eslint --ext .js src/** cli/**",
     "lint:fix": "eslint --ext .js --fix src/** cli/**",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "docs": "cd docs && yarn deploy"
   },
   "dependencies": {
     "@babel/core": "^7.13.10",
