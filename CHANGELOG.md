@@ -1,3 +1,10 @@
+## [2.1.6](https://github.com/hayes0724/shopify-packer/compare/v2.1.5...v2.1.6) (2021-04-27)
+
+
+### Bug Fixes
+
+* escape css filenames in html webpack plugin ([7348095](https://github.com/hayes0724/shopify-packer/commit/73480959b44f956d4af4ab25782b19a1f694e8da))
+
 ## [2.1.5](https://github.com/hayes0724/shopify-packer/compare/2.1.4...2.1.5) (2021-04-13)
 
 
@@ -509,4 +516,3 @@
 
 
 * updated package.json ([bc5378f](https://github.com/hayes0724/shopify-packer/commit/bc5378fd994cd7b6e49e3186a5c53d1b279b2ec9))
-
