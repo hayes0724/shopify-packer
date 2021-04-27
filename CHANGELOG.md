@@ -1,3 +1,10 @@
+## [2.1.10](https://github.com/hayes0724/shopify-packer/compare/v2.1.9...v2.1.10) (2021-04-27)
+
+
+### Bug Fixes
+
+* exit if publish live prompt is no ([cd68128](https://github.com/hayes0724/shopify-packer/commit/cd68128ce4bb24efb832a882611b2b2f313d32a5))
+
 ## [2.1.9](https://github.com/hayes0724/shopify-packer/compare/v2.1.8...v2.1.9) (2021-04-27)
 
 
