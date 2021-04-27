@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const {fetchMainThemeId} = require('../sync');
 const figures = require('figures');
 const {argv} = require('yargs');
+const {setAllowLiveValue} = require('../../env')
 
 const question = {
   type: 'confirm',
@@ -38,6 +39,6 @@ module.exports = async function continueIfPublishedTheme(themeID, allowLive = fa
 
   console.log();
   const answer = await inquirer.prompt([question]);
-
+  setAllowLiveValue(answer.continueWithDeploy)
   return answer.continueWithDeploy;
 };
