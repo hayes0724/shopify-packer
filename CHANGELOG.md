@@ -1,3 +1,10 @@
+## [2.1.8](https://github.com/hayes0724/shopify-packer/compare/v2.1.7...v2.1.8) (2021-04-27)
+
+
+### Bug Fixes
+
+* continue if published theme prompt sets allowLive ([a1faf44](https://github.com/hayes0724/shopify-packer/commit/a1faf44fc76cc9764bb57e59685e4f03374652b6))
+
 ## [2.1.7](https://github.com/hayes0724/shopify-packer/compare/v2.1.6...v2.1.7) (2021-04-27)
 
 
