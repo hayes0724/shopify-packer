@@ -1,3 +1,10 @@
+## [2.1.9](https://github.com/hayes0724/shopify-packer/compare/v2.1.8...v2.1.9) (2021-04-27)
+
+
+### Bug Fixes
+
+* remove all assets before each build ([03a4683](https://github.com/hayes0724/shopify-packer/commit/03a46839ed20aa427c7c418ebfe77d72e155494b))
+
 ## [2.1.8](https://github.com/hayes0724/shopify-packer/compare/v2.1.7...v2.1.8) (2021-04-27)
 
 
