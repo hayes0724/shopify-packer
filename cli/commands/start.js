@@ -132,7 +132,6 @@ async function onClientBeforeSync(files) {
 
   if (firstSync && flags.skipFirstDeploy) {
     assetServer.skipDeploy = true;
-
     return;
   }
 
@@ -148,9 +147,13 @@ async function onClientBeforeSync(files) {
   }
 
   if (!continueIfPublishedTheme) {
-    throw Error(
-      'This is a live theme! Try adding the live setting to your theme config'
+    const exit = process.exit;
+    console.log(
+      `\n${chalk.red(
+        'This is a live theme! Try adding the live setting to your theme config'
+      )}\n`
     );
+    exit();
   }
 
   if (skipSettingsData === null) {
