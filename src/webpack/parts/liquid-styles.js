@@ -19,7 +19,7 @@ const liquidStyles = {
 if (!isDev) {
   liquidStyles.module.rules[0].generator = {
     filename: (pathData) => {
-      return `assets/${pathData.runtime.split('.')[0]}.${
+      return `${pathData.runtime.split('.')[0]}.${
         path.basename(pathData.filename).split('.')[0]
       }.styleLiquid.css.liquid`;
     },
