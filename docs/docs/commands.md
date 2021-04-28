@@ -18,7 +18,7 @@ List of all API commands for Packer:
 - [theme:create](#themecreate)
 - [theme:remove](#themeremove)
 - [theme:download](#themedownload)
-- [ssl:make](#ssl:make)
+- [ssl:make](#sslmake)
 - [help](#help)
 
 ### init
