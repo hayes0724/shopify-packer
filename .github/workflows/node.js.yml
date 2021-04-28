@@ -2,7 +2,9 @@ name: Test
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
+  push:
+    branches: [ dev ]
 
 jobs:
   lint:
@@ -34,9 +36,10 @@ jobs:
         run: npm run lint
 
 
-  release:
+  test:
     name: Test - ${{ matrix.os }} - Node v${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
+    needs: lint
 
     strategy:
       matrix:
