@@ -1,3 +1,10 @@
+## [2.1.11](https://github.com/hayes0724/shopify-packer/compare/v2.1.10...v2.1.11) (2021-04-28)
+
+
+### Bug Fixes
+
+* liquid styles file path incorrect ([e9163a1](https://github.com/hayes0724/shopify-packer/commit/e9163a1d996859095723b195deaa22b0c3f29092))
+
 ## [2.1.10](https://github.com/hayes0724/shopify-packer/compare/v2.1.9...v2.1.10) (2021-04-27)
 
 
