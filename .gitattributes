@@ -1,0 +1,7 @@
+* text=auto
+*.js eol=lf
+*.ts eol=lf
+*.jsx eol=lf
+*.json eol=lf
+*.liquid eol=lf
+*.md eol=lf
