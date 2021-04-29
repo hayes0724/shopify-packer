@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const App = require('../app');
 const Client = require('../client');
 const createHash = require('crypto').createHash;
-const {sslKeyCert} = require('../ssl');
+const {checkSSL, getSSL} = require('../ssl');
 const isHotUpdateFile = require('../is-hot-update-file');
 const PackerConfig = require('../../config');
 const config = new PackerConfig(require('../../../packer.schema'));
@@ -33,7 +33,8 @@ module.exports = class AssetServer {
       this._onAssetEmit.bind(this)
     );
 
-    this.ssl = sslKeyCert();
+    checkSSL();
+    this.ssl = getSSL();
     this.server = createServer(this.ssl, this.app);
 
     this.server.listen(this.port);

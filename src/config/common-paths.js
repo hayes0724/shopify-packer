@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 
 module.exports = {
   root: process.cwd(),
@@ -12,6 +13,20 @@ module.exports = {
   /* Webpack merge files - https://www.npmjs.com/package/webpack-merge */
   'merge.dev': (config) => path.join(config.get('root'), 'dev.config.js'),
   'merge.prod': (config) => path.join(config.get('root'), 'prod.config.js'),
+
+  // Path to self-signed SSL certificate which is used when developing
+  // (browsersync, asset server) to avoid browsers rejecting requests based
+  // on SSL
+  'ssl.cert': path.resolve(os.homedir(), '.localhost_ssl/cert.crt'),
+
+  // Path to self-signed SSL key which is used when developing
+  // (browsersync, asset server) to avoid browsers rejecting requests based
+  // on SSL
+  'ssl.key': path.resolve(os.homedir(), '.localhost_ssl/cert.key'),
+
+  /* SSL CA */
+  'ssl.ca.key': path.resolve(os.homedir(), '.localhost_ssl/ca.key'),
+  'ssl.ca.cert': path.resolve(os.homedir(), '.localhost_ssl/ca.crt'),
 
   /* PostCSS */
   postcss: (config) => path.join(config.get('root'), 'postcss.config.js'),

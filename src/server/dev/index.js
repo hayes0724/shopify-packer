@@ -1,6 +1,6 @@
 const browserSync = require('browser-sync');
-
-const {getSSLKeyPath, getSSLCertPath} = require('../ssl');
+const PackerConfig = require('../../config');
+const config = new PackerConfig(require('../../../packer.schema'));
 
 module.exports = class DevServer {
   constructor(options) {
@@ -39,7 +39,10 @@ module.exports = class DevServer {
           },
         },
       },
-      https: {key: getSSLKeyPath(), cert: getSSLCertPath()},
+      https: {
+        cert: config.get('ssl.cert'),
+        key: config.get('ssl.key'),
+      },
       logLevel: 'silent',
       socket: {
         domain: `https://${this.address}:${this.port}`,
