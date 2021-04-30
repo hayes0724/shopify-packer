@@ -1,10 +1,10 @@
-const {makeCert} = require('../../src/server/ssl');
+const {checkSSL, validate} = require('../../src/server/ssl');
 
 module.exports = (args) => {
   if (args.check) {
-    //
+    validate();
   }
   if (args.make) {
-    makeCert(args);
+    checkSSL();
   }
 };

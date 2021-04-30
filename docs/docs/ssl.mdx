@@ -1,0 +1,86 @@
+---
+id: ssl
+title: HTTPS & SSL
+sidebar_label: HTTPS & SSL
+slug: /ssl
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Packer uses a local server which compiles and serves theme **JavaScript** and **CSS** locally.
+By serving these assets locally, developers don't need to wait for them to be
+uploaded to Shopify servers to preview the changes they are making.
+When combined with Hot Module Reloading, developers see changes in their code reflected
+almost instantly.
+
+When SSL is not working your css/js will be blocked in the browser, and
+the site will appear broken. You can also see the requests being blocked
+in the network tab chrome developer tools. There are two methods for fixing this:
+
+1. [Trusting the CA](#trusting-the-ca)
+
+   This is the best solution and only needs to be done once
+
+2. [Ignore SSL Warnings](#ignore-ssl-warnings)
+
+   This is the fastest method but will often have to be repeated, also some MacOS users have issues with it.
+
+:::note
+Liquid files are not served locally and require uploading and refreshing the page. Packer handles this automatically.
+:::
+
+:::caution
+For the local server to function properly you must have SSL setup properly.
+:::
+
+## Trusting the CA
+
+To permanently trust the certificate and avoid SSL issues long term you need to
+tell your OS to trust the CA that issues your cert.
+All future certificates issued by the CA will be trusted.
+You can create the initial CA and cert manually using packer `ssl:make`, otherwise
+packer will create when you run `start` if it doesn't exist.
+
+<Tabs
+    defaultValue="windows"
+    values={[
+        {label: 'Windows', value: 'windows'},
+        {label: 'MacOS', value: 'mac'},
+    ]}>
+<TabItem value="windows">
+
+1. Click the CA cert file `ca.crt` located in `~/.localhost_ssl`
+2. Click install certificate
+3. Click next
+4. Select 'Place all certificates in the following store'
+5. Click browse
+6. Select 'Trusted Root Certification Authorities'
+7. Click finish
+8. Restart packer
+9. Restart browser
+
+</TabItem>
+<TabItem value="mac">
+
+1. Click the CA cert file `ca.crt` located in `~/.localhost_ssl`
+2. Click add
+3. Find it in Keychain Access and double click it
+4. Expand 'Trust' and change 'When using this certificate' to 'Always trust'
+5. You may be prompted to authenticate
+6. Restart packer
+7. Restart browser
+
+</TabItem>
+</Tabs>
+
+## Ignore SSL Warnings
+This is the fastest method but will often have to be repeated, also some MacOS users have issues with it.
+1. Run start/watch
+2. When the browser launches if there is a warning follow these steps
+3. Click advanced
+4. Click proceed
+
+   ![SSL Error 2](../static/img/ssl_2.png)
+
+

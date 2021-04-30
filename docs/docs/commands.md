@@ -26,17 +26,17 @@ Creates a blank start theme in specified directory. By default, it will use `hay
 unless you specify the repo flag with the name of the themes github repo. It will pull the latest release and fail
 if the custom theme repo has no releases.
 
-``
+```bash
 packer init <dir> [--repo=hayes0724/packer-blank-theme]
-``
+```
 
 ### start
 Compiles your local theme files into a dist directory, uploads these files to your remote Shopify store and finally
 boots up a local Express server that will serve most of your CSS and JavaScript.
 
-``
+```bash
 packer start [--env=my-custom-env-name] [--skipPrompts] [--skipFirstDeploy] [--allowLive] [--replace]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -49,9 +49,9 @@ packer start [--env=my-custom-env-name] [--skipPrompts] [--skipFirstDeploy] [--a
 ### watch
 Same as start command except it skips the first deployment
 
-``
+```bash
 packer watch [--env=my-custom-env-name] [--skipPrompts] [--allowLive] [--replace]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -63,9 +63,9 @@ packer watch [--env=my-custom-env-name] [--skipPrompts] [--allowLive] [--replace
 ### deploy
 Uploads the dist folder to the Shopify store.
 
-``
+```bash
 packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace] [--allowLive]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -77,9 +77,9 @@ packer deploy [--env=my-custom-env-name] [--skipPrompts] [--replace] [--allowLiv
 ### build
 Builds a production-ready version of the theme by compiling the files into the dist folder.
 
-``
+```bash
 packer build [--analyze] [--stats]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -89,9 +89,9 @@ packer build [--analyze] [--stats]
 ### lint
 Lints the themes styles and scripts
 
-``
+```bash
 packer lint [--scripts] [--styles]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -102,9 +102,9 @@ packer lint [--scripts] [--styles]
 Formats the theme code according to the rules declared in the .eslintrc and .stylelintrc files. By default, it uses
 ESLint Fix to format JS files, Stylelint Fix to format CSS files and Prettier to format JSON files.
 
-``
+```bash
 packer format [--scripts] [--styles]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -114,16 +114,16 @@ packer format [--scripts] [--styles]
 ### zip
 Compiles the contents of the dist directory and creates a ZIP file in the root of the project.
 
-``
+```bash
 packer zip
-``
+```
 
 ### theme:list
 Lists all themes (shows name, themeID, etc...) on the site, requires app password and store url be set first. By default looks at the store for development env in packer.config.json
 
-``
+```bash
 packer theme:list [--env]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -132,9 +132,9 @@ packer theme:list [--env]
 ### theme:create
 Creates a new empty theme on Shopify and updates packer.config.json for the selected env with the proper themeID
 
-``
+```bash
 packer theme:create [--env] [--name]
-``
+```
 
 | Flag | Description |
 | --- | --- |
@@ -144,9 +144,9 @@ packer theme:create [--env] [--name]
 ### theme:remove
 Removes the theme set in the selected env from Shopify
 
-``
+```bash
 packer theme:remove [--env] [--id]
-``
+```
 | Flag | Description |
 | --- | --- |
 | `--env` | Targets a custom environment (defaults to development). Setting --env=production would use the production settings in packer.config.json |
@@ -155,27 +155,30 @@ packer theme:remove [--env] [--id]
 ### theme:download
 Downloads the theme set in the selected env from Shopify
 
-``
+```bash
 packer theme:download [--env]
-``
+```
 
 | Flag | Description |
 | --- | --- |
 | `--env` | Targets a custom environment. Setting --env=production would use the production settings in packer.config.json |
 
 ### ssl:make
-Create a self-signed ssl cert for local development
+Create a self-signed ssl cert for local development. It will also create CA if one does not already exist.
 
-``
-packer ssl:make [--name]
-``
-| Flag | Description |
-| --- | --- |
-| `--name` | Name for SSL cert, defaults to localhost |
+```bash
+packer ssl:make
+```
 
+### ssl:check
+Check your current SSL setup to see if CA and Cert exist.
+
+```bash
+packer ssl:check
+```
 
 ### help
 Display all commands and flags
-``
+```bash
 packer help
-``
+```

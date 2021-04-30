@@ -237,8 +237,9 @@ async function onClientAfterSync() {
   console.log(`   The Browsersync control panel is available at:\n`);
 
   if (devServer.address !== 'localhost') {
+    const panelAddress = `http://${devServer.address}:${devServer.uiPort}`;
     console.log(
-      `      ${chalk.cyan(urls.get('ui-external'))} ${chalk.grey('(External)')}`
+      `      ${chalk.cyan(panelAddress)} ${chalk.grey('(External)')}`
     );
   }
 
