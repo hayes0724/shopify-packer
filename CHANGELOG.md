@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/hayes0724/shopify-packer/compare/v2.1.11...v2.2.0) (2021-04-30)
+
+
+### Features
+
+* check for ssl and make ca + cert ([#89](https://github.com/hayes0724/shopify-packer/issues/89)) ([a773db6](https://github.com/hayes0724/shopify-packer/commit/a773db60d159f268643ce7468af4eca3370ee7d7))
+
 ## [2.1.11](https://github.com/hayes0724/shopify-packer/compare/v2.1.10...v2.1.11) (2021-04-28)
 
 
