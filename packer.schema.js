@@ -9,4 +9,6 @@ module.exports = {
   'network.reload': 0,
   'build.sharedBundles': false,
   'build.sharedVendorBundles': false,
+  'build.baseProductModule': false,
+  'build.baseCollectionModule': false,
 };

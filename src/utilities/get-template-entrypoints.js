@@ -45,6 +45,30 @@ module.exports = function () {
 
     if (isValidTemplate(name) && fs.existsSync(jsFile)) {
       entrypoints[`template.${name}`] = jsFile;
+
+      // Always use main product template script file for duplicated product templates
+      // it is a feature required on some projects
+      // override as default product script
+      if (config.get('build.baseProductModule') && name.startsWith(`product.`)) {
+        const jsProductBaseFile = path.join(
+          config.get('theme.src.scripts'),
+          'templates',
+          'product.js',
+        );
+        entrypoints[`template.${name}`] = jsProductBaseFile;
+      }
+
+      // Always use main collection template script file for duplicated collection templates
+      // it is a feature required on some projects
+      // override as default collection script
+      if (config.get('build.baseCollectionModule') && name.startsWith(`collection.`)) {
+        const jsCollectionBaseFile = path.join(
+          config.get('theme.src.scripts'),
+          'templates',
+          'collection.js',
+        );
+        entrypoints[`template.${name}`] = jsCollectionBaseFile;
+      }
     }
   });
 
