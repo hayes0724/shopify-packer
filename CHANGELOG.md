@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/hayes0724/shopify-packer/compare/v2.3.1...v2.3.2) (2022-02-19)
+
+
+### Bug Fixes
+
+* themekit updated to v1.1.9 to support themekit access app ([cbee44b](https://github.com/hayes0724/shopify-packer/commit/cbee44bab4d08b16cf528a58d3d48c4be227d462)), closes [#124](https://github.com/hayes0724/shopify-packer/issues/124)
+
 ## [2.3.1](https://github.com/hayes0724/shopify-packer/compare/v2.3.0...v2.3.1) (2022-02-19)
 
 
