@@ -869,10 +869,10 @@
     lodash "^4.17.4"
     read-pkg-up "^7.0.0"
 
-"@shopify/themekit@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@shopify/themekit/-/themekit-1.1.7.tgz#06a1b81cca12b744c3fb72c9d937fd78793a83db"
-  integrity sha512-GuIORV/WtvxKzsHZ8Ly2/0T5xFT2anWO1MXmsqbVaxPSRqWppI0k10ulU4Aj118J+D28x03Gq0E1/ejAZgQqXw==
+"@shopify/themekit@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@shopify/themekit/-/themekit-1.1.9.tgz#9c31b8b06d9c2e0703bec2f2a318fe75f2976024"
+  integrity sha512-F9VZ2QI/B/BG/avd1a741vXggSlEXeVd0ADgO618/oqu+xgFX5nZnCT5wqlbGrJBmxRWBPlE7WFfWU9t1y6btQ==
   dependencies:
     bin-wrapper "^4.1.0"
     minimist "^1.2.5"
