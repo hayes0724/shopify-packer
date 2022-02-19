@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/hayes0724/shopify-packer/compare/v2.2.0...v2.3.0) (2022-02-19)
+
+
+### Bug Fixes
+
+* removed fibers from sass loader for node 16+ support ([7f2fc11](https://github.com/hayes0724/shopify-packer/commit/7f2fc114a4744eab7a365e87672956e5452744e8)), closes [#145](https://github.com/hayes0724/shopify-packer/issues/145)
+
+
+### Features
+
+* check for ssl and make ca + cert ([abb68e2](https://github.com/hayes0724/shopify-packer/commit/abb68e270ec5628fa624a95d1b8325a2c4ca9d47))
+
 # [2.2.0](https://github.com/hayes0724/shopify-packer/compare/v2.1.11...v2.2.0) (2021-04-30)
 
 
