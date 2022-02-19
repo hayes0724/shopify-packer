@@ -15,6 +15,7 @@ module.exports = {
       'config/webpack',
     ],
     Features: [
+      'features/dotenv',
       'features/bundles',
       'features/liquid-styles',
       'features/admin-api',

@@ -15,6 +15,7 @@ const css = require('../parts/css');
 const scss = require('../parts/scss');
 const assets = require('../parts/assets');
 const liquidStyles = require('../parts/liquid-styles');
+const env = require('../parts/env');
 const copy = require('../parts/copy');
 
 const mergeDev = customConfigCheck(config.get('merge.dev'));
@@ -40,6 +41,7 @@ module.exports = merge([
   scss,
   css,
   copy,
+  env,
   {
     mode: 'development',
     devtool: 'eval-source-map',
@@ -65,8 +67,9 @@ module.exports = merge([
         ],
       }),
 
-      new webpack.DefinePlugin({
-        'process.env': {NODE_ENV: '"development"'},
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'development',
+        DEBUG: false,
       }),
 
       new webpack.HotModuleReplacementPlugin(),

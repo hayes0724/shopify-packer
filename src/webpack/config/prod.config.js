@@ -23,6 +23,7 @@ const assets = require('../parts/assets');
 const copy = require('../parts/copy');
 const optimization = require('../parts/optimization');
 const liquidStyles = require('../parts/liquid-styles');
+const env = require('../parts/env');
 const mergeProd = customConfigCheck(config.get('merge.prod'));
 
 core.entry = {
@@ -38,6 +39,7 @@ const output = merge([
   scss,
   css,
   copy,
+  env,
   {
     mode: 'production',
     devtool: false,
@@ -55,8 +57,9 @@ const output = merge([
         filename: '[name].css',
       }),
 
-      new webpack.DefinePlugin({
-        'process.env': {NODE_ENV: '"production"'},
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'production',
+        DEBUG: false,
       }),
 
       new HtmlWebpackPlugin({

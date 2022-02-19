@@ -2,7 +2,7 @@
 id: bundles
 title: Bundles
 sidebar_label: Bundles
-slug: /features
+slug: /features/
 ---
 
 Template and layout bundles are a build-time optimization which ensures
