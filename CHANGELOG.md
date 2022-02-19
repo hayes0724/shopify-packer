@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/hayes0724/shopify-packer/compare/v2.3.0...v2.3.1) (2022-02-19)
+
+
+### Bug Fixes
+
+* chalk v5 changed to v4.1.2 to support require ([04a8260](https://github.com/hayes0724/shopify-packer/commit/04a826016943ca52d70e8aed20a25bf7121ba362)), closes [#147](https://github.com/hayes0724/shopify-packer/issues/147)
+
 # [2.3.0](https://github.com/hayes0724/shopify-packer/compare/v2.2.0...v2.3.0) (2022-02-19)
 
 
