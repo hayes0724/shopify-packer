@@ -1,3 +1,15 @@
+# [2.4.0](https://github.com/hayes0724/shopify-packer/compare/v2.3.1...v2.4.0) (2022-02-19)
+
+
+### Bug Fixes
+
+* themekit updated to v1.1.9 to support themekit access app ([cbee44b](https://github.com/hayes0724/shopify-packer/commit/cbee44bab4d08b16cf528a58d3d48c4be227d462)), closes [#124](https://github.com/hayes0724/shopify-packer/issues/124)
+
+
+### Features
+
+* webpack dotenv support ([fd00413](https://github.com/hayes0724/shopify-packer/commit/fd0041317e84b788408209a806daa8c3460480bb))
+
 ## [2.3.2](https://github.com/hayes0724/shopify-packer/compare/v2.3.1...v2.3.2) (2022-02-19)
 
 
