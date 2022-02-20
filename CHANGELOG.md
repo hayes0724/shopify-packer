@@ -1,3 +1,10 @@
+## [2.4.3](https://github.com/hayes0724/shopify-packer/compare/v2.4.2...v2.4.3) (2022-02-20)
+
+
+### Bug Fixes
+
+* **deps:** update project dependencies  ([#171](https://github.com/hayes0724/shopify-packer/issues/171)) ([0a16958](https://github.com/hayes0724/shopify-packer/commit/0a1695870b2cf0061f2a498f1b0dab2bd52b746c))
+
 ## [2.4.2](https://github.com/hayes0724/shopify-packer/compare/v2.4.1...v2.4.2) (2022-02-20)
 
 
