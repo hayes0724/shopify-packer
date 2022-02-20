@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/hayes0724/shopify-packer/compare/v2.4.0...v2.4.1) (2022-02-20)
+
+
+### Bug Fixes
+
+* **deps:** bump postcss from 8.2.10 to 8.2.13 ([2f75aac](https://github.com/hayes0724/shopify-packer/commit/2f75aacc9fe95479a59b2a6b163a7782a485ecd2))
+
 # [2.4.0](https://github.com/hayes0724/shopify-packer/compare/v2.3.1...v2.4.0) (2022-02-19)
 
 
