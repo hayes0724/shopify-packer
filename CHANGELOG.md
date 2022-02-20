@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/hayes0724/shopify-packer/compare/v2.4.1...v2.4.2) (2022-02-20)
+
+
+### Bug Fixes
+
+* **deps:** pin copy webpack plugin to major version ([3a00d53](https://github.com/hayes0724/shopify-packer/commit/3a00d536ce9ef4595e374c91f65fbb56abd2bba4))
+
 ## [2.4.1](https://github.com/hayes0724/shopify-packer/compare/v2.4.0...v2.4.1) (2022-02-20)
 
 
