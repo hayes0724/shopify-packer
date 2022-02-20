@@ -65,7 +65,7 @@
     "mkcert": "^1.4.0",
     "ora": "^5.4.0",
     "portscanner": "^2.2.0",
-    "postcss": "^8.2.10",
+    "postcss": "^8.2.13",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.1.2",
     "sass": "^1.32.8",
