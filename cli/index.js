@@ -8,9 +8,9 @@ const {init} = require('./commands/init');
 
 // Make sure we die if we have an unhandled rejection (like a webpack build
 // failure)
-process.on("unhandledRejection", (err) => {
+process.on('unhandledRejection', (err) => {
   console.error(err);
-  process.exit(1);
+  throw new Error(`[packer-cli] ${err}`);
 });
 
 switch (process.argv[2]) {
