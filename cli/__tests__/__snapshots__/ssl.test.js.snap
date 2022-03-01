@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ssl command ssl:make creates some files in .localhost_ssl 1`] = `
+Array [
+  "ca.crt",
+  "ca.key",
+  "cert.crt",
+  "cert.key",
+]
+`;

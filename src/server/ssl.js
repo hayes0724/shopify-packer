@@ -55,7 +55,7 @@ function getSSL() {
   return {key, cert, ca};
 }
 
-function checkSSL() {
+async function checkSSL() {
   makeCertFolder();
 
   const writeCert = (cert, key) => {
@@ -72,13 +72,13 @@ function checkSSL() {
     console.log(
       'No Certificate Authority (CA) found. Creating one now to issue new SSL certificates'
     );
-    createCA()
+    await createCA()
       .then(({cert, key}) => writeCA(cert, key))
       .catch((err) => console.error(err));
   }
   if (!checkCert()) {
     console.log('No SSL Certificate found. Creating one now');
-    createCert()
+    await createCert()
       .then(({cert, key}) => writeCert(cert, key))
       .catch((err) => console.error(err));
   }
