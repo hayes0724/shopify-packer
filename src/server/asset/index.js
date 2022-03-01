@@ -55,13 +55,15 @@ module.exports = class AssetServer {
     if (this._isLiquidTagFile(file) && this._hasAssetChanged(file, info)) {
       return this.updates.add(`snippets/${path.basename(file)}`);
     }
-    if (this._isLiquidFile(file) && this._hasAssetChanged(file, info)) {
-      return this.updates.add(
-        file.replace(`..${path.sep}`, '').replace(`../`, '')
-      );
-    }
-    if (this._isAssetFile(file) && this._hasAssetChanged(file, info)) {
-      return this.updates.add(`assets/${file}`);
+    if (
+      (this._isLiquidFile(file) || this._isAssetFile(file)) &&
+      this._hasAssetChanged(file, info)
+    ) {
+      // Note: dist/assets is the "main" output dir and all webpack dirs are
+      // relative to it. Examples:
+      // somefile -> assets/somefile
+      // ../snippets/template -> assets/../snippets/template ->  snippets/template
+      return this.updates.add(path.normalize(path.join('assets', file)));
     }
   }
 
