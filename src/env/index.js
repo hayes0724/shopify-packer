@@ -164,14 +164,12 @@ function _validateThemeId() {
   const themeId = getThemeIdValue();
 
   if (themeId.length === 0) {
-    errors.push(
-      new Error(`${config.get('env.keys.themeId')} must not be empty`)
-    );
+    errors.push(new Error(`${config.get('env.keys.id')} must not be empty`));
   } else if (themeId !== 'live' && !/^\d+$/.test(themeId)) {
     errors.push(
       new Error(
         `${config.get(
-          'env.keys.themeId'
+          'env.keys.id'
         )} can be set to 'live' or a valid theme ID containing only numbers`
       )
     );
