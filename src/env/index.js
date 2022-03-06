@@ -1,4 +1,5 @@
 const PackerConfig = require('../config');
+const chalk = require('chalk');
 
 const config = new PackerConfig(require('./packer-env.schema'));
 
@@ -21,8 +22,18 @@ const DEFAULT_ENV_VARS = [
 
 function assign(envName = undefined) {
   const name = typeof envName === 'undefined' ? 'development' : envName;
-  const env = require(config.get('packer.env'));
   process.env[config.get('env.keys.name')] = name;
+
+  const packerEnvFile = config.get('packer.env');
+  let env;
+  try {
+    env = require(packerEnvFile);
+  } catch (err) {
+    console.error(
+      chalk.red(`\nFailed to read ${packerEnvFile}, using env variables\n`)
+    );
+    return;
+  }
   DEFAULT_ENV_VARS.forEach((key) => {
     process.env[key] = env[name][_getConfigKey(key)];
   });
