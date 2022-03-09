@@ -7,31 +7,21 @@ on:
 jobs:
   lint:
     name: Lint files
-
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        node-version: [ 12.x ]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ matrix.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: yarn run lint
 
 
   test:
@@ -41,21 +31,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ matrix.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -66,25 +53,16 @@ jobs:
   release:
     needs: test
     name: Release
+    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        node-version: [ 12.x ]
-
-    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ matrix.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
