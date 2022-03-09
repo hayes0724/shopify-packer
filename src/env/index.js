@@ -1,4 +1,5 @@
 const PackerConfig = require('../config');
+const chalk = require('chalk');
 
 const config = new PackerConfig(require('./packer-env.schema'));
 
@@ -21,8 +22,18 @@ const DEFAULT_ENV_VARS = [
 
 function assign(envName = undefined) {
   const name = typeof envName === 'undefined' ? 'development' : envName;
-  const env = require(config.get('packer.env'));
   process.env[config.get('env.keys.name')] = name;
+
+  const packerEnvFile = config.get('packer.env');
+  let env;
+  try {
+    env = require(packerEnvFile);
+  } catch (err) {
+    console.error(
+      chalk.red(`\nFailed to read ${packerEnvFile}, using env variables\n`)
+    );
+    return;
+  }
   DEFAULT_ENV_VARS.forEach((key) => {
     process.env[key] = env[name][_getConfigKey(key)];
   });
@@ -153,14 +164,12 @@ function _validateThemeId() {
   const themeId = getThemeIdValue();
 
   if (themeId.length === 0) {
-    errors.push(
-      new Error(`${config.get('env.keys.themeId')} must not be empty`)
-    );
+    errors.push(new Error(`${config.get('env.keys.id')} must not be empty`));
   } else if (themeId !== 'live' && !/^\d+$/.test(themeId)) {
     errors.push(
       new Error(
         `${config.get(
-          'env.keys.themeId'
+          'env.keys.id'
         )} can be set to 'live' or a valid theme ID containing only numbers`
       )
     );
