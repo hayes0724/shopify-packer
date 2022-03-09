@@ -1,3 +1,13 @@
+## [2.4.4](https://github.com/hayes0724/shopify-packer/compare/v2.4.3...v2.4.4) (2022-03-09)
+
+
+### Bug Fixes
+
+* Build exit non zero on failure ([#153](https://github.com/hayes0724/shopify-packer/issues/153)) ([8b595f9](https://github.com/hayes0724/shopify-packer/commit/8b595f9cdb1a3e05082478f2f72adcaf0aaf6e1b))
+* Environment vars: allow them to work ([#184](https://github.com/hayes0724/shopify-packer/issues/184)) ([009f704](https://github.com/hayes0724/shopify-packer/commit/009f70439b7888a50f70d6b392d7d065f570820b))
+* handle {file}.css.liquid assets correctly ([0f8e0ce](https://github.com/hayes0724/shopify-packer/commit/0f8e0ce078066f9eb5454d56957c9e02078ffb2a)), closes [#144](https://github.com/hayes0724/shopify-packer/issues/144)
+* ssl:make timing bug ([#180](https://github.com/hayes0724/shopify-packer/issues/180)) ([bec0e9e](https://github.com/hayes0724/shopify-packer/commit/bec0e9ed0361703a682113ca5300b22ed0cebed6))
+
 ## [2.4.3](https://github.com/hayes0724/shopify-packer/compare/v2.4.2...v2.4.3) (2022-02-20)
 
 
