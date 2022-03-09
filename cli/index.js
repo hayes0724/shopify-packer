@@ -6,6 +6,13 @@ const chalk = require('chalk');
 const version = require('../package').version;
 const {init} = require('./commands/init');
 
+// Make sure we die if we have an unhandled rejection (like a webpack build
+// failure)
+process.on('unhandledRejection', (err) => {
+  console.error(err);
+  throw new Error(`[packer-cli] ${err}`);
+});
+
 switch (process.argv[2]) {
   case 'init':
     init(args);
