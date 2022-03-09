@@ -12,22 +12,15 @@ beforeAll(() => {
 describe('Test ssl command', () => {
   beforeEach(() => {
     // Start with an empty file system
-    mock({});
+    const home = `${os.homedir()}/.localhost_ssl`;
+    mock({
+      [home]: {},
+    });
   });
-  afterEach(() => {
+  test('ssl:make creates some files in .localhost_ssl', async () => {
+    await ssl({make: true});
+    const result = fs.readdirSync(path.join(os.homedir(), '.localhost_ssl'));
     mock.restore();
-  });
-  test('ssl:make creates some files in .localhost_ssl', (done) => {
-    ssl({make: true})
-      .then(() => {
-        assertSnapshot(path.join(os.homedir(), '.localhost_ssl'));
-      })
-      .then(done);
+    expect(result).toMatchSnapshot();
   });
 });
-
-function assertSnapshot(dir) {
-  const result = fs.readdirSync(dir);
-  mock.restore();
-  expect(result).toMatchSnapshot();
-}
