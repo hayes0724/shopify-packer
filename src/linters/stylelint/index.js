@@ -22,6 +22,11 @@ function stylelint({fix} = {}) {
   );
 }
 
+function handleLinterFailure(error) {
+  process.exitCode = 1
+  console.error(error);
+}
+
 module.exports.stylelint = stylelint;
 
 module.exports.runStylelint = function runStylelint() {
@@ -29,7 +34,7 @@ module.exports.runStylelint = function runStylelint() {
   try {
     stylelint();
   } catch (error) {
-    console.error(error);
+    handleLinterFailure(error);
   }
 };
 
@@ -38,6 +43,6 @@ module.exports.runStylelintFix = function runStylelintFix() {
   try {
     stylelint({fix: true});
   } catch (error) {
-    console.error(error);
+    handleLinterFailure(error);  
   }
 };
