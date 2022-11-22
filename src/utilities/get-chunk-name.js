@@ -25,8 +25,8 @@ module.exports = function (module, chunks, cacheGroup) {
   // long, it is truncated and a hash is appended. The limit has
   // been set to 100 to prevent `[name].[chunkhash].[ext]` from
   // generating a 256+ character string.
-  if (name.length > 256) {
-    name = `${name.slice(0, 240)}~${hashFilename(name)}`;
+  if (name.length > 100) {
+    name = `${name.slice(0, 92)}.${hashFilename(name)}`;
   }
 
   /* eslint-disable-next-line consistent-return */
