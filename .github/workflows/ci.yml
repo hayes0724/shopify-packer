@@ -25,7 +25,6 @@ jobs:
 
 
   test:
-    needs: lint
     name: Test - ${{ matrix.os }} - Node v${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
 
